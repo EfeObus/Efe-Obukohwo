@@ -1055,18 +1055,100 @@ body {
 
 /* Footer */
 .footer {
-    padding: 2rem 0;
+    padding: 3rem 0 1rem;
     background: var(--secondary-black);
     border-top: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .footer-content {
-    text-align: center;
     color: var(--gray);
 }
 
-.footer-content p {
-    margin-bottom: 0.5rem;
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section h4 {
+    color: var(--golden);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--gray);
+    transition: color 0.3s ease;
+}
+
+.footer-contact-item:hover {
+    color: var(--golden);
+}
+
+.footer-contact-item i {
+    width: 18px;
+    color: var(--golden);
+    font-size: 1rem;
+}
+
+.footer-contact-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact-item a:hover {
+    color: var(--golden);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.footer-social-link:hover {
+    background: var(--golden);
+    color: var(--primary-black);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* Responsive Design */
@@ -1143,6 +1225,20 @@ body {
     .profile-circle {
         width: 250px;
         height: 250px;
+    }
+
+    /* Footer responsive */
+    .footer-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-contact-item {
+        justify-content: center;
     }
 }
 
