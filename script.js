@@ -73,31 +73,60 @@ document.querySelectorAll('.project-card').forEach((card, index) => {
 
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
-    
-    // Simple validation
-    if (!name || !email || !subject || !message) {
-        showNotification('Please fill in all fields', 'error');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address', 'error');
-        return;
-    }
-    
-    // Simulate form submission
-    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-    this.reset();
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+            showNotification('Please fill in all fields', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                this.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('Sorry, there was an error sending your message. Please try again or email me directly.', 'error');
+        })
+        .finally(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+    });
+}
 
 // Email validation
 function isValidEmail(email) {

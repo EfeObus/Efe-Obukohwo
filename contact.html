@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/myzplezy" method="POST">
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
@@ -80,6 +80,9 @@
                         <div class="form-group">
                             <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         </div>
+                        <input type="hidden" name="_next" value="contact.html">
+                        <input type="hidden" name="_subject" value="New Portfolio Contact - {{subject}}">
+                        <input type="hidden" name="_replyto" value="{{email}}">
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
