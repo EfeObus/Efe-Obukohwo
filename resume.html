@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efe Obukohwo - Resume</title>
+    <style>
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .print-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        @media print {
+            .print-button {
+                display: none;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            font-size: 12px;
+        }
+        
+        .resume-container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .title {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 11px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .professional-summary {
+            text-align: justify;
+            line-height: 1.7;
+            font-size: 11px;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+        
+        .job-header, .edu-header, .project-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .job-title, .degree, .project-title {
+            font-weight: bold;
+            color: #000;
+            font-size: 13px;
+            flex: 1;
+        }
+        
+        .company, .institution {
+            font-weight: 600;
+            color: #000;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+        
+        .date {
+            font-style: italic;
+            color: #000;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+        
+        .job-description ul, .project-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .job-description li, .project-description li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 10px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        
+        .job-description li:before, .project-description li:before {
+            content: "•";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 4px solid #000;
+        }
+        
+        .skill-category h4 {
+            color: #000;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .skill-list {
+            font-size: 10px;
+            line-height: 1.4;
+        }
+        
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .cert-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #000;
+        }
+        
+        .cert-title {
+            font-weight: bold;
+            color: #000;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        
+        .cert-issuer {
+            color: #000;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+        
+        .cert-date {
+            color: #000;
+            font-size: 9px;
+            font-style: italic;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .gpa {
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .tech-tag {
+            background: #e3f2fd;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 8px;
+            font-weight: 500;
+        }
+        
+        @media print {
+            body {
+                font-size: 11px;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                max-width: none;
+                padding: 0.3in;
+            }
+            
+            .section {
+                margin-bottom: 15px;
+            }
+            
+            .experience-item, .education-item, .project-item {
+                margin-bottom: 12px;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            @page {
+                margin: 0.5in;
+                size: letter;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">
+        Print Resume
+    </button>
+    
+    <div class="resume-container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="name">Efe Obukohwo</h1>
+            <p class="title">IT Professional | Data Analyst | Full Stack Developer</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Email:</span>
+                    <span>efe.obukohwo@outlook.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>Phone:</span>
+                    <span>+1 (905) 781-9825</span>
+                </div>
+                <div class="contact-item">
+                    <span>Address:</span>
+                    <span>North York, Toronto, ON, Canada</span>
+                </div>
+                <div class="contact-item">
+                    <span>LinkedIn:</span>
+                    <span>linkedin.com/in/efe-obukohwo</span>
+                </div>
+                <div class="contact-item">
+                    <span>GitHub:</span>
+                    <span>github.com/EfeObus</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="professional-summary">
+                Experienced IT Professional and Data Analyst with 5+ years of expertise in database consulting, full-stack development, and machine learning. Proven track record of architecting AI-powered analytics platforms, optimizing database systems with 25% efficiency improvements, and leading development teams. Specialized in Python, SQL, JavaScript, and cloud technologies with strong experience in real estate analytics, humanitarian data systems, and enterprise-grade security implementations. Demonstrated ability to translate complex technical concepts into business solutions while maintaining 100% client satisfaction rates.
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Full Stack Developer Intern</div>
+                        <div class="company">Zodiac Tech Toronto</div>
+                    </div>
+                    <div class="date">May 2025 – August 2025</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Architected AI-powered real estate analytics platform processing 49,551+ Canadian properties with 88.3% ML prediction accuracy using ensemble models (XGBoost, LightGBM, Random Forest) and real-time economic data integration</li>
+                        <li>Led full-stack development of production-ready Flask application with MySQL database, RESTful API ecosystem (20+ endpoints), and responsive web interface featuring interactive property mapping and investment analytics</li>
+                        <li>Implemented enterprise-grade security infrastructure including 5-tier API key system, advanced rate limiting, ML-powered XSS/CSRF protection, and behavioral analysis achieving 100% attack prevention rate</li>
+                        <li>Built comprehensive investment intelligence platform with automated undervalued property detection (85% accuracy), portfolio optimization tools, and real-time market trend analysis using Bank of Canada/Statistics Canada APIs</li>
+                        <li>Deployed scalable Docker infrastructure with 99.9% uptime, <400ms API response times, and CI/CD pipeline achieving 85% test coverage while leading team of 5 developers in agile environment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Database Consultant</div>
+                        <div class="company">Humanitarian Outcomes</div>
+                    </div>
+                    <div class="date">May 2023 – Present</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Documented and resolved inaccuracies in the GDHO Airtable and Database, leading to a 25% increase in efficiency for the Humanitarian Outcomes database system</li>
+                        <li>Worked with team lead for database management and optimization strategies, designing complex databases with Global Database for Humanitarian Outcomes to ensure seamless data flow for humanitarian organizations</li>
+                        <li>Utilized Airtable and SQL extensively to streamline data collection, entry, and analysis processes, improving overall database efficiency and user experience</li>
+                        <li>Conducted trend analysis using SPSS and SQL, providing actionable insights to enhance humanitarian efforts</li>
+                        <li>Leveraged data visualization tools like Tableau and Power BI to present data insights to stakeholders, enabling data-driven decision-making</li>
+                        <li>Conducted surveys and interviews and analyzed results giving actionable insights on the state of humanitarian organizations around the world</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Customer Service Representative</div>
+                        <div class="company">IGNITE Student Life, Humber College</div>
+                    </div>
+                    <div class="date">Aug 2024 – May 2025</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Provided administrative and clerical support to all full-time and part-time staff through distributing mail, submitting work orders, and performing all other duties as requested</li>
+                        <li>Managed a high volume of inbound student inquiries, resolving billing issues and account discrepancies efficiently</li>
+                        <li>Advised students about all IGNITE services, wellness resources, and events through in-person office visits, emails, phone calls, and live chat with utmost professionalism</li>
+                        <li>Delivered excellent service while adhering to performance metrics, including call resolution time and customer satisfaction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">IT Consultant</div>
+                        <div class="company">Finecare Diagnostic Limited</div>
+                    </div>
+                    <div class="date">Oct 2020 – Oct 2021</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Devised and executed comprehensive IT solutions, including network setup and maintenance, boosting operational efficiency</li>
+                        <li>Achieved a 65% increase in accounting accuracy by introducing invoicing software for receipts generation</li>
+                        <li>Conducted market research and customer surveys to identify opportunities for business expansion</li>
+                        <li>Translated technical concepts into business-oriented language during team meetings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">IT Support Specialist</div>
+                        <div class="company">Delta State College of Education, Nigeria</div>
+                    </div>
+                    <div class="date">Nov 2018 – Oct 2020</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Led the installation and configuration of 40 workstations, ensuring optimal performance and user satisfaction</li>
+                        <li>Resolved technical issues for over 65 end-users promptly and with accuracy</li>
+                        <li>Implemented a remote support system, streamlining assistance for students during course registration and payment processes</li>
+                        <li>Strengthened cybersecurity protocols by implementing and managing antivirus software across all systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Ontario Graduate Certificate, Information Technology Solutions</div>
+                        <div class="company">Humber College, Toronto, ON</div>
+                    </div>
+                    <div class="date">Jan 2024 – Aug 2025</div>
+                </div>
+                <div style="font-size: 10px;">
+                    <strong>Key Courses:</strong> Machine Learning, Big Data Analytics, Database Design and Administration, Java Programming, SQL Server, and Database Development<br>
+                    <strong>Cumulative GPA:</strong> <span class="gpa">86.5%</span>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Ontario Graduate Certificate, Research Analyst</div>
+                        <div class="company">Humber College, Toronto, ON</div>
+                    </div>
+                    <div class="date">May 2022 – Aug 2023</div>
+                </div>
+                <div style="font-size: 10px;">
+                    <strong>Key Courses:</strong> Quantitative and Qualitative Designs, Spreadsheet Management, Research Survey and Design, Career Management Skills<br>
+                    <strong>Cumulative GPA:</strong> <span class="gpa">85.6%</span> and consecutive Dean's Honors List Award
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Bachelor of Science, Computer Science</div>
+                        <div class="company">Delta State University, Abraka, Nigeria</div>
+                    </div>
+                    <div class="date">Dec 2016 – Oct 2019</div>
+                </div>
+                <div style="font-size: 10px;">
+                    <strong>Key Courses:</strong> Java Programming, Data Structures and Algorithms, Human Computer Interactions, Database Management and Design<br>
+                    <strong>Cumulative GPA:</strong> <span class="gpa">3.75</span> in a 5-point grading system
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Projects -->
+        <section class="section">
+            <h2 class="section-title">Key Projects</h2>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">TekVwarho Analysis Platform</div>
+                    <div class="date">Jan 2025 – Present</div>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Developed innovative no-code analytics platform enabling non-programmers to perform data analysis and machine learning with interactive visualizations and automated model training</li>
+                        <li>Implemented AI-powered insights and comprehensive coverage of 15+ analysis types with research-grade statistics</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">AutoML</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">IGNITE Sleep Lounge Automation</div>
+                    <div class="date">Sep 2024 – May 2025</div>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Built digital check-in and waiver system for Humber College's IGNITE facilities, automating student registration, time tracking, and staff oversight</li>
+                        <li>Implemented real-time functionality and admin dashboard with user authentication and JWT security</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">JWT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">Tekevwe LegalEagleAI</div>
+                    <div class="date">Oct 2024 – Present</div>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Developed web application for legal document management and analysis with AI-powered document generation, editing, and summarization</li>
+                        <li>Integrated collaboration tools with AI chat assistant for legal research, contract creation, and risk analysis</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">OpenAI API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-list">Python, JavaScript, TypeScript, HTML5, CSS3, SQL, Java</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Frontend Technologies</h4>
+                    <div class="skill-list">React, Tailwind CSS, Bootstrap, Vite, Responsive Design</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend & APIs</h4>
+                    <div class="skill-list">Flask, Node.js, Express.js, RESTful APIs, JWT, Docker, Git</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Machine Learning & AI</h4>
+                    <div class="skill-list">Scikit-learn, XGBoost, LightGBM, Random Forest, AutoML, OpenAI API</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Data Analysis & Visualization</h4>
+                    <div class="skill-list">Pandas, Tableau, Power BI, Excel, SPSS, Apache Spark, Apache Hive</div>
+                </div>
+                <div class="skill-category">
+                    <h4>Databases & ORMs</h4>
+                    <div class="skill-list">PostgreSQL, MySQL, Oracle, Sequelize, Drizzle ORM, Airtable</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <h2 class="section-title">Licenses & Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-item">
+                    <div class="cert-title">Hands-On Introduction SQL</div>
+                    <div class="cert-issuer">LinkedIn Learning</div>
+                    <div class="cert-date">Dec 2023</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">NVivo 2018 Essential Training</div>
+                    <div class="cert-issuer">LinkedIn Learning</div>
+                    <div class="cert-date">Feb 2023</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Intermediate SQL for Data Scientists</div>
+                    <div class="cert-issuer">LinkedIn Learning</div>
+                    <div class="cert-date">Dec 2022</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">TCPS 2: Core 2022 Certificate</div>
+                    <div class="cert-issuer">Panel on Research and Ethics Canada</div>
+                    <div class="cert-date">May 2022</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Jobberman Soft-Skills Training</div>
+                    <div class="cert-issuer">Jobberman</div>
+                    <div class="cert-date">Feb 2022</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Achievements -->
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div style="font-size: 10px; line-height: 1.6;">
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 6px; padding-left: 15px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #000; font-weight: bold;">•</span>
+                        Achieved 88.3% ML prediction accuracy in real estate analytics platform processing 49,551+ properties
+                    </li>
+                    <li style="margin-bottom: 6px; padding-left: 15px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #000; font-weight: bold;">•</span>
+                        Improved database system efficiency by 25% through optimization and error resolution strategies
+                    </li>
+                    <li style="margin-bottom: 6px; padding-left: 15px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #000; font-weight: bold;">•</span>
+                        Deployed scalable infrastructure with 99.9% uptime and <400ms API response times
+                    </li>
+                    <li style="margin-bottom: 6px; padding-left: 15px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #000; font-weight: bold;">•</span>
+                        Consecutive Dean's Honors List Award with 85.6% cumulative GPA in Research Analyst program
+                    </li>
+                    <li style="margin-bottom: 6px; padding-left: 15px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #000; font-weight: bold;">•</span>
+                        Led installation and configuration of 40 workstations with 100% user satisfaction
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

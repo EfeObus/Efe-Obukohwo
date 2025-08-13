@@ -416,3 +416,31 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('Portfolio website loaded successfully! 🚀');
+
+// Track resume download
+function trackDownload() {
+    // Analytics tracking (if Google Analytics is available)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'download', {
+            'event_category': 'Resume',
+            'event_label': 'Efe_Obukohwo_Resume.pdf',
+            'value': 1
+        });
+    }
+    
+    // Console log for tracking
+    console.log('Resume download initiated');
+    
+    // Optional: Send to your own analytics endpoint
+    // fetch('/api/track-download', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         action: 'resume_download',
+    //         timestamp: new Date().toISOString(),
+    //         userAgent: navigator.userAgent
+    //     })
+    // }).catch(err => console.log('Analytics tracking failed:', err));
+}
