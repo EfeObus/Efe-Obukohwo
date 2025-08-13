@@ -1299,6 +1299,224 @@ body {
     }
 }
 
+/* Recommendations Styles */
+.recommendations {
+    background: var(--primary-black);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: var(--gray-light);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.recommendation-card {
+    background: var(--secondary-black);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
+}
+
+.recommendation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+}
+
+.recommendation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.recommender-info {
+    flex: 1;
+}
+
+.recommender-name {
+    color: var(--gold);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.recommender-title {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.recommendation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.recommendation-date,
+.recommendation-relationship {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.recommendation-relationship {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gray-light);
+}
+
+.recommendation-icon {
+    color: var(--gold);
+    font-size: 1.5rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+}
+
+.recommendation-content {
+    color: var(--white);
+    line-height: 1.7;
+}
+
+.recommendation-content p {
+    margin-bottom: 1rem;
+    color: var(--gray-light);
+}
+
+.recommendation-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Recommendations CTA Section */
+.recommendations-cta {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: var(--secondary-black);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.recommendations-cta h2 {
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.recommendations-cta p {
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design for Recommendations */
+@media (max-width: 768px) {
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .recommendation-card {
+        padding: 2rem;
+    }
+    
+    .recommender-name {
+        font-size: 1.2rem;
+    }
+    
+    .recommender-title {
+        font-size: 0.9rem;
+    }
+    
+    .recommendation-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .recommendation-date,
+    .recommendation-relationship {
+        align-self: flex-start;
+    }
+    
+    .recommendations-cta {
+        padding: 2rem 1.5rem;
+    }
+    
+    .recommendations-cta h2 {
+        font-size: 1.5rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 580px) {
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .recommendation-card {
+        padding: 1.5rem;
+    }
+    
+    .recommendation-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .recommendation-icon {
+        align-self: flex-start;
+        margin-top: 0;
+    }
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
