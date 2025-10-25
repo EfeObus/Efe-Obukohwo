@@ -99,9 +99,23 @@ body {
     text-decoration: none;
 }
 
+.nav-logo .logo-image {
+    height: 200px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-logo .logo-link:hover .logo-image {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
 .nav-logo .logo-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    align-items: center;
 }
 
 .nav-logo .logo-link:hover {
