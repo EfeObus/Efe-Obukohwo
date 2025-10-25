@@ -79,7 +79,7 @@ body {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 0.5rem 0 1rem 0;
     transition: all 0.3s ease;
 }
 
@@ -88,8 +88,16 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
 .nav-logo .logo-text {
@@ -100,7 +108,7 @@ body {
 }
 
 .nav-logo .logo-image {
-    height: 60px;
+    height: 75px;
     width: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -131,6 +139,7 @@ body {
 .nav-menu {
     display: flex;
     gap: 2rem;
+    justify-content: center;
 }
 
 .nav-link {
@@ -164,6 +173,10 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .bar {
@@ -1271,6 +1284,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-container {
+        position: relative;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -1278,7 +1295,7 @@ body {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 120px;
         flex-direction: column;
         background-color: rgba(0, 0, 0, 0.95);
         width: 100%;
