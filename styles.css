@@ -100,10 +100,13 @@ body {
 }
 
 .nav-logo .logo-image {
-    height: 100px;
+    height: 60px;
     width: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
+    background: transparent;
+    object-fit: contain;
+    mix-blend-mode: normal;
 }
 
 .nav-logo .logo-link:hover .logo-image {
@@ -116,6 +119,9 @@ body {
     color: inherit;
     display: flex;
     align-items: center;
+    background: transparent;
+    padding: 0.5rem;
+    border-radius: 50%;
 }
 
 .nav-logo .logo-link:hover {
