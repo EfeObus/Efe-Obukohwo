@@ -100,7 +100,7 @@ body {
 }
 
 .nav-logo .logo-image {
-    height: 200px;
+    height: 100px;
     width: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
