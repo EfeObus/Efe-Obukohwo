@@ -28,7 +28,7 @@ const limiter = rateLimit({
 app.use('/api/contact', limiter);
 
 // Email configuration
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     service: 'outlook', // or 'gmail', 'yahoo', etc.
     auth: {
         user: process.env.EMAIL_USER, // Your email
