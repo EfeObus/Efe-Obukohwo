@@ -245,11 +245,15 @@ body:has(.opportunity-banner) .hero {
     }
     
     body:has(.opportunity-banner) .navbar {
-        top: 60px;
+        top: 75px;
     }
     
     body:has(.opportunity-banner) .hero {
-        padding-top: 60px;
+        padding-top: 75px;
+    }
+    
+    body:has(.opportunity-banner) .nav-menu {
+        top: 180px;
     }
 }
 
@@ -1388,22 +1392,36 @@ body:has(.opportunity-banner) .hero {
 @media (max-width: 768px) {
     .nav-container {
         position: relative;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+
+    .nav-logo {
+        margin-bottom: 0;
+    }
+
+    .nav-logo .logo-image {
+        height: 55px;
     }
 
     .hamburger {
         display: flex;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 120px;
+        top: 105px;
         flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.95);
+        background-color: rgba(0, 0, 0, 0.98);
         width: 100%;
         text-align: center;
         transition: 0.3s;
         padding: 2rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     .nav-menu.active {

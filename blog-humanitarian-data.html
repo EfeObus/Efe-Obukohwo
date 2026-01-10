@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Airtable to Data-Driven Insights: Scaling Humanitarian Outcomes | Efe Obukohwo</title>
+    <meta name="description" content="Lessons learned from optimizing database systems for Humanitarian Outcomes, achieving a 25% efficiency increase through strategic schema design and query optimization.">
+    <meta name="keywords" content="PostgreSQL, Airtable, Database Design, SQL, Data Engineering, Tableau, Power BI, CRM Management, Humanitarian Data">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .blog-post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .blog-post-content h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .blog-post-content h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+        .blog-post-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            color: var(--gray-light);
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .blog-post-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .blog-post-content code {
+            background: var(--secondary-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+        }
+        .code-block {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .code-block pre {
+            color: var(--gray-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .blog-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        th {
+            background: var(--secondary-black);
+            color: var(--gold);
+        }
+        td {
+            color: var(--gray-light);
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .value {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .challenge-card {
+            background: var(--secondary-black);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ef4444;
+        }
+        .challenge-card h4 {
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+        .challenge-card p {
+            margin-bottom: 0;
+        }
+        .solution-card {
+            background: var(--secondary-black);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #4ade80;
+        }
+        .solution-card h4 {
+            color: #4ade80;
+            margin-bottom: 10px;
+        }
+        .solution-card p {
+            margin-bottom: 0;
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .tool-card {
+            background: var(--secondary-black);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        .tool-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+        .tool-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tool-card h4 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .tool-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .process-step {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+            padding: 25px;
+            background: var(--secondary-black);
+            border-radius: 10px;
+        }
+        .process-step .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .process-step .step-content h4 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .process-step .step-content p {
+            margin-bottom: 0;
+        }
+        .status-success {
+            color: #4ade80;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="blog-post-hero">
+        <div class="container">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <h1>From Airtable to Data-Driven Insights: <span class="golden-text">Scaling Humanitarian Outcomes</span></h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> January 2026</span>
+                <span><i class="far fa-clock"></i> 10 min read</span>
+                <span><i class="far fa-user"></i> Efe Obukohwo</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">PostgreSQL</span>
+                <span class="blog-tag">Database Design</span>
+                <span class="blog-tag">SQL</span>
+                <span class="blog-tag">Data Engineering</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post-content">
+        <p>Working in the humanitarian sector is both rewarding and challenging. Data is at the heart of every decision—whether it's understanding trends, allocating resources, or helping organizations operate more effectively. During my time at Humanitarian Outcomes, I had the opportunity to work closely with global humanitarian data, optimizing databases, streamlining processes, and transforming raw information into actionable insights.</p>
+
+        <p>In this post, I want to share my journey: the problems we faced, the strategies we implemented, the tools we used, and the tangible impact of our work.</p>
+
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="value">25%</div>
+                <div class="label">Efficiency Increase</div>
+            </div>
+            <div class="metric-card">
+                <div class="value">95%</div>
+                <div class="label">Duplicate Records Resolved</div>
+            </div>
+            <div class="metric-card">
+                <div class="value">1,200+</div>
+                <div class="label">Partner Records Standardized</div>
+            </div>
+            <div class="metric-card">
+                <div class="value">6</div>
+                <div class="label">Global Events Coordinated</div>
+            </div>
+        </div>
+
+        <h2>Understanding the Challenge</h2>
+
+        <p>Humanitarian organizations often rely on fragmented data systems. At Humanitarian Outcomes, we were managing multiple databases and Airtable systems that contained information on humanitarian organizations, field operations, and partner engagement. While these systems were powerful, inconsistencies and inefficiencies were slowing down decision-making and reporting.</p>
+
+        <p>Some of the key challenges included:</p>
+
+        <div class="challenge-card">
+            <h4>Data Inconsistencies</h4>
+            <p>Duplicate records, missing fields, and outdated information caused reporting errors. A single organization might appear under three different names, making aggregate analysis unreliable.</p>
+        </div>
+
+        <div class="challenge-card">
+            <h4>Inefficient Workflows</h4>
+            <p>Manual processes for collecting, entering, and analyzing data created delays. Team members spent hours each week on data entry that could be automated.</p>
+        </div>
+
+        <div class="challenge-card">
+            <h4>Lack of Actionable Insights</h4>
+            <p>While data existed, it wasn't always in a format that allowed teams or partners to make informed decisions quickly. Raw spreadsheets don't drive action—clear visualizations do.</p>
+        </div>
+
+        <p>Our goal was clear: streamline database management, improve data quality, and enable actionable insights that directly impact humanitarian efforts.</p>
+
+        <h2>Optimizing Databases for Efficiency</h2>
+
+        <p>One of the first steps I took was auditing the existing Airtable systems. This involved identifying inaccurate, incomplete, or duplicate records and implementing strategies to clean and normalize the data.</p>
+
+        <h3>The Data Audit Process</h3>
+
+        <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Record Inventory</h4>
+                <p>Cataloged all existing records across multiple Airtable bases, identifying data sources, field types, and relationships between tables.</p>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Duplicate Detection</h4>
+                <p>Developed SQL queries to identify potential duplicates based on fuzzy matching of organization names, addresses, and contact information.</p>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Data Normalization</h4>
+                <p>Standardized field formats across all records—consistent date formats, standardized country names, and unified categorization schemes.</p>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Validation Rules</h4>
+                <p>Implemented validation rules to prevent new inconsistencies from entering the system, ensuring long-term data quality.</p>
+            </div>
+        </div>
+
+        <h3>SQL Queries for Data Cleaning</h3>
+
+        <p>Using SQL queries alongside Airtable's built-in functionalities, I was able to identify and resolve data quality issues:</p>
+
+        <div class="code-block">
+<pre>-- Identify potential duplicate organizations
+-- Using fuzzy matching on organization names
+WITH normalized_orgs AS (
+    SELECT 
+        id,
+        organization_name,
+        LOWER(TRIM(REGEXP_REPLACE(organization_name, '[^a-zA-Z0-9]', '', 'g'))) AS normalized_name,
+        country,
+        created_at
+    FROM organizations
+),
+duplicate_groups AS (
+    SELECT 
+        normalized_name,
+        COUNT(*) AS duplicate_count,
+        ARRAY_AGG(id ORDER BY created_at) AS duplicate_ids
+    FROM normalized_orgs
+    GROUP BY normalized_name
+    HAVING COUNT(*) > 1
+)
+SELECT 
+    o.id,
+    o.organization_name,
+    o.country,
+    d.duplicate_count,
+    d.duplicate_ids
+FROM organizations o
+JOIN normalized_orgs n ON o.id = n.id
+JOIN duplicate_groups d ON n.normalized_name = d.normalized_name
+ORDER BY d.duplicate_count DESC, o.organization_name;</pre>
+        </div>
+
+        <div class="code-block">
+<pre>-- Standardize country names across the database
+UPDATE organizations
+SET country = CASE 
+    WHEN country IN ('USA', 'U.S.A.', 'US', 'United States of America') 
+        THEN 'United States'
+    WHEN country IN ('UK', 'U.K.', 'Britain', 'Great Britain') 
+        THEN 'United Kingdom'
+    WHEN country IN ('UAE', 'U.A.E.') 
+        THEN 'United Arab Emirates'
+    ELSE INITCAP(TRIM(country))
+END
+WHERE country IS NOT NULL;
+
+-- Add validation constraint for future entries
+ALTER TABLE organizations
+ADD CONSTRAINT valid_country 
+CHECK (country IN (SELECT name FROM valid_countries));</pre>
+        </div>
+
+        <h3>Results of Database Optimization</h3>
+
+        <p>The results were immediate:</p>
+
+        <div class="solution-card">
+            <h4>95% Duplicate Resolution</h4>
+            <p>Resolved 95% of duplicate or inconsistent records, ensuring clean data for reporting. What previously required manual cross-referencing now happened automatically.</p>
+        </div>
+
+        <div class="solution-card">
+            <h4>1,200+ Records Standardized</h4>
+            <p>Standardized field entries across 1,200+ partner and organization records, making it easier to segment and analyze information by region, project type, or engagement level.</p>
+        </div>
+
+        <div class="solution-card">
+            <h4>Validation Rules Implemented</h4>
+            <p>Implemented validation rules to prevent new inconsistencies from entering the system. Data entry became faster, and teams could trust the database for operational decisions.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h4>The Bottom Line</h4>
+            <p>Overall, we achieved a 25% increase in database efficiency, reducing time spent on manual checks and corrections. This freed up team members to focus on analysis and partner engagement rather than data janitorial work.</p>
+        </div>
+
+        <h2>Leveraging Data for Strategic Insights</h2>
+
+        <p>Cleaning the data was only the first step. The next challenge was turning it into actionable intelligence. I used SQL and Airtable to create queries that allowed us to:</p>
+
+        <ul>
+            <li><strong>Track trends</strong> across humanitarian organizations globally</li>
+            <li><strong>Segment partners</strong> by region, project type, and engagement level</li>
+            <li><strong>Identify gaps</strong> in services or support based on historical data</li>
+            <li><strong>Forecast needs</strong> using historical patterns and current indicators</li>
+        </ul>
+
+        <h3>Building Analytical Queries</h3>
+
+        <div class="code-block">
+<pre>-- Partner engagement analysis by region and project type
+SELECT 
+    p.region,
+    p.project_type,
+    COUNT(DISTINCT p.partner_id) AS total_partners,
+    COUNT(DISTINCT CASE WHEN e.engagement_date >= NOW() - INTERVAL '90 days' 
+        THEN p.partner_id END) AS active_partners_90d,
+    ROUND(
+        COUNT(DISTINCT CASE WHEN e.engagement_date >= NOW() - INTERVAL '90 days' 
+            THEN p.partner_id END)::NUMERIC / 
+        NULLIF(COUNT(DISTINCT p.partner_id), 0) * 100, 
+        2
+    ) AS engagement_rate_pct,
+    AVG(e.engagement_score) AS avg_engagement_score
+FROM partners p
+LEFT JOIN engagements e ON p.partner_id = e.partner_id
+GROUP BY p.region, p.project_type
+ORDER BY engagement_rate_pct DESC;</pre>
+        </div>
+
+        <div class="code-block">
+<pre>-- Identify service gaps by comparing partner coverage to need indicators
+WITH regional_needs AS (
+    SELECT 
+        region,
+        SUM(population_affected) AS total_affected,
+        SUM(funding_requested) AS total_funding_needed
+    FROM humanitarian_needs
+    WHERE reporting_year = EXTRACT(YEAR FROM NOW())
+    GROUP BY region
+),
+regional_coverage AS (
+    SELECT 
+        p.region,
+        COUNT(DISTINCT p.partner_id) AS active_partners,
+        SUM(pr.funding_allocated) AS total_funding_allocated
+    FROM partners p
+    JOIN projects pr ON p.partner_id = pr.lead_partner_id
+    WHERE pr.status = 'active'
+    GROUP BY p.region
+)
+SELECT 
+    n.region,
+    n.total_affected,
+    COALESCE(c.active_partners, 0) AS active_partners,
+    n.total_funding_needed,
+    COALESCE(c.total_funding_allocated, 0) AS funding_allocated,
+    ROUND(
+        (n.total_funding_needed - COALESCE(c.total_funding_allocated, 0)) / 
+        NULLIF(n.total_funding_needed, 0) * 100, 
+        2
+    ) AS funding_gap_pct
+FROM regional_needs n
+LEFT JOIN regional_coverage c ON n.region = c.region
+WHERE n.total_funding_needed > COALESCE(c.total_funding_allocated, 0)
+ORDER BY funding_gap_pct DESC;</pre>
+        </div>
+
+        <h3>Visualizing Insights with Tableau and Power BI</h3>
+
+        <p>To communicate these insights effectively, I used Tableau and Power BI to create visual dashboards. These dashboards allowed teams and stakeholders to quickly understand complex data, spot trends, and make informed decisions without having to dig through raw spreadsheets.</p>
+
+        <p>Key dashboard components included:</p>
+
+        <ul>
+            <li><strong>Geographic heat maps</strong> showing partner density and coverage gaps</li>
+            <li><strong>Trend lines</strong> tracking engagement metrics over time</li>
+            <li><strong>Funnel visualizations</strong> for partner qualification and onboarding</li>
+            <li><strong>KPI cards</strong> with real-time metrics on data quality and response rates</li>
+        </ul>
+
+        <h2>Supporting Partner Engagement and Events</h2>
+
+        <p>A critical part of the role involved managing partner engagement. By leveraging our cleaned and segmented database, I helped coordinate surveys, interviews, and global events for humanitarian organizations.</p>
+
+        <table>
+            <tr>
+                <th>Achievement</th>
+                <th>Impact</th>
+            </tr>
+            <tr>
+                <td>Targeted invite lists for 1,200+ partners</td>
+                <td>Ensured relevant stakeholders were included in events and campaigns</td>
+            </tr>
+            <tr>
+                <td>Lead qualification using structured frameworks</td>
+                <td>Prioritized high-potential partnerships based on data-driven criteria</td>
+            </tr>
+            <tr>
+                <td>6 global partner events coordinated</td>
+                <td>Managed registration, logistics, materials, and post-event reporting</td>
+            </tr>
+            <tr>
+                <td>Automated follow-up workflows</td>
+                <td>Reduced manual follow-up time by 40%</td>
+            </tr>
+        </table>
+
+        <p>This combination of database management, targeted engagement, and event coordination turned raw data into actionable outcomes, enabling the organization to make decisions faster and with more confidence.</p>
+
+        <h2>The Tools That Made It Possible</h2>
+
+        <p>Throughout this journey, several tools were key to our success:</p>
+
+        <div class="tool-grid">
+            <div class="tool-card">
+                <i class="fas fa-table"></i>
+                <h4>Airtable</h4>
+                <p>Flexible, collaborative database management with powerful automation capabilities</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-database"></i>
+                <h4>PostgreSQL and SQL</h4>
+                <p>Advanced querying, reporting, and data normalization for complex analyses</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-chart-bar"></i>
+                <h4>Tableau and Power BI</h4>
+                <p>Creating dashboards that translate complex data into actionable insights</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-poll"></i>
+                <h4>Survey Platforms</h4>
+                <p>Collecting structured feedback from partners, feeding directly into databases</p>
+            </div>
+        </div>
+
+        <p>These tools, combined with strategic processes and a focus on data integrity, allowed us to scale the impact of Humanitarian Outcomes' data systems globally.</p>
+
+        <h2>Lessons Learned</h2>
+
+        <p>My experience at Humanitarian Outcomes taught me several key lessons that are applicable not only to the humanitarian sector but also to any data-driven partnership or business development role:</p>
+
+        <ol>
+            <li>
+                <strong>Clean data is the foundation of action:</strong> Without accurate and structured data, no analysis or decision-making process is reliable. Investing in data quality pays dividends across every downstream activity.
+            </li>
+            <li>
+                <strong>Automation saves time and reduces errors:</strong> Even small database optimizations and validation rules can have a huge impact on efficiency. What takes hours manually can often be automated in minutes.
+            </li>
+            <li>
+                <strong>Visual insights drive adoption:</strong> Presenting data in an accessible and compelling way encourages stakeholders to act on insights. A well-designed dashboard is worth a thousand spreadsheets.
+            </li>
+            <li>
+                <strong>Collaboration amplifies impact:</strong> Working closely with team leads, partners, and field officers ensures that database improvements directly translate to better outcomes. Technical work must serve operational needs.
+            </li>
+            <li>
+                <strong>Quantifiable metrics matter:</strong> Measuring impact—whether it's a 25% efficiency increase or the number of leads qualified—helps demonstrate value and guide future improvements.
+            </li>
+        </ol>
+
+        <h2>Looking Forward</h2>
+
+        <p>The work at Humanitarian Outcomes reinforced my belief that data, when properly structured and analyzed, is one of the most powerful tools for driving real-world change. Whether it's humanitarian initiatives, strategic partnerships, or business development, clean, actionable data enables better decisions, stronger relationships, and measurable outcomes.</p>
+
+        <p>As organizations increasingly rely on data-driven strategies, the ability to combine technical expertise with strategic insights and stakeholder engagement is more important than ever. My experience at Humanitarian Outcomes gave me the skills to not only manage and optimize complex data systems but also to translate those insights into meaningful, actionable outcomes that drive impact.</p>
+
+        <div class="highlight-box">
+            <h4>Key Takeaways</h4>
+            <ul>
+                <li>Data quality is non-negotiable for operational effectiveness</li>
+                <li>The right tools (Airtable, PostgreSQL, Tableau) amplify human capability</li>
+                <li>Automation frees teams to focus on high-value activities</li>
+                <li>Visualization bridges the gap between data and decision-making</li>
+                <li>Humanitarian work benefits enormously from data engineering principles</li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <h3>View My Experience</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Learn more about my work at Humanitarian Outcomes and other organizations</p>
+            <a href="experience.html" class="btn btn-primary">
+                <i class="fas fa-briefcase"></i> View Experience
+            </a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
