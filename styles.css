@@ -231,29 +231,40 @@ body:has(.opportunity-banner) .hero {
 
 @media (max-width: 768px) {
     .opportunity-banner {
-        padding: 10px 15px;
-        font-size: 0.8rem;
+        padding: 8px 15px;
+        font-size: 0.75rem;
+        line-height: 1.4;
     }
     
     .opportunity-banner .container {
         flex-direction: column;
-        gap: 5px;
+        gap: 3px;
     }
     
-    .opportunity-location {
+    .opportunity-text {
         font-size: 0.75rem;
     }
     
+    .opportunity-location {
+        font-size: 0.7rem;
+    }
+    
+    /* Banner height on mobile is approximately 65px */
     body:has(.opportunity-banner) .navbar {
-        top: 75px;
+        top: 65px;
     }
     
     body:has(.opportunity-banner) .hero {
-        padding-top: 75px;
+        padding-top: 65px;
     }
     
+    /* Nav menu needs banner height (65px) + navbar height (~75px) */
     body:has(.opportunity-banner) .nav-menu {
-        top: 180px;
+        top: 140px;
+    }
+    
+    body:has(.opportunity-banner) .page-section {
+        padding-top: 180px;
     }
 }
 
@@ -1394,7 +1405,7 @@ body:has(.opportunity-banner) .hero {
         position: relative;
         flex-direction: row;
         justify-content: center;
-        padding: 10px 20px;
+        padding: 8px 20px;
     }
 
     .nav-logo {
@@ -1402,7 +1413,7 @@ body:has(.opportunity-banner) .hero {
     }
 
     .nav-logo .logo-image {
-        height: 55px;
+        height: 50px;
     }
 
     .hamburger {
@@ -1414,7 +1425,7 @@ body:has(.opportunity-banner) .hero {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 105px;
+        top: 75px;
         flex-direction: column;
         background-color: rgba(0, 0, 0, 0.98);
         width: 100%;
@@ -1422,6 +1433,7 @@ body:has(.opportunity-banner) .hero {
         transition: 0.3s;
         padding: 2rem 0;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1498,6 +1510,37 @@ body:has(.opportunity-banner) .hero {
 }
 
 @media (max-width: 480px) {
+    /* Even smaller banner on very small screens */
+    .opportunity-banner {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .opportunity-banner .container {
+        gap: 2px;
+    }
+    
+    .opportunity-text {
+        font-size: 0.7rem;
+    }
+    
+    .opportunity-location {
+        font-size: 0.65rem;
+    }
+    
+    /* Banner height on small mobile is approximately 55px */
+    body:has(.opportunity-banner) .navbar {
+        top: 55px;
+    }
+    
+    body:has(.opportunity-banner) .nav-menu {
+        top: 125px;
+    }
+    
+    body:has(.opportunity-banner) .page-section {
+        padding-top: 160px;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
