@@ -5,13 +5,13 @@ const portfolioData = {
     // Personal Information
     personal: {
         name: "Efe Obukohwo",
-        title: "IT Professional | Data Analyst | Full Stack Developer",
+        title: "Full Stack Developer | Python Developer | Data Engineer",
         email: "efe.obukohwo@outlook.com",
         phone: "+1 (905) 781-9825",
         location: "North York, Toronto, ON, Canada",
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
-        summary: "Experienced IT Professional and Data Analyst with 5+ years of expertise in database consulting, full-stack development, and machine learning. Proven track record of architecting AI-powered analytics platforms, optimizing database systems with 25% efficiency improvements, and leading development teams. Specialized in Python, SQL, JavaScript, and cloud technologies with strong experience in real estate analytics, humanitarian data systems, and enterprise-grade security implementations. Demonstrated ability to translate complex technical concepts into business solutions while maintaining 100% client satisfaction rates."
+        summary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
     },
 
     // Work Experience
