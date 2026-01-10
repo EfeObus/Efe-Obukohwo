@@ -120,10 +120,10 @@
         
         .job-header, .edu-header, .project-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
-            flex-wrap: wrap;
+            width: 100%;
         }
         
         .job-title, .degree, .project-title {
@@ -145,6 +145,9 @@
             color: #000;
             font-size: 10px;
             white-space: nowrap;
+            text-align: right;
+            flex-shrink: 0;
+            margin-left: auto;
         }
         
         .job-description ul, .project-description ul {
