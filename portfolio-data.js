@@ -32,7 +32,7 @@ const portfolioData = {
         {
             title: "Database Consultant",
             company: "Humanitarian Outcomes",
-            date: "May 2023 – Present",
+            date: "May 2023 – Dec 2025",
             location: "Remote",
             responsibilities: [
                 "Documented and resolved inaccuracies in the GDHO Airtable and Database, leading to a 25% increase in efficiency for the Humanitarian Outcomes database system",
@@ -40,7 +40,10 @@ const portfolioData = {
                 "Utilized Airtable and SQL extensively to streamline data collection, entry, and analysis processes, improving overall database efficiency and user experience",
                 "Conducted trend analysis using SPSS and SQL, providing actionable insights to enhance humanitarian efforts",
                 "Leveraged data visualization tools like Tableau and Power BI to present data insights to stakeholders, enabling data-driven decision-making",
-                "Conducted surveys and interviews and analyzed results giving actionable insights on the state of humanitarian organizations around the world"
+                "Conducted surveys and interviews and analyzed results giving actionable insights on the state of humanitarian organizations around the world",
+                "Built and segmented 1,200+ partner and audience lists using Airtable and SQL, increasing campaign engagement by 30%",
+                "Followed up and qualified 350+ leads from events and surveys using structured frameworks, converting 120 high-priority opportunities",
+                "Coordinated logistics for 6 global partner events, managing registrations, materials, and follow-ups with zero operational delays"
             ]
         },
         {
