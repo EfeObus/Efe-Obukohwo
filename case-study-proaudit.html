@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: TekVwarho ProAudit - Nigerian Tax Compliance Platform | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into TekVwarho ProAudit, an enterprise-grade Nigerian tax compliance and forensic audit platform built for the 2026 Tax Reform.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <h1><span class="golden-text">TekVwarho ProAudit</span></h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">Nigeria's Premier Tax Compliance & Forensic Audit Platform</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> Oct 2025 – Present</span>
+                <span><i class="fas fa-code"></i> Enterprise SaaS</span>
+                <span><i class="fas fa-user"></i> Founder & Lead Architect</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/Tekvwarho Pro Audit.png" alt="TekVwarho ProAudit Dashboard" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>The Problem</h2>
+            <p>Nigeria's 2026 tax reforms introduced sweeping changes that caught most businesses unprepared:</p>
+            <ul>
+                <li><strong>Mandatory NRS e-invoicing</strong> – All businesses must generate electronic invoices through the new National Revenue Service system</li>
+                <li><strong>Progressive PAYE with ₦800,000 tax-free threshold</strong> – Complex salary calculations with new bands and reliefs</li>
+                <li><strong>Input VAT recovery on services and assets</strong> – Tracking requirements for VAT credits</li>
+                <li><strong>Zero-CIT eligibility for small businesses</strong> – Qualification criteria and documentation requirements</li>
+                <li><strong>New development levies and Minimum Effective Tax Rate (ETR)</strong> – Additional compliance layers</li>
+            </ul>
+            <div class="highlight-box">
+                <h3>The Gap</h3>
+                <p>Most existing accounting tools were built for other jurisdictions. Nigerian businesses were forced to rely on error-prone spreadsheets and manual processes, exposing them to penalties, audit failures, and fraud risks.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Solution</h2>
+            <p>TekVwarho ProAudit is a purpose-built platform that automates Nigerian tax compliance from end to end:</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="number">500+</div>
+                    <div class="label">API Routes</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">80+</div>
+                    <div class="label">Database Models</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">400+</div>
+                    <div class="label">Automated Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">100%</div>
+                    <div class="label">2026 Compliant</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Key Features</h2>
+            
+            <h3 style="color: var(--white); margin-top: 30px;">🧾 Nigerian Tax Compliance Engine</h3>
+            <ul>
+                <li>2026-compliant PAYE, VAT, WHT, CIT, CGT calculations</li>
+                <li>Automatic 0% / 20% / 30% CIT detection based on revenue</li>
+                <li>Development Levy & Minimum Effective Tax Rate logic</li>
+                <li>Penalty exposure estimation and compliance alerts</li>
+            </ul>
+
+            <h3 style="color: var(--white); margin-top: 30px;">🏦 Full Payroll System</h3>
+            <ul>
+                <li>Progressive PAYE bands with CRA & rent relief</li>
+                <li>Pension, NHF, NSITF, ITF statutory deductions</li>
+                <li>Payslip generation and remittance tracking</li>
+                <li>NIBSS-ready pension bulk payment file generation</li>
+            </ul>
+
+            <h3 style="color: var(--white); margin-top: 30px;">🔍 World-Class Forensic Audit System</h3>
+            <ul>
+                <li><strong>Benford's Law fraud detection</strong> – Statistical analysis of transaction patterns</li>
+                <li><strong>Z-Score anomaly analysis</strong> – Identifies outliers in financial data</li>
+                <li><strong>3-Way matching</strong> – PO → GRN → Invoice reconciliation</li>
+                <li><strong>Hash-chain immutable ledger</strong> – SHA-256 transaction integrity</li>
+                <li><strong>WORM document storage</strong> – Audit-grade retention</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Technical Architecture</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python 3.11+</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>FastAPI</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-layer-group"></i>
+                    <span>SQLAlchemy 2.0</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Celery</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-memory"></i>
+                    <span>Redis</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-file-code"></i>
+                    <span>HTMX</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>TailwindCSS</span>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h3>Security & Compliance</h3>
+                <ul style="margin-top: 15px;">
+                    <li><strong>NDPA 2023 compliant</strong> – Nigeria Data Protection Act</li>
+                    <li><strong>AES-256-GCM encryption</strong> – BVN, NIN, TIN, bank data</li>
+                    <li><strong>Nigerian data sovereignty</strong> – IP geo-fencing enforcement</li>
+                    <li><strong>CSRF, XSS, rate limiting</strong> – Enterprise security middleware</li>
+                    <li><strong>Right-to-erasure workflows</strong> – With statutory retention</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Technical Decisions</h2>
+            
+            <p><strong>Why FastAPI over Django/Flask?</strong></p>
+            <p>FastAPI provides async-first architecture essential for handling concurrent API requests, built-in OpenAPI documentation, and Pydantic validation that catches tax calculation errors at the boundary. The 500+ routes need automatic documentation that stays in sync with code.</p>
+            
+            <p style="margin-top: 20px;"><strong>Why Hash-Chain Ledger?</strong></p>
+            <p>Auditors require proof that records weren't tampered with. Each transaction includes a SHA-256 hash of the previous transaction, creating an immutable chain. Any modification breaks the chain, providing cryptographic evidence of integrity.</p>
+            
+            <p style="margin-top: 20px;"><strong>Why Benford's Law?</strong></p>
+            <p>Fraudulent financial data rarely follows natural digit distribution patterns. Benford's Law analysis flags transactions where first-digit frequencies deviate from expected distributions, automating what forensic auditors do manually.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>My Role</h2>
+            <ul>
+                <li>Product conception & Nigerian tax law research</li>
+                <li>System architecture & database schema design</li>
+                <li>Implementation of all tax calculation engines</li>
+                <li>Forensic audit system design and development</li>
+                <li>Security architecture & NDPA compliance</li>
+                <li>API development & documentation</li>
+                <li>Test strategy and 400+ test implementation</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Outcome & Impact</h2>
+            <p>TekVwarho ProAudit demonstrates deep expertise in:</p>
+            <ul>
+                <li>Regulatory/compliance software development</li>
+                <li>Complex business logic implementation</li>
+                <li>Enterprise-grade security architecture</li>
+                <li>Forensic and audit system design</li>
+                <li>Production-ready API development at scale</li>
+            </ul>
+            <p style="margin-top: 20px;">The platform is positioned as a next-generation compliance backbone for Nigerian businesses navigating the post-2026 tax era.</p>
+        </section>
+
+        <div class="cta-section">
+            <h3>View the Code</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Explore the repository and technical implementation</p>
+            <a href="https://github.com/EfeObus/TekVwarho-ProAudit" target="_blank" class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

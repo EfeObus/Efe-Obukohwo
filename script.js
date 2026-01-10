@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-console.log('Portfolio website loaded successfully! 🚀');
+console.log('Portfolio website loaded successfully!');
 
 // Track resume download
 function trackDownload() {

@@ -26,6 +26,7 @@
                 <a href="skills.html" class="nav-link">Skills</a>
                 <a href="projects.html" class="nav-link active">Projects</a>
                 <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
             <div class="hamburger" id="hamburger">
@@ -114,6 +115,13 @@
             const projectsHTML = data.projects.map(project => {
                 // Build project links
                 let linksHTML = '';
+                if (project.caseStudy) {
+                    linksHTML += `
+                        <a href="${project.caseStudy}" class="project-link case-study-link">
+                            <i class="fas fa-book-open"></i> Case Study
+                        </a>
+                    `;
+                }
                 if (project.live) {
                     linksHTML += `
                         <a href="${project.live}" target="_blank" rel="noopener noreferrer" class="project-link">

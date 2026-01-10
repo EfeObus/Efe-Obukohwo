@@ -139,6 +139,7 @@ const portfolioData = {
             technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "HTMX", "TailwindCSS", "Celery", "Redis", "Cryptography"],
             github: "https://github.com/EfeObus/TekVwarho-ProAudit",
             live: null,
+            caseStudy: "case-study-proaudit.html",
             image: "images/Tekvwarho Pro Audit.png",
             featured: true
         },
@@ -172,6 +173,7 @@ const portfolioData = {
             technologies: ["Flask", "PostgreSQL", "OpenAI API", "AutoML", "Tableau", "Python"],
             github: "https://github.com/EfeObus/TekVwarho-Analysis",
             live: null,
+            caseStudy: "case-study-analysis.html",
             image: "images/TekVwarho Analysis.png",
             featured: true
         },
@@ -194,6 +196,7 @@ const portfolioData = {
             technologies: ["Python", "Flask", "MySQL", "Scikit-learn", "XGBoost", "Docker", "JavaScript"],
             github: "https://github.com/EfeObus/NextProperty",
             live: null,
+            caseStudy: "case-study-zodiac.html",
             image: "images/Zodiac Real Estate.png",
             featured: true
         },
