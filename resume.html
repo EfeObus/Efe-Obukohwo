@@ -4,32 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efe Obukohwo - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .print-button {
+        .download-buttons {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .download-btn {
             background: #000;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
+            padding: 10px 16px;
+            border-radius: 20px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             font-family: 'Times New Roman', serif;
             font-weight: bold;
-            z-index: 1000;
+            font-size: 12px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
-        .print-button:hover {
-            background: #333;
+        .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
         
+        .pdf-btn:hover {
+            background: #c0392b;
+        }
+        
+        .docx-btn:hover {
+            background: #2980b9;
+        }
+        
+        .print-btn:hover {
+            background: #333;
+        }
+        
         @media print {
-            .print-button {
+            .download-buttons {
                 display: none;
             }
         }
@@ -240,6 +262,31 @@
             font-weight: bold;
         }
         
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 6px;
+            margin-bottom: 4px;
+        }
+        
+        .project-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+        
+        .project-link i {
+            font-size: 10px;
+        }
+        
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -308,9 +355,17 @@
     </style>
 </head>
 <body>
-    <button class="print-button" onclick="window.print()">
-        Print Resume
-    </button>
+    <div class="download-buttons">
+        <a href="Efe_Obukohwo_Resume.pdf" download="Efe_Obukohwo_Resume.pdf" class="download-btn pdf-btn">
+            <i class="fas fa-file-pdf"></i> Download PDF
+        </a>
+        <a href="Efe_Obukohwo_Resume.docx" download="Efe_Obukohwo_Resume.docx" class="download-btn docx-btn">
+            <i class="fas fa-file-word"></i> Download DOCX
+        </a>
+        <button class="download-btn print-btn" onclick="window.print()">
+            <i class="fas fa-print"></i> Print
+        </button>
+    </div>
     
     <div class="resume-container">
         <!-- Header Section - Populated by JavaScript -->
@@ -445,7 +500,17 @@
 
             // Populate Projects (limit to 6 featured projects for resume)
             const featuredProjects = data.projects.filter(p => p.featured).slice(0, 6);
-            const projectsHTML = featuredProjects.map(project => `
+            const projectsHTML = featuredProjects.map(project => {
+                const links = [];
+                if (project.live) {
+                    links.push(`<a href="${project.live}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>`);
+                }
+                if (project.github) {
+                    links.push(`<a href="${project.github}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>`);
+                }
+                const linksHTML = links.length > 0 ? `<div class="project-links">${links.join(' ')}</div>` : '';
+                
+                return `
                 <div class="project-item">
                     <div class="project-header">
                         <div class="project-title">${project.title}</div>
@@ -455,12 +520,13 @@
                         <ul>
                             <li>${project.shortDescription}</li>
                         </ul>
+                        ${linksHTML}
                         <div class="tech-stack">
                             ${project.technologies.slice(0, 6).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             document.getElementById('resume-projects').innerHTML = projectsHTML;
 
             // Populate Skills

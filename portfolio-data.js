@@ -160,7 +160,7 @@ const portfolioData = {
             shortDescription: "Digital autobiography and legacy-preservation platform with 28-chapter framework, enterprise security, and professional document export",
             date: "Dec 2025 – Present",
             technologies: ["Node.js", "Express.js", "PostgreSQL (AWS RDS)", "Prisma ORM", "React", "Material UI", "JWT Authentication"],
-            github: null,
+            github: "https://github.com/EfeObus/TekVwa-Life",
             live: "https://tekvwa-life-production.up.railway.app/",
             image: "images/TekVwa Life.png",
             featured: true
