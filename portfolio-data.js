@@ -138,7 +138,7 @@ const portfolioData = {
             date: "Oct 2025 – Present",
             technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "HTMX", "TailwindCSS", "Celery", "Redis", "Cryptography"],
             github: "https://github.com/EfeObus/TekVwarho-ProAudit",
-            live: null,
+            live: "https://ingenious-emotion-production-c3c3.up.railway.app/",
             caseStudy: "case-study-proaudit.html",
             image: "images/Tekvwarho Pro Audit.png",
             featured: true
