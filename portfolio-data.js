@@ -132,6 +132,17 @@ const portfolioData = {
     // Projects - Add new projects here and they will appear on both projects.html and resume.html
     projects: [
         {
+            title: "JTOV Network",
+            description: "An advanced AI-powered mentorship platform that connects professionals through intelligent matching, skill development, and interactive networking tools. Features include AI-powered smart matching for mentors/mentees based on compatible skills and goals, real-time messaging and WebRTC video calling, gamification elements with achievements and leveling, AI-generated career roadmaps, structured learning paths, and an analytics dashboard for tracking progress. Includes an AI Learning Hub with personalized tutoring, skill gap analysis, and smart recommendations. Features a complete video learning platform with course management, interactive quizzes, and progress tracking. Built with comprehensive admin/staff dashboards, audit logging, and support ticket system. Implements enterprise security including CSRF protection, rate limiting, secure sessions, and Helmet security headers.",
+            shortDescription: "AI-powered mentorship platform with intelligent matching, WebRTC video calling, gamification, career roadmaps, and a complete video learning system",
+            date: "Jan 2026 – Present",
+            technologies: ["React", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Drizzle ORM", "WebSockets", "WebRTC", "OpenAI API", "TailwindCSS", "Framer Motion"],
+            github: "https://github.com/EfeObus/JTOV-Network",
+            live: null,
+            image: "images/JTOV Network.png",
+            featured: true
+        },
+        {
             title: "TekVwarho ProAudit",
             description: "Nigeria's premier enterprise-grade tax compliance, payroll, and forensic audit platform built for the 2026 Nigerian Tax Reform. Automates complex statutory obligations—PAYE, VAT, CIT, WHT, pension, and NRS e-invoicing—while providing audit-ready records, immutable evidence, and regulator-friendly reports for FIRS and external auditors. Features include a 2026-compliant tax engine, full Nigerian payroll system with progressive PAYE bands, world-class forensic audit capabilities (Benford's Law fraud detection, Z-Score anomaly analysis, 3-way matching, hash-chain immutable ledger), and NDPA 2023 security compliance with AES-256-GCM encryption. Built with 500+ API routes, 80+ database models, and 400+ automated tests.",
             shortDescription: "Enterprise-grade Nigerian tax compliance and forensic audit platform with 2026 tax reform support, featuring Benford's Law fraud detection, hash-chain immutable ledger, and NDPA 2023 security compliance",
