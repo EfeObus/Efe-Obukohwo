@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a No-Code Statistical Analysis Platform: TekVwarho Analysis | Efe Obukohwo</title>
+    <meta name="description" content="How I built a comprehensive statistical analysis platform with 17+ analysis types, AI-powered report generation, and WCAG 2.1 accessibility for non-programmers.">
+    <meta name="keywords" content="Statistical Analysis, No-Code Analytics, Flask, OpenAI, Machine Learning, Data Science, Python, SPSS Alternative">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .blog-post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .blog-post-content h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .blog-post-content h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+        .blog-post-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            color: var(--gray-light);
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .blog-post-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .blog-post-content code {
+            background: var(--secondary-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+        }
+        .code-block {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .code-block pre {
+            color: var(--gray-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .blog-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        th {
+            background: var(--secondary-black);
+            color: var(--gold);
+        }
+        td {
+            color: var(--gray-light);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .feature-card {
+            background: var(--secondary-black);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .feature-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .version-badge {
+            background: var(--gold);
+            color: var(--primary-black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="blog-post-hero">
+        <div class="container">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <span class="version-badge">Version 4.2.1</span>
+            <h1>Building a No-Code Statistical Analysis Platform: <span class="golden-text">TekVwarho Analysis</span></h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> February 2026</span>
+                <span><i class="far fa-clock"></i> 15 min read</span>
+                <span><i class="far fa-user"></i> Efe Obukohwo</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Flask</span>
+                <span class="blog-tag">OpenAI</span>
+                <span class="blog-tag">PostgreSQL</span>
+                <span class="blog-tag">Statistical Analysis</span>
+                <span class="blog-tag">Machine Learning</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post-content">
+        <p>Statistical analysis has long been the domain of specialists—requiring expertise in tools like SPSS, SAS, or R. With TekVwarho Analysis, I set out to democratize advanced analytics by creating a comprehensive, web-based platform that enables non-programmers to perform research-grade statistical analysis with AI-powered report generation.</p>
+
+        <p>In this article, I'll walk through the architecture decisions, technical challenges, and features that make TekVwarho Analysis a professional-grade analytics solution now available globally.</p>
+
+        <div class="highlight-box">
+            <h4>🌍 Global Availability</h4>
+            <p>TekVwarho Analysis is available to users worldwide. Services are registered in Canada and operate in compliance with Canadian law (PIPEDA), with appropriate data protection measures for international users.</p>
+        </div>
+
+        <h2>The Vision: Research-Grade Statistics for Everyone</h2>
+
+        <p>Traditional statistical software presents significant barriers: expensive licenses, steep learning curves, and command-line interfaces. TekVwarho Analysis addresses these challenges with:</p>
+
+        <ul>
+            <li><strong>17+ Analysis Types:</strong> From descriptive statistics to Bayesian inference</li>
+            <li><strong>AI-Powered Reports:</strong> GPT-4 generates professional interpretations</li>
+            <li><strong>Intuitive Interface:</strong> Bootstrap-based responsive design</li>
+            <li><strong>WCAG 2.1 AA Compliance:</strong> Full accessibility for all users</li>
+            <li><strong>Multi-Format Export:</strong> SPSS, Stata, SAS, Excel, PDF, DOCX</li>
+        </ul>
+
+        <h2>Analysis Modules: Comprehensive Statistical Coverage</h2>
+
+        <p>The platform offers a complete suite of statistical analyses organized into intuitive categories:</p>
+
+        <table>
+            <tr>
+                <th>Module</th>
+                <th>Description</th>
+                <th>Key Features</th>
+            </tr>
+            <tr>
+                <td>Descriptive Statistics</td>
+                <td>Summary statistics</td>
+                <td>Central tendency, dispersion, distribution</td>
+            </tr>
+            <tr>
+                <td>Correlation & Association</td>
+                <td>Relationship analysis</td>
+                <td>Pearson, Spearman, matrices, significance</td>
+            </tr>
+            <tr>
+                <td>Regression Analysis</td>
+                <td>Predictive modeling</td>
+                <td>Linear, logistic, polynomial with diagnostics</td>
+            </tr>
+            <tr>
+                <td>Compare Means</td>
+                <td>Group comparisons</td>
+                <td>T-tests, ANOVA, effect sizes</td>
+            </tr>
+            <tr>
+                <td>Factor Analysis</td>
+                <td>Dimensionality reduction</td>
+                <td>PCA, factor loadings, scree plots</td>
+            </tr>
+            <tr>
+                <td>Time Series</td>
+                <td>Temporal analysis</td>
+                <td>Trend, seasonality, ARIMA forecasting</td>
+            </tr>
+            <tr>
+                <td>Survival Analysis</td>
+                <td>Time-to-event</td>
+                <td>Kaplan-Meier, Cox regression, log-rank</td>
+            </tr>
+            <tr>
+                <td>Bayesian Analysis</td>
+                <td>Probabilistic inference</td>
+                <td>Bayes factors, credible intervals, priors</td>
+            </tr>
+        </table>
+
+        <h2>Generative AI: The Intelligence Behind the Reports</h2>
+
+        <p>The most transformative aspect of TekVwarho Analysis is its deep integration with <strong>OpenAI's GPT-4 generative AI</strong>. Unlike traditional statistical software that outputs raw numbers and expects users to interpret them, our platform uses large language models to bridge the gap between statistical output and human understanding.</p>
+
+        <h3>How Generative AI Powers the Platform</h3>
+
+        <p>Every analysis performed on the platform goes through an AI interpretation pipeline:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-brain"></i> Contextual Understanding</h4>
+                <p>GPT-4 receives the statistical results along with metadata about the analysis type, variable names, and research context to generate relevant interpretations.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-language"></i> Natural Language Generation</h4>
+                <p>Complex statistical findings (p-values, effect sizes, confidence intervals) are translated into clear, accessible language for non-statisticians.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-lightbulb"></i> Insight Extraction</h4>
+                <p>The AI identifies patterns, anomalies, and significant findings that might be missed in raw output, providing actionable insights.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-tasks"></i> Recommendation Engine</h4>
+                <p>Based on the analysis results, GPT-4 generates specific, contextual recommendations for next steps or business decisions.</p>
+            </div>
+        </div>
+
+        <h3>The AI Interpretation Pipeline</h3>
+
+        <p>Here's how the generative AI transforms raw statistics into meaningful reports:</p>
+
+        <div class="code-block">
+<pre>class AIInterpretationEngine:
+    """Generative AI-powered statistical interpretation."""
+    
+    def __init__(self):
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.model = "gpt-4"  # Latest GPT-4 for best interpretation
+    
+    def interpret_analysis(self, analysis_type: str, 
+                           results: dict, 
+                           context: dict) -> Interpretation:
+        """
+        Use GPT-4 to interpret statistical results.
+        
+        The AI receives:
+        - Analysis type (regression, ANOVA, correlation, etc.)
+        - Raw statistical output (coefficients, p-values, etc.)
+        - Variable context (names, types, research objectives)
+        """
+        
+        # Build the prompt with statistical context
+        system_prompt = """You are an expert statistician and data scientist. 
+        Interpret the following statistical analysis results in clear, 
+        accessible language. Explain what the numbers mean practically,
+        identify key findings, flag any concerns about assumptions or 
+        limitations, and provide actionable recommendations."""
+        
+        user_prompt = f"""
+        Analysis Type: {analysis_type}
+        Research Context: {context.get('objective', 'General analysis')}
+        Variables: {context.get('variables', [])}
+        
+        Statistical Results:
+        {json.dumps(results, indent=2)}
+        
+        Please provide:
+        1. Executive Summary (2-3 sentences)
+        2. Detailed Interpretation of each statistic
+        3. Key Findings (bullet points)
+        4. Limitations and Assumptions
+        5. Recommendations for next steps
+        """
+        
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.3  # Lower temperature for consistent, factual output
+        )
+        
+        return self._parse_interpretation(response.choices[0].message.content)</pre>
+        </div>
+
+        <h3>Real-World Example: Regression Interpretation</h3>
+
+        <p>Consider a regression analysis output. Traditional software might show:</p>
+
+        <div class="code-block">
+<pre># Raw statistical output
+Coefficient (Age): 0.0423, SE: 0.0089, t: 4.753, p: 0.0001
+Coefficient (Income): 0.0001, SE: 0.00002, t: 5.231, p: 0.00003
+R-squared: 0.67, Adjusted R-squared: 0.65
+F-statistic: 45.23, p-value: 0.00001</pre>
+        </div>
+
+        <p>TekVwarho Analysis uses GPT-4 to transform this into:</p>
+
+        <div class="highlight-box">
+            <h4>🤖 AI-Generated Interpretation</h4>
+            <p><strong>Executive Summary:</strong> Your model explains 67% of the variance in the outcome variable, which represents a strong predictive relationship. Both age and income are statistically significant predictors.</p>
+            <p><strong>Key Findings:</strong></p>
+            <ul style="margin-bottom: 0;">
+                <li>For each additional year of age, the outcome increases by 0.042 units (p < 0.001)</li>
+                <li>Higher income is associated with higher outcomes, though the effect size is small</li>
+                <li>The model is statistically significant overall (F = 45.23, p < 0.001)</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Recommendation:</strong> Consider adding interaction terms between age and income to explore whether the effect of income varies across age groups.</p>
+        </div>
+
+        <h2>AI-Powered Report Generation</h2>
+
+        <p>Beyond real-time interpretation, the platform generates complete professional reports using generative AI. The report generator combines statistical rigor with natural language generation to produce documents suitable for academic, business, or regulatory purposes.</p>
+
+        <div class="code-block">
+<pre>class ReportGenerator:
+    """AI-powered statistical report generation."""
+    
+    def generate_report(self, analysis_results: dict, 
+                        report_type: str = "detailed") -> Report:
+        """
+        Generate professional reports with AI interpretation.
+        
+        Report Types:
+        - quick: Executive summary with key findings
+        - detailed: Full statistical interpretation
+        - executive: Business-focused insights
+        """
+        
+        # Prepare statistical context for GPT-4
+        context = self._prepare_analysis_context(analysis_results)
+        
+        # Generate AI interpretation
+        interpretation = self.openai_client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": STATISTICAL_EXPERT_PROMPT},
+                {"role": "user", "content": context}
+            ]
+        )
+        
+        # Combine with visualizations
+        report = Report(
+            executive_summary=self._extract_summary(interpretation),
+            statistical_findings=analysis_results,
+            ai_interpretation=interpretation.choices[0].message.content,
+            visualizations=self._generate_plots(analysis_results),
+            recommendations=self._extract_recommendations(interpretation)
+        )
+        
+        return report.export(format=report_type)  # DOCX or PDF</pre>
+        </div>
+
+        <h3>Report Types</h3>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-bolt"></i> Quick Reports</h4>
+                <p>Executive summaries with key findings for rapid decision-making.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-file-alt"></i> Detailed Analysis</h4>
+                <p>Comprehensive statistical interpretation with technical depth.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-briefcase"></i> Executive Summaries</h4>
+                <p>Business-focused insights for stakeholder presentations.</p>
+            </div>
+        </div>
+
+        <h2>Data Management Tools (v4.2.0)</h2>
+
+        <p>Version 4.2.0 introduced powerful data manipulation capabilities that rival desktop statistical software:</p>
+
+        <table>
+            <tr>
+                <th>Tool</th>
+                <th>Description</th>
+                <th>Features</th>
+            </tr>
+            <tr>
+                <td>Merge Data</td>
+                <td>Combine datasets</td>
+                <td>Inner, left, right, outer joins on key columns</td>
+            </tr>
+            <tr>
+                <td>Append Data</td>
+                <td>Stack datasets</td>
+                <td>Vertical concatenation with column alignment</td>
+            </tr>
+            <tr>
+                <td>Split File</td>
+                <td>Group-based splitting</td>
+                <td>Analyze groups separately, export as files</td>
+            </tr>
+            <tr>
+                <td>Transform Variables</td>
+                <td>Create/modify variables</td>
+                <td>Compute, recode, standardize, log transform</td>
+            </tr>
+            <tr>
+                <td>Value Labels</td>
+                <td>Label codes</td>
+                <td>Assign meaningful labels to numeric codes</td>
+            </tr>
+        </table>
+
+        <h2>Security & Privacy by Design</h2>
+
+        <p>Given the sensitive nature of research data, security was paramount from the start:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-lock"></i> User Authentication</h4>
+                <p>Secure registration with Flask-Login and bcrypt password hashing.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-shield-alt"></i> CSRF Protection</h4>
+                <p>Cross-Site Request Forgery prevention on all forms.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-user-shield"></i> Data Isolation</h4>
+                <p>Each user's datasets and analyses are completely private.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-balance-scale"></i> GDPR Compliance</h4>
+                <p>Right to data export and complete account deletion.</p>
+            </div>
+        </div>
+
+        <div class="code-block">
+<pre># Security configuration
+SECURITY_CONFIG = {
+    "password_hash": "bcrypt",
+    "csrf_protection": True,
+    "rate_limiting": {
+        "default": "200 per day",
+        "upload": "30 per hour"
+    },
+    "session": {
+        "secure_cookies": True,
+        "timeout": 3600  # 1 hour
+    }
+}</pre>
+        </div>
+
+        <h2>Accessibility: WCAG 2.1 AA Compliance</h2>
+
+        <p>True democratization means accessibility for all users, regardless of ability. TekVwarho Analysis implements comprehensive WCAG 2.1 AA compliance:</p>
+
+        <ul>
+            <li><strong>Keyboard Navigation:</strong> Complete keyboard-only navigation support</li>
+            <li><strong>Screen Reader Support:</strong> ARIA labels and roles throughout</li>
+            <li><strong>Skip Links:</strong> Quick navigation to main content</li>
+            <li><strong>Focus Indicators:</strong> Clear visual focus states</li>
+            <li><strong>Reduced Motion:</strong> Respects <code>prefers-reduced-motion</code> browser setting</li>
+            <li><strong>Black & White Theme:</strong> Clean, high-contrast monochrome design</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>⌨️ Keyboard Shortcuts</h4>
+            <p>Power users can navigate with keyboard shortcuts. Press <code>?</code> anywhere in the app to view the help modal with all available shortcuts.</p>
+        </div>
+
+        <h2>Health Monitoring for Production</h2>
+
+        <p>Designed for containerized deployment, the platform includes comprehensive health endpoints:</p>
+
+        <div class="code-block">
+<pre># Health Endpoints
+/health       # Full system status: database, metrics, system info
+/health/live  # Liveness probe for container orchestration
+/health/ready # Readiness probe for load balancers
+
+# Example response from /health
+{
+    "status": "healthy",
+    "database": "connected",
+    "version": "4.2.1",
+    "uptime": "72h 14m",
+    "memory_usage": "324MB",
+    "active_sessions": 47
+}</pre>
+        </div>
+
+        <h2>Architecture Overview</h2>
+
+        <p>The platform follows a modular architecture that separates concerns cleanly:</p>
+
+        <div class="code-block">
+<pre>TekVwarho-Analysis/
+├── app.py                 # Main Flask application with routes
+├── auth.py                # User authentication module
+├── forms.py               # WTForms with CSRF protection
+├── database.py            # PostgreSQL models and initialization
+├── data_export.py         # SPSS/Stata/SAS export functionality
+├── report_generator.py    # AI report generation with OpenAI
+├── analysis/              # Statistical analysis modules
+│   ├── advanced_statistics.py  # Power, survival, assumptions
+│   ├── regression_analysis.py  # Linear, logistic, polynomial
+│   ├── bayesian_analysis.py    # Bayes factors, posteriors
+│   ├── correlation_association.py
+│   └── time_series.py
+├── templates/             # Jinja2 HTML templates
+│   ├── base.html          # Themes, shortcuts, accessibility
+│   ├── gdpr_privacy.html  # Privacy settings dashboard
+│   └── user_manual.html   # In-app documentation
+└── static/
+    └── js/
+        ├── statistical_tooltips.js  # 50+ term definitions
+        └── keyboard_shortcuts.js    # Navigation shortcuts</pre>
+        </div>
+
+        <h2>File Format Support</h2>
+
+        <p>Interoperability with existing research workflows was essential:</p>
+
+        <h3>Import Formats</h3>
+        <ul>
+            <li><strong>CSV/TSV:</strong> Comma and tab-separated values</li>
+            <li><strong>Excel:</strong> .xlsx, .xls files</li>
+            <li><strong>JSON:</strong> JavaScript Object Notation</li>
+            <li><strong>Stata:</strong> .dta files</li>
+            <li><strong>SPSS:</strong> .sav files</li>
+        </ul>
+
+        <h3>Export Formats</h3>
+        <ul>
+            <li><strong>SPSS:</strong> .sav (IBM SPSS compatible)</li>
+            <li><strong>Stata:</strong> .dta (StataCorp compatible)</li>
+            <li><strong>SAS:</strong> .sas7bdat (SAS compatible)</li>
+            <li><strong>Excel/CSV/JSON:</strong> Universal formats</li>
+            <li><strong>Reports:</strong> Professional DOCX and PDF</li>
+        </ul>
+
+        <h2>What's New in Version 4.2.1</h2>
+
+        <div class="highlight-box">
+            <h4>User Experience Improvements</h4>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Graceful Notifications:</strong> All browser alerts replaced with styled Bootstrap modals</li>
+                <li><strong>Color-Coded Messages:</strong> Error (red), success (green), warning (yellow), info (blue)</li>
+                <li><strong>Dark Mode Support:</strong> Notifications properly styled for both themes</li>
+                <li><strong>User Manual Fixes:</strong> Corrected route references, page loads correctly</li>
+            </ul>
+        </div>
+
+        <h2>Key Takeaways</h2>
+
+        <ol>
+            <li><strong>Accessibility is non-negotiable</strong> – WCAG compliance ensures everyone can use the platform</li>
+            <li><strong>AI enhances, not replaces</strong> – GPT-4 interprets results but doesn't substitute statistical rigor</li>
+            <li><strong>Security enables trust</strong> – Research data requires enterprise-grade protection</li>
+            <li><strong>Interoperability matters</strong> – Supporting SPSS/Stata/SAS formats enables adoption</li>
+            <li><strong>Health endpoints enable DevOps</strong> – Container-ready monitoring for production deployments</li>
+        </ol>
+
+        <div class="cta-section">
+            <h3>Try TekVwarho Analysis</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Experience professional-grade statistical analysis with AI-powered reporting</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://tekvwarho-analysis-production.up.railway.app/" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Live Demo
+                </a>
+                <a href="case-study-analysis.html" class="btn btn-secondary">
+                    <i class="fas fa-book-open"></i> View Case Study
+                </a>
+                <a href="https://github.com/EfeObus/TekVwarho-Analysis" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

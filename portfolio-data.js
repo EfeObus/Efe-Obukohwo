@@ -178,12 +178,12 @@ const portfolioData = {
         },
         {
             title: "TekVwarho Analysis Platform",
-            description: "Innovative no-code analytics platform enabling non-programmers to perform data analysis and machine learning with interactive visualizations, automated model training, and AI-powered insights. TekVwarho Analysis represents a comprehensive, professional-grade statistical analysis platform that democratizes advanced analytics through an intuitive web interface. By combining robust statistical computing with AI-powered insights, it bridges the gap between complex statistical procedures and practical business intelligence. The platform's strength lies in its comprehensive coverage (15+ analysis types), professional quality (research-grade statistics), user accessibility (intuitive web interface), and intelligent reporting (AI-powered insights).",
-            shortDescription: "No-code analytics platform with 15+ analysis types, automated ML model training, and AI-powered insights for non-programmers",
+            description: "Comprehensive web-based statistical analysis platform (v4.2.1) with AI-powered report generation. Features 17 analysis types including Bayesian analysis, survival analysis, power analysis, and time series forecasting. Includes complete data management tools (merge, append, split, filter, sort, transform), WCAG 2.1 AA accessibility compliance, GDPR-compliant user authentication, and multi-format export (SPSS, Stata, SAS). Built with Flask, PostgreSQL, and OpenAI GPT-4 integration for intelligent result interpretation. Features health endpoints for container orchestration, keyboard shortcuts for power users, and professional report generation in DOCX/PDF formats. Available globally with Canadian PIPEDA compliance.",
+            shortDescription: "No-code analytics platform with 17 analysis types, AI-powered report generation, WCAG 2.1 accessibility, and SPSS/Stata/SAS export",
             date: "Jan 2025 – Present",
-            technologies: ["Flask", "PostgreSQL", "OpenAI API", "AutoML", "Tableau", "Python"],
+            technologies: ["Flask", "PostgreSQL", "OpenAI API", "Plotly.js", "Bootstrap", "Python"],
             github: "https://github.com/EfeObus/TekVwarho-Analysis",
-            live: null,
+            live: "https://tekvwarho-analysis-production.up.railway.app/",
             caseStudy: "case-study-analysis.html",
             image: "images/TekVwarho Analysis.png",
             featured: true
