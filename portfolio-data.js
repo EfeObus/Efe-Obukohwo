@@ -132,6 +132,17 @@ const portfolioData = {
     // Projects - Add new projects here and they will appear on both projects.html and resume.html
     projects: [
         {
+            title: "VwaTek Apply",
+            description: "Professional AI career suite built with Kotlin Multiplatform, delivering native experiences for iOS, Android, and Web from a single codebase. Powered by Gemini 2.0 Flash, it provides comprehensive job search optimization including ATS resume scoring with keyword gap analysis, AI-powered contextual resume rewriting using X-Y-Z impact framework, tailored cover letter generation, and resume version control. Features tough AI recruiter mock interviews with STAR method coaching, Canadian salary intelligence with NOC code matching and negotiation strategies, and LinkedIn profile optimization. Built for the Canadian market with full PIPEDA compliance, Canadian data residency (Montreal), and bilingual support. Includes subscription tiers (Free/Pro/Premium) with Stripe, Apple IAP, and Google Play Billing integration, plus enterprise SSO support (SAML, OIDC, Azure AD, Okta).",
+            shortDescription: "Kotlin Multiplatform AI career suite for iOS, Android, and Web with ATS optimization, interview coaching, and Canadian salary intelligence powered by Gemini 2.0 Flash",
+            date: "Feb 2026 – Present",
+            technologies: ["Kotlin", "Compose Multiplatform", "Gemini 2.0 Flash", "Ktor", "PostgreSQL", "SQLDelight", "Firebase", "Stripe", "Railway"],
+            github: "https://github.com/EfeObus/VwaTek-Apply",
+            live: "https://vwatek-apply-production.up.railway.app",
+            image: "images/Vwatek Apply.png",
+            featured: true
+        },
+        {
             title: "JTOV Network",
             description: "An advanced AI-powered mentorship platform that connects professionals through intelligent matching, skill development, and interactive networking tools. Features include AI-powered smart matching for mentors/mentees based on compatible skills and goals, real-time messaging and WebRTC video calling, gamification elements with achievements and leveling, AI-generated career roadmaps, structured learning paths, and an analytics dashboard for tracking progress. Includes an AI Learning Hub with personalized tutoring, skill gap analysis, and smart recommendations. Features a complete video learning platform with course management, interactive quizzes, and progress tracking. Built with comprehensive admin/staff dashboards, audit logging, and support ticket system. Implements enterprise security including CSRF protection, rate limiting, secure sessions, and Helmet security headers.",
             shortDescription: "AI-powered mentorship platform with intelligent matching, WebRTC video calling, gamification, career roadmaps, and a complete video learning system",

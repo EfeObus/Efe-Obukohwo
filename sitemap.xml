@@ -48,4 +48,16 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/blog.html</loc>
+        <lastmod>2026-03-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-vwatek-apply.html</loc>
+        <lastmod>2026-03-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>
