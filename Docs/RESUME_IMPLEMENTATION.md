@@ -1,5 +1,15 @@
 # Resume Download Functionality - Implementation Guide
 
+## 2026 Automation Update
+- `portfolio-data.js` is now the source of truth for both resume and portfolio documents.
+- Running `npm run generate-resume` now regenerates all four files:
+	- `Efe_Obukohwo_Resume.docx`
+	- `Efe_Obukohwo_Resume.pdf`
+	- `Efe_Obukohwo_Portfolio.docx`
+	- `Efe_Obukohwo_Portfolio.pdf`
+- PDF generation now uses `DOCX -> HTML (textutil) -> PDF (Puppeteer)` so PDF content stays aligned with the DOCX output.
+- Optional live mode: run `npm run watch-docs` to auto-regenerate files whenever `portfolio-data.js` changes.
+
 ## Overview
 I've successfully created a professional resume based on your portfolio and implemented a download feature on your about page. Here's what has been implemented:
 

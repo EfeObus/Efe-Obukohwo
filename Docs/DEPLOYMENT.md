@@ -41,6 +41,9 @@ Make sure all your files are in the main folder:
 git clone https://github.com/your-username/your-username.github.io.git
 cd your-username.github.io
 # Copy all your portfolio files here
+cd /path/to/your/portfolio
+npm run deploy
+# This auto-regenerates resume/portfolio DOCX+PDF via predeploy hook
 git add .
 git commit -m "Initial portfolio upload"
 git push origin main
@@ -107,7 +110,7 @@ git push origin main
 5. Share your portfolio URL!
 
 ## Updating Your Site:
-- **GitHub Pages**: Push changes to your repository
+- **GitHub Pages**: Run `npm run deploy`, then push changes to your repository
 - **Netlify**: Drag new files or connect to GitHub for auto-updates
 - **Vercel**: Push to GitHub for automatic deployment
 

@@ -47,6 +47,7 @@
 ### GitHub Pages:
 ```bash
 # If using Git
+npm run deploy
 git add .
 git commit -m "Deploy portfolio"
 git push origin main

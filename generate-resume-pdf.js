@@ -1,29 +1,41 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const { spawnSync } = require('child_process');
 
-async function generateResumePDF() {
+function convertDocxToHtml(docxPath) {
+    const htmlPath = path.join(os.tmpdir(), `${path.basename(docxPath, '.docx')}-${Date.now()}.html`);
+    const result = spawnSync('textutil', ['-convert', 'html', '-output', htmlPath, docxPath], {
+        encoding: 'utf8'
+    });
+
+    if (result.status !== 0) {
+        throw new Error(`textutil conversion failed: ${result.stderr || result.stdout || 'unknown error'}`);
+    }
+
+    return htmlPath;
+}
+
+async function convertDocxFileToPdf(docxPath, outputPdfPath) {
+    if (!fs.existsSync(docxPath)) {
+        throw new Error(`DOCX file not found: ${docxPath}`);
+    }
+
+    const htmlPath = convertDocxToHtml(docxPath);
+    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
     try {
-        console.log('Starting PDF generation...');
-        
-        // Launch browser
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
-        
         const page = await browser.newPage();
-        
-        // Set the HTML content
-        const htmlPath = path.join(__dirname, 'resume.html');
-        const htmlContent = fs.readFileSync(htmlPath, 'utf8');
-        
-        await page.setContent(htmlContent, { 
-            waitUntil: 'networkidle0' 
-        });
-        
-        // Generate PDF
-        const pdfBuffer = await page.pdf({
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+        await page.pdf({
+            path: outputPdfPath,
             format: 'A4',
             printBackground: true,
             margin: {
@@ -32,37 +44,60 @@ async function generateResumePDF() {
                 bottom: '0.5in',
                 left: '0.5in'
             },
-            displayHeaderFooter: false,
-            preferCSSPageSize: true
+            displayHeaderFooter: false
         });
-        
-        // Save PDF
-        const outputPath = path.join(__dirname, 'Efe_Obukohwo_Resume.pdf');
-        fs.writeFileSync(outputPath, pdfBuffer);
-        
-        console.log(`PDF generated successfully: ${outputPath}`);
-        
+
+        return outputPdfPath;
+    } finally {
         await browser.close();
-        
-        return outputPath;
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-        throw error;
+        if (fs.existsSync(htmlPath)) {
+            fs.unlinkSync(htmlPath);
+        }
     }
 }
 
-// Export the function for use in other modules
-module.exports = { generateResumePDF };
+async function generateResumePDF() {
+    const docxPath = path.join(__dirname, 'Efe_Obukohwo_Resume.docx');
+    const outputPath = path.join(__dirname, 'Efe_Obukohwo_Resume.pdf');
 
-// Run if called directly
+    console.log('Generating resume PDF from DOCX source...');
+    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log(`Resume PDF generated successfully: ${resultPath}`);
+
+    return resultPath;
+}
+
+async function generatePortfolioPDF() {
+    const docxPath = path.join(__dirname, 'Efe_Obukohwo_Portfolio.docx');
+    const outputPath = path.join(__dirname, 'Efe_Obukohwo_Portfolio.pdf');
+
+    if (!fs.existsSync(docxPath)) {
+        return null;
+    }
+
+    console.log('Generating portfolio PDF from DOCX source...');
+    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log(`Portfolio PDF generated successfully: ${resultPath}`);
+
+    return resultPath;
+}
+
+module.exports = { generateResumePDF, generatePortfolioPDF };
+
 if (require.main === module) {
-    generateResumePDF()
-        .then(path => {
-            console.log('Resume PDF generated at:', path);
-            process.exit(0);
-        })
-        .catch(error => {
-            console.error('Failed to generate PDF:', error);
-            process.exit(1);
-        });
+    (async () => {
+        const outputs = [];
+        outputs.push(await generateResumePDF());
+
+        const portfolioOutput = await generatePortfolioPDF();
+        if (portfolioOutput) {
+            outputs.push(portfolioOutput);
+        }
+
+        console.log('PDF generation complete:', outputs);
+        process.exit(0);
+    })().catch(error => {
+        console.error('Failed to generate PDF:', error);
+        process.exit(1);
+    });
 }
