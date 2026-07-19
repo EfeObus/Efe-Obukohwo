@@ -22,7 +22,25 @@ function createSectionHeader(title) {
     });
 }
 
-function addHeader(children) {
+const RESUME_VARIANTS = {
+    'data-analyst': {
+        title: () => data.personal.dataAnalystTitle || data.personal.title,
+        summary: () => data.personal.dataAnalystSummary || data.personal.summary,
+        skillCategories: ['Data Analysis & Visualization', 'Programming Languages', 'Databases & ORMs', 'Machine Learning & AI'],
+        projectCategory: 'data-analyst'
+    },
+    developer: {
+        title: () => data.personal.developerTitle || data.personal.title,
+        summary: () => data.personal.developerSummary || data.personal.summary,
+        skillCategories: null,
+        projectCategory: 'developer'
+    }
+};
+
+function addHeader(children, variant) {
+    const config = RESUME_VARIANTS[variant];
+    const title = config ? config.title() : data.personal.title;
+
     children.push(
         new Paragraph({
             children: [new TextRun({ text: data.personal.name, bold: true, size: 36, font: 'Times New Roman' })],
@@ -33,7 +51,7 @@ function addHeader(children) {
 
     children.push(
         new Paragraph({
-            children: [new TextRun({ text: data.personal.title, size: 24, font: 'Times New Roman' })],
+            children: [new TextRun({ text: title, size: 24, font: 'Times New Roman' })],
             alignment: AlignmentType.CENTER,
             spacing: { after: 100 }
         })
@@ -71,19 +89,25 @@ function addHeader(children) {
     );
 }
 
-function addSummary(children) {
+function addSummary(children, variant) {
+    const config = RESUME_VARIANTS[variant];
+    const summary = config ? config.summary() : data.personal.summary;
+
     children.push(createSectionHeader('Professional Summary'));
     children.push(
         new Paragraph({
-            children: [new TextRun({ text: data.personal.summary, size: 22, font: 'Times New Roman' })],
+            children: [new TextRun({ text: summary, size: 22, font: 'Times New Roman' })],
             spacing: { after: 200 }
         })
     );
 }
 
-function addSkills(children) {
+function addSkills(children, variant) {
+    const config = RESUME_VARIANTS[variant];
+    const categories = config && config.skillCategories ? config.skillCategories : Object.keys(data.skills);
+    const allSkills = categories.filter((c) => data.skills[c]).flatMap((c) => data.skills[c]);
+
     children.push(createSectionHeader('Core Competencies'));
-    const allSkills = Object.values(data.skills).flat();
     children.push(
         new Paragraph({
             children: [new TextRun({ text: allSkills.join(' • '), size: 20, font: 'Times New Roman' })],
@@ -157,9 +181,17 @@ function addEducation(children) {
     });
 }
 
-function addProjects(children, includeAllProjects) {
+function addProjects(children, includeAllProjects, variant) {
+    const config = RESUME_VARIANTS[variant];
     const sectionTitle = includeAllProjects ? 'Portfolio Projects' : 'Key Projects';
-    const projects = includeAllProjects ? data.projects : data.projects.filter((p) => p.featured).slice(0, 6);
+    let projects;
+    if (includeAllProjects) {
+        projects = data.projects;
+    } else if (config) {
+        projects = data.projects.filter((p) => (p.category || []).includes(config.projectCategory)).slice(0, 6);
+    } else {
+        projects = data.projects.filter((p) => p.featured).slice(0, 6);
+    }
 
     children.push(createSectionHeader(sectionTitle));
 
@@ -280,8 +312,40 @@ async function generateResumeDOCX() {
     addProjects(children, false);
     addCertifications(children);
 
-    const outputPath = await writeDocx(children, 'Efe_Obukohwo_Resume.docx');
+    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume.docx');
     console.log(`Resume DOCX generated successfully: ${outputPath}`);
+    return outputPath;
+}
+
+async function generateDataAnalystResumeDOCX() {
+    console.log('Generating Data Analyst resume DOCX from portfolio-data.js...');
+    const children = [];
+    addHeader(children, 'data-analyst');
+    addSummary(children, 'data-analyst');
+    addSkills(children, 'data-analyst');
+    addExperience(children);
+    addEducation(children);
+    addProjects(children, false, 'data-analyst');
+    addCertifications(children);
+
+    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_DataAnalyst.docx');
+    console.log(`Data Analyst resume DOCX generated successfully: ${outputPath}`);
+    return outputPath;
+}
+
+async function generateDeveloperResumeDOCX() {
+    console.log('Generating Developer resume DOCX from portfolio-data.js...');
+    const children = [];
+    addHeader(children, 'developer');
+    addSummary(children, 'developer');
+    addSkills(children, 'developer');
+    addExperience(children);
+    addEducation(children);
+    addProjects(children, false, 'developer');
+    addCertifications(children);
+
+    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_Developer.docx');
+    console.log(`Developer resume DOCX generated successfully: ${outputPath}`);
     return outputPath;
 }
 
@@ -297,17 +361,24 @@ async function generatePortfolioDOCX() {
     addCertifications(children);
     addAchievements(children);
 
-    const outputPath = await writeDocx(children, 'Efe_Obukohwo_Portfolio.docx');
+    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Portfolio.docx');
     console.log(`Portfolio DOCX generated successfully: ${outputPath}`);
     return outputPath;
 }
 
-module.exports = { generateResumeDOCX, generatePortfolioDOCX };
+module.exports = {
+    generateResumeDOCX,
+    generateDataAnalystResumeDOCX,
+    generateDeveloperResumeDOCX,
+    generatePortfolioDOCX
+};
 
 if (require.main === module) {
     (async () => {
         const outputs = [];
         outputs.push(await generateResumeDOCX());
+        outputs.push(await generateDataAnalystResumeDOCX());
+        outputs.push(await generateDeveloperResumeDOCX());
         outputs.push(await generatePortfolioDOCX());
         console.log('DOCX generation complete:', outputs);
         process.exit(0);

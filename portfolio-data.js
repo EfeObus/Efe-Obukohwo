@@ -11,7 +11,15 @@ const portfolioData = {
         location: "North York, Toronto, ON, Canada",
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
-        summary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
+        summary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime.",
+
+        // Role-tailored headline + summary used by the Data Analyst resume variant
+        dataAnalystTitle: "Data Analyst | Business Intelligence & Database Consultant",
+        dataAnalystSummary: "Data Analyst with 5+ years of experience turning messy, high-volume datasets into stakeholder-ready business intelligence using advanced Excel, SQL, and Python. Engineered a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a dynamic formula engine (VLOOKUP/XLOOKUP, SUMPRODUCT, 9 pivot tables) and a slicer-driven KPI dashboard. Background spans AML/fraud transaction monitoring (SQL, pivot tables, STR reporting), humanitarian database consulting (25% efficiency gains via Airtable/SQL optimization), and trend analysis with SPSS, Tableau, and Power BI. Comfortable owning a dataset from raw extract through cleaning, statistical analysis, and executive-facing visualization.",
+
+        // Role-tailored headline + summary used by the Developer resume variant
+        developerTitle: "Full Stack Developer | Python Developer | Data Engineer",
+        developerSummary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
     },
 
     // Work Experience
@@ -22,11 +30,10 @@ const portfolioData = {
             date: "May 2025 – August 2025",
             location: "Toronto, ON",
             responsibilities: [
-                "Architected AI-powered real estate analytics platform processing 49,551+ Canadian properties with 88.3% ML prediction accuracy using ensemble models (XGBoost, LightGBM, Random Forest) and real-time economic data integration",
-                "Led full-stack development of production-ready Flask application with MySQL database, RESTful API ecosystem (20+ endpoints), and responsive web interface featuring interactive property mapping and investment analytics",
-                "Implemented enterprise-grade security infrastructure including 5-tier API key system, advanced rate limiting, ML-powered XSS/CSRF protection, and behavioral analysis achieving 100% attack prevention rate",
-                "Built comprehensive investment intelligence platform with automated undervalued property detection (85% accuracy), portfolio optimization tools, and real-time market trend analysis using Bank of Canada/Statistics Canada APIs",
-                "Deployed scalable Docker infrastructure with 99.9% uptime, <400ms API response times, and CI/CD pipeline achieving 85% test coverage while leading team of 5 developers in agile environment"
+                "Architected an AI-powered real estate analytics platform processing 49,551+ Canadian properties, achieving 88.3% ML prediction accuracy with an ensemble of XGBoost, LightGBM, and Random Forest",
+                "Led full-stack development of a production Flask application with MySQL and a 20+ endpoint REST API, shipping interactive property mapping and investment analytics",
+                "Implemented a 5-tier API security system with ML-powered XSS/CSRF detection and behavioral analysis, achieving a 100% attack-prevention rate in testing",
+                "Deployed a Dockerized CI/CD pipeline achieving 99.9% uptime, <400ms API response times, and 85% test coverage while leading a team of 5 developers"
             ]
         },
         {
@@ -35,15 +42,10 @@ const portfolioData = {
             date: "May 2023 – Dec 2025",
             location: "Remote",
             responsibilities: [
-                "Documented and resolved inaccuracies in the GDHO Airtable and Database, leading to a 25% increase in efficiency for the Humanitarian Outcomes database system",
-                "Worked with team lead for database management and optimization strategies, designing complex databases with Global Database for Humanitarian Outcomes to ensure seamless data flow for humanitarian organizations",
-                "Utilized Airtable and SQL extensively to streamline data collection, entry, and analysis processes, improving overall database efficiency and user experience",
-                "Conducted trend analysis using SPSS and SQL, providing actionable insights to enhance humanitarian efforts",
-                "Leveraged data visualization tools like Tableau and Power BI to present data insights to stakeholders, enabling data-driven decision-making",
-                "Conducted surveys and interviews and analyzed results giving actionable insights on the state of humanitarian organizations around the world",
+                "Resolved data-integrity issues across the GDHO Airtable and database while designing optimized schemas with the team lead, driving a 25% increase in operational efficiency",
+                "Conducted trend analysis using SPSS and SQL, then visualized findings in Tableau and Power BI to drive data-informed decisions for humanitarian stakeholders worldwide",
                 "Built and segmented 1,200+ partner and audience lists using Airtable and SQL, increasing campaign engagement by 30%",
-                "Followed up and qualified 350+ leads from events and surveys using structured frameworks, converting 120 high-priority opportunities",
-                "Coordinated logistics for 6 global partner events, managing registrations, materials, and follow-ups with zero operational delays"
+                "Qualified 350+ leads from events and surveys using structured frameworks, converting 120 into high-priority partnership opportunities"
             ]
         },
         {
@@ -52,10 +54,8 @@ const portfolioData = {
             date: "Aug 2024 – May 2025",
             location: "Toronto, ON",
             responsibilities: [
-                "Provided administrative and clerical support to all full-time and part-time staff through distributing mail, submitting work orders, and performing all other duties as requested",
-                "Managed a high volume of inbound student inquiries, resolving billing issues and account discrepancies efficiently",
-                "Advised students about all IGNITE services, wellness resources, and events through in-person office visits, emails, phone calls, and live chat with utmost professionalism",
-                "Delivered excellent service while adhering to performance metrics, including call resolution time and customer satisfaction"
+                "Resolved billing issues and account discrepancies across a high volume of inbound student inquiries via phone, email, and live chat",
+                "Advised students on IGNITE services, wellness resources, and campus events while consistently meeting call-resolution and satisfaction targets"
             ]
         },
         {
@@ -64,10 +64,10 @@ const portfolioData = {
             date: "Nov 2019 – Aug 2022",
             location: "Sapele, Nigeria",
             responsibilities: [
-                "Monitored and analyzed daily transactions for a portfolio of retail and corporate clients to detect and prevent potential money laundering, terrorist financing, and fraud",
-                "Investigated over 30 system-generated alerts weekly, conducting in-depth analysis using SQL queries and advanced Excel functions (VLOOKUP, Pivot Tables) to identify and escalate suspicious activity",
-                "Conducted Customer Due Diligence (CDD) and Enhanced Due Diligence (EDD) for high-risk clients, ensuring compliance with bank policies and national regulatory requirements",
-                "Prepared and drafted detailed Suspicious Transaction Reports (STRs) for submission to the Nigerian Financial Intelligence Unit (NFIU), contributing to a 10% increase in reporting accuracy from the branch"
+                "Monitored and analyzed daily transactions across a retail and corporate client portfolio, detecting and preventing money laundering, terrorist financing, and fraud",
+                "Investigated 30+ system-generated alerts weekly using SQL queries and advanced Excel (VLOOKUP, Pivot Tables) to identify and escalate suspicious activity",
+                "Conducted Customer Due Diligence (CDD) and Enhanced Due Diligence (EDD) for high-risk clients, ensuring full regulatory compliance",
+                "Drafted Suspicious Transaction Reports (STRs) for the Nigerian Financial Intelligence Unit, contributing to a 10% increase in branch reporting accuracy"
             ]
         },
         {
@@ -76,10 +76,9 @@ const portfolioData = {
             date: "Oct 2020 – Oct 2021",
             location: "Sapele, Nigeria",
             responsibilities: [
-                "Devised and executed comprehensive IT solutions, including network setup and maintenance, boosting operational efficiency",
+                "Devised and executed IT infrastructure solutions, including network setup and maintenance, boosting operational efficiency",
                 "Achieved a 65% increase in accounting accuracy by introducing invoicing software for receipts generation",
-                "Conducted market research and customer surveys to identify opportunities for business expansion",
-                "Translated technical concepts into business-oriented language during team meetings"
+                "Conducted market research and customer surveys to identify business expansion opportunities"
             ]
         },
         {
@@ -88,10 +87,9 @@ const portfolioData = {
             date: "Nov 2018 – Oct 2020",
             location: "Mosogar, Nigeria",
             responsibilities: [
-                "Led the installation and configuration of 40 workstations, ensuring optimal performance and user satisfaction",
-                "Resolved technical issues for over 65 end-users promptly and with accuracy",
-                "Implemented a remote support system, streamlining assistance for students during course registration and payment processes",
-                "Strengthened cybersecurity protocols by implementing and managing antivirus software across all systems"
+                "Led the installation and configuration of 40 workstations, ensuring optimal performance and 100% user satisfaction",
+                "Resolved technical issues for 65+ end-users promptly and accurately while strengthening antivirus and cybersecurity protocols across all systems",
+                "Implemented a remote support system, streamlining registration and payment assistance for students"
             ]
         }
     ],
@@ -132,139 +130,176 @@ const portfolioData = {
     // Projects - Add new projects here and they will appear on both projects.html and resume.html
     projects: [
         {
+            title: "TEKVWA Money",
+            description: "TEKVWA Money is a full-stack personal finance tracking application solving financial leakage — the silent loss of money through small, unnoticed expenses. Built with React, Express.js, PostgreSQL, Zustand, and Tailwind CSS, and shipped as a website plus native Android and iOS apps (Capacitor) from a single codebase. Features real bank-account linking via Plaid (live in Production on web, Android, and iOS), Gemini/Vertex AI-narrated spending insights, automated PDF/CSV/XLSX bank statement import with self-learning auto-categorization across 24+ Canadian banks and credit unions, budget-driven spending alerts, biometric app lock (Face ID/fingerprint), push notifications, and exportable PDF/Excel/CSV reports. Includes a full RBAC system (Customer/Staff/Admin/Super Admin) with a Super Admin operations dashboard for audit logging, security history, and maintenance mode, backed by a real automated test suite and 16 tracked database migrations.",
+            shortDescription: "Built and launched a full-stack personal finance platform (web, Android, iOS) from a single Capacitor/React codebase, integrating live Plaid bank-linking, Gemini AI-narrated insights, and automated statement import across 24+ Canadian banks",
+            date: "2026 – Present",
+            technologies: ["React", "Express.js", "PostgreSQL", "Zustand", "Tailwind CSS", "Capacitor (Android/iOS)", "Plaid API", "Gemini (Vertex AI)", "Firebase Cloud Messaging"],
+            github: "https://github.com/EfeObus/Tekvwa-Money",
+            live: "https://tekvwamoney.com/",
+            image: "images/Tekvwa Money.png",
+            featured: true,
+            category: ["developer"]
+        },
+        {
             title: "VwaTek Apply",
             description: "Professional AI career suite built with Kotlin Multiplatform, delivering native experiences for iOS, Android, and Web from a single codebase. Powered by Gemini 2.0 Flash, it provides comprehensive job search optimization including ATS resume scoring with keyword gap analysis, AI-powered contextual resume rewriting using X-Y-Z impact framework, tailored cover letter generation, and resume version control. Features tough AI recruiter mock interviews with STAR method coaching, Canadian salary intelligence with NOC code matching and negotiation strategies, and LinkedIn profile optimization. Built for the Canadian market with full PIPEDA compliance, Canadian data residency (Montreal), and bilingual support. Includes subscription tiers (Free/Pro/Premium) with Stripe, Apple IAP, and Google Play Billing integration, plus enterprise SSO support (SAML, OIDC, Azure AD, Okta).",
-            shortDescription: "Kotlin Multiplatform AI career suite for iOS, Android, and Web with ATS optimization, interview coaching, and Canadian salary intelligence powered by Gemini 2.0 Flash",
+            shortDescription: "Built a Kotlin Multiplatform AI career suite spanning iOS, Android, and Web from one codebase, shipping ATS resume scoring, AI interview coaching, and Canadian salary intelligence powered by Gemini 2.0 Flash",
             date: "Feb 2026 – Present",
             technologies: ["Kotlin", "Compose Multiplatform", "Gemini 2.0 Flash", "Ktor", "PostgreSQL", "SQLDelight", "Firebase", "Stripe", "Railway"],
             github: "https://github.com/EfeObus/VwaTek-Apply",
             live: "https://vwatek-apply-production.up.railway.app",
             image: "images/Vwatek Apply.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "JTOV Network",
             description: "An advanced AI-powered mentorship platform that connects professionals through intelligent matching, skill development, and interactive networking tools. Features include AI-powered smart matching for mentors/mentees based on compatible skills and goals, real-time messaging and WebRTC video calling, gamification elements with achievements and leveling, AI-generated career roadmaps, structured learning paths, and an analytics dashboard for tracking progress. Includes an AI Learning Hub with personalized tutoring, skill gap analysis, and smart recommendations. Features a complete video learning platform with course management, interactive quizzes, and progress tracking. Built with comprehensive admin/staff dashboards, audit logging, and support ticket system. Implements enterprise security including CSRF protection, rate limiting, secure sessions, and Helmet security headers.",
-            shortDescription: "AI-powered mentorship platform with intelligent matching, WebRTC video calling, gamification, career roadmaps, and a complete video learning system",
+            shortDescription: "Engineered an AI-powered mentorship platform with intelligent matching, WebRTC video calling, and gamification, plus a full video-learning system with course management and progress tracking",
             date: "Jan 2026 – Present",
             technologies: ["React", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Drizzle ORM", "WebSockets", "WebRTC", "OpenAI API", "TailwindCSS", "Framer Motion"],
             github: "https://github.com/EfeObus/JTOV-Network",
             live: null,
             image: "images/JTOV Network.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "TekVwarho ProAudit",
             description: "Nigeria's premier enterprise-grade tax compliance, payroll, and forensic audit platform built for the 2026 Nigerian Tax Reform. Automates complex statutory obligations—PAYE, VAT, CIT, WHT, pension, and NRS e-invoicing—while providing audit-ready records, immutable evidence, and regulator-friendly reports for FIRS and external auditors. Features include a 2026-compliant tax engine, full Nigerian payroll system with progressive PAYE bands, world-class forensic audit capabilities (Benford's Law fraud detection, Z-Score anomaly analysis, 3-way matching, hash-chain immutable ledger), and NDPA 2023 security compliance with AES-256-GCM encryption. Built with 500+ API routes, 80+ database models, and 400+ automated tests.",
-            shortDescription: "Enterprise-grade Nigerian tax compliance and forensic audit platform with 2026 tax reform support, featuring Benford's Law fraud detection, hash-chain immutable ledger, and NDPA 2023 security compliance",
+            shortDescription: "Built an enterprise Nigerian tax-compliance and forensic-audit platform spanning 500+ API routes and 400+ automated tests, featuring Benford's Law fraud detection and a hash-chain immutable ledger",
             date: "Oct 2025 – Present",
             technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "HTMX", "TailwindCSS", "Celery", "Redis", "Cryptography"],
             github: "https://github.com/EfeObus/TekVwarho-ProAudit",
             live: "https://ingenious-emotion-production-c3c3.up.railway.app/",
             caseStudy: "case-study-proaudit.html",
             image: "images/Tekvwarho Pro Audit.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "WonderWorld Learning Adventure",
             description: "Research-driven adaptive early-childhood learning platform for ages 2–8, blending cognitive science, early-years pedagogy, and game design. Features a multi-domain curriculum covering literacy (letter formation, phonemic awareness, reading fluency), numeracy (subitizing, counting, early arithmetic), and social-emotional learning. Uses Item Response Theory (Rasch Model) for real-time personalization maintaining ~75% success probability. Includes multi-sensory SVG stroke tracing, on-device offline speech recognition, narrative game worlds with mascot-guided progression, and a parent dashboard with progress tracking. COPPA and GDPR-K compliant with offline-first architecture for low-connectivity environments. Achieves 60 FPS across mobile and web.",
-            shortDescription: "Adaptive early-childhood learning platform (ages 2-8) using Item Response Theory for personalization, with offline speech recognition and COPPA/GDPR-K compliance",
+            shortDescription: "Designed an adaptive early-childhood learning platform (ages 2-8) applying Item Response Theory to personalize difficulty in real time, sustaining 60 FPS with offline speech recognition and COPPA/GDPR-K compliance",
             date: "Dec 2025 – Present",
             technologies: ["Flutter", "Dart", "Flame Engine", "Python", "FastAPI", "PostgreSQL", "Redis", "NumPy", "Speech-to-Text", "Adaptive Learning"],
             github: "https://github.com/EfeObus/WonderWorld-Learning-Adventure",
             live: null,
             image: "images/Wonderworld learning adventure.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "TekVwa Life",
             description: "Secure digital autobiography and legacy-preservation platform that enables users to write, organize, and protect their life stories using a professionally structured 28-chapter framework. TekVwa Life combines narrative creation, life-event and achievement tracking, and post-death legacy access into a single privacy-first system. Built with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export, the platform transforms personal history into a permanent, transferable digital asset for families, historians, and estate planning purposes.",
-            shortDescription: "Digital autobiography and legacy-preservation platform with 28-chapter framework, enterprise security, and professional document export",
+            shortDescription: "Built a digital autobiography and legacy-preservation platform around a 28-chapter framework, with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export",
             date: "Dec 2025 – Present",
             technologies: ["Node.js", "Express.js", "PostgreSQL (AWS RDS)", "Prisma ORM", "React", "Material UI", "JWT Authentication"],
             github: "https://github.com/EfeObus/TekVwa-Life",
             live: "https://tekvwa-life-production.up.railway.app/",
             image: "images/TekVwa Life.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "TekVwarho Analysis Platform",
             description: "Comprehensive web-based statistical analysis platform (v4.2.1) with AI-powered report generation. Features 17 analysis types including Bayesian analysis, survival analysis, power analysis, and time series forecasting. Includes complete data management tools (merge, append, split, filter, sort, transform), WCAG 2.1 AA accessibility compliance, GDPR-compliant user authentication, and multi-format export (SPSS, Stata, SAS). Built with Flask, PostgreSQL, and OpenAI GPT-4 integration for intelligent result interpretation. Features health endpoints for container orchestration, keyboard shortcuts for power users, and professional report generation in DOCX/PDF formats. Available globally with Canadian PIPEDA compliance.",
-            shortDescription: "No-code analytics platform with 17 analysis types, AI-powered report generation, WCAG 2.1 accessibility, and SPSS/Stata/SAS export",
+            shortDescription: "Shipped a no-code analytics platform offering 17 statistical analysis types and AI-powered report generation, achieving WCAG 2.1 AA accessibility and SPSS/Stata/SAS interoperability",
             date: "Jan 2025 – Present",
             technologies: ["Flask", "PostgreSQL", "OpenAI API", "Plotly.js", "Bootstrap", "Python"],
             github: "https://github.com/EfeObus/TekVwarho-Analysis",
             live: "https://tekvwarho-analysis-production.up.railway.app/",
             caseStudy: "case-study-analysis.html",
             image: "images/TekVwarho Analysis.png",
-            featured: true
+            featured: true,
+            category: ["developer", "data-analyst"]
         },
         {
             title: "TK Reports - AI-Powered Data Analysis",
             description: "Advanced AI-powered data analytics platform that transforms datasets into comprehensive, professional-grade analytical reports. Built with Flask and OpenAI GPT-4 Turbo, it combines statistical analysis (mean, median, mode, standard deviation, skewness, kurtosis, outlier detection), machine learning insights, correlation analysis, and natural language generation to produce executive-ready reports in DOCX and PDF formats. Features research objective-driven analysis, 5 professional visualizations with detailed interpretations, handles up to 100MB file uploads, supports CSV/XLSX/XLS/TSV formats, and delivers 15+ page comprehensive reports with AI-generated executive summaries, key findings, insights, and actionable recommendations.",
-            shortDescription: "AI-powered analytics platform using GPT-4 to transform datasets into 15+ page executive reports with statistical analysis and visualizations",
+            shortDescription: "Built a GPT-4-powered analytics platform that transforms raw datasets into 15+ page executive reports, automating statistical analysis, outlier detection, and visualization generation",
             date: "Oct 2024",
             technologies: ["Python", "Flask", "OpenAI GPT-4", "Pandas", "NumPy", "SciPy", "Matplotlib", "Seaborn"],
             github: "https://github.com/EfeObus/TK-Reports",
             live: null,
             image: "images/TK Reports.png",
-            featured: true
+            featured: true,
+            category: ["developer", "data-analyst"]
         },
         {
             title: "Zodiac Real Estate AI",
             description: "Production-ready real estate analytics platform with 88.3% accuracy machine learning, combining real-time economic data for property valuations and market analysis across 49,551+ Canadian properties.",
-            shortDescription: "Real estate analytics platform with 88.3% ML accuracy processing 49,551+ Canadian properties with real-time economic data integration",
+            shortDescription: "Delivered a real estate analytics platform achieving 88.3% ML prediction accuracy across 49,551+ Canadian properties, integrating real-time economic data feeds",
             date: "May 2025 – Aug 2025",
             technologies: ["Python", "Flask", "MySQL", "Scikit-learn", "XGBoost", "Docker", "JavaScript"],
             github: "https://github.com/EfeObus/NextProperty",
             live: null,
             caseStudy: "case-study-zodiac.html",
             image: "images/Zodiac Real Estate.png",
-            featured: true
+            featured: true,
+            category: ["developer", "data-analyst"]
         },
         {
             title: "IGNITE Sleep Lounge Automation",
             description: "Digital check-in and waiver system for Humber College's IGNITE facilities, automating student registration, time tracking, and staff oversight with real-time functionality and admin dashboard.",
-            shortDescription: "Digital check-in system for Humber College with automated registration, time tracking, and real-time admin dashboard",
+            shortDescription: "Automated student check-in for Humber College's IGNITE facilities, replacing manual sign-in with real-time registration tracking and an admin dashboard",
             date: "Sep 2024 – May 2025",
             technologies: ["Node.js", "Express", "PostgreSQL", "JavaScript", "JWT", "HTML/CSS"],
             github: "https://github.com/EfeObus/IGNITE-Sleep-Lounge-and-Zenzone",
             live: null,
             image: "images/Ignite Sleep Lounge.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "Tekevwe LegalEagleAI",
             description: "Web application designed to streamline legal document management and analysis. Provides features such as document generation, editing, and summarization, leveraging AI to assist users with legal research, contract creation, and risk analysis. The platform includes dashboards for activity tracking, quick actions, and recent documents, as well as collaboration tools with an AI chat assistant for insights and support.",
-            shortDescription: "AI-powered legal document management platform with document generation, contract creation, and risk analysis capabilities",
+            shortDescription: "Developed an AI-powered legal document platform automating contract generation, drafting, and risk analysis, with an integrated AI chat assistant for legal research",
             date: "Oct 2024 – Present",
             technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "PostgreSQL", "OpenAI API", "Drizzle ORM"],
             github: "https://github.com/EfeObus/LegalEagleAI",
             live: null,
             image: "images/Tekevwe LegalEagleAI .png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "TekVwarho Properties",
             description: "Nigerian property rental platform connecting landlords and tenants directly, eliminating middlemen to ensure transparency, security, and automation in rentals. Features ID verification, fraud detection, secure lease storage, and real-time communication. Landlords pay ₦10,000/year for unlimited listings and auto-generated legal agreements, while tenants pay ₦5,000/year for advanced search and agreement management.",
-            shortDescription: "Nigerian property rental platform with ID verification, fraud detection, and automated legal agreement generation",
+            shortDescription: "Launched a Nigerian property rental marketplace connecting landlords and tenants directly, automating ID verification, fraud detection, and legal agreement generation",
             date: "Feb 2025 – Present",
             technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "PostgreSQL", "Paystack", "WebSocket"],
             github: "https://github.com/EfeObus/TekVwarho-Properties",
             live: "https://tekvwarho-properties-production.up.railway.app/",
             image: "images/tekvwarho properties 2.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
         },
         {
             title: "Agho Hospital Management System",
             description: "Comprehensive desktop and web application to streamline hospital operations with role-based access control. Features patient management, appointment scheduling, doctor management, and user administration. Includes both web interface (port 5140) and console mode with security features like password hashing, SQL injection prevention, and role-based permissions for administrators, doctors, receptionists, and nurses.",
-            shortDescription: "Hospital management system with role-based access control, patient management, and enterprise security features",
+            shortDescription: "Built a hospital management system with role-based access control across 4 staff roles, securing patient data with SHA-256 hashing and SQL-injection prevention",
             date: "2025",
             technologies: ["Java", "Java Swing", "PostgreSQL", "JDBC", "SHA-256", "Web Server"],
             github: "https://github.com/EfeObus/Agho-Hospital-Management",
             live: null,
             image: "images/Agho Hospital Managaemtn.png",
-            featured: true
+            featured: true,
+            category: ["developer"]
+        },
+        {
+            title: "Nashville Housing Market Analysis",
+            description: "Engineered a raw, unstructured municipal housing dataset of 56,636 rows into a verified, stakeholder-ready business intelligence solution using advanced Excel. De-duplicated 168 exact-duplicate sales records, designed defensive null-value routing that classified 30,619 unvalued records as \"N/A\" instead of zero to prevent market-tier skew, and engineered derived time-dimension and boolean flag columns. Built a dynamic formula engine combining VLOOKUP, XLOOKUP, and INDEX/MATCH for record retrieval with SUMIFS/COUNTIFS/AVERAGEIFS for localized statistics, and replaced standard aggregations with SUBTOTAL and SUMPRODUCT logic so every metric recalculates safely under live filters. Delivered a BI dashboard with 9 pivot tables, 5 KPI indicators, and a slicer-driven 2x3 matrix chart layout. Uncovered $18.50B in verified transaction value across 56,468 sales, a 52% volume surge to a $6.71B peak in 2015, ~80% capital concentration in Nashville proper, and a 2016 cooling trend — insights translated into geographic allocation, seasonal listing timing, and risk-monitoring recommendations for stakeholders.",
+            shortDescription: "Transformed 56,636 messy municipal housing records (2013-2016) into a verified $18.50B market analysis using a dynamic Excel formula engine (VLOOKUP/XLOOKUP/SUMPRODUCT), 9 pivot tables, and a KPI dashboard",
+            date: "Jul 2026",
+            technologies: ["Microsoft Excel", "VLOOKUP/XLOOKUP", "INDEX/MATCH", "Pivot Tables", "SUMPRODUCT", "Data Cleaning", "Business Intelligence"],
+            github: "https://github.com/EfeObus/Nashville-Housing",
+            live: null,
+            caseStudy: "case-study-nashville-housing.html",
+            image: "images/Nashville Housing Market Analysis.png",
+            featured: true,
+            category: ["data-analyst"]
         }
     ],
 

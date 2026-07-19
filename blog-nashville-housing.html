@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turning 56,636 Messy Rows into an $18.5B Market Story: Nashville Housing Analysis | Efe Obukohwo</title>
+    <meta name="description" content="How I engineered a messy 56,636-row municipal housing dataset into a verified $18.50B Excel business intelligence dashboard using dynamic formulas, pivot tables, and defensive data cleaning.">
+    <meta name="keywords" content="Excel, Data Analysis, Business Intelligence, VLOOKUP, XLOOKUP, Pivot Tables, Data Cleaning, Data Analyst, Nashville Housing">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .blog-post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .blog-post-content h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .blog-post-content h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+        .blog-post-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            color: var(--gray-light);
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .blog-post-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .blog-post-content code {
+            background: var(--secondary-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .blog-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        th {
+            background: var(--secondary-black);
+            color: var(--gold);
+        }
+        td {
+            color: var(--gray-light);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .feature-card {
+            background: var(--secondary-black);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .feature-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 10px 0 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="blog-post-hero">
+        <div class="container">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <h1>Turning 56,636 Messy Rows into an <span class="golden-text">$18.5B Market Story</span></h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> July 2026</span>
+                <span><i class="far fa-clock"></i> 11 min read</span>
+                <span><i class="far fa-user"></i> Efe Obukohwo</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">Excel</span>
+                <span class="blog-tag">Data Cleaning</span>
+                <span class="blog-tag">Pivot Tables</span>
+                <span class="blog-tag">Business Intelligence</span>
+                <span class="blog-tag">Data Analyst</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post-content">
+        <img src="images/Nashville Housing Market Analysis.png" alt="Nashville Housing Market Analysis Excel dashboard" class="post-image">
+
+        <p>Most of my recent projects have been about shipping software — APIs, dashboards, mobile apps. This one is different: no backend, no deployment pipeline, just a 56,636-row municipal extract and Excel. I wanted to prove the same rigor I bring to production code — verification, defensive design, reproducibility — applies just as well to a spreadsheet, and that the result can still answer a real business question: <em>where is money actually moving in the Nashville housing market, and when?</em></p>
+
+        <div class="highlight-box">
+            <h4>📊 The Numbers</h4>
+            <p>$18.50B in verified transaction value across 56,468 sales, a 52% volume surge to a $6.71B peak in 2015, and roughly 80% of all capital concentrated in Nashville proper — all surfaced from a dataset that started out full of duplicates and blank appraisals.</p>
+        </div>
+
+        <h2>The Dataset Was the First Problem</h2>
+
+        <p>Public municipal data is rarely analysis-ready. Before a single pivot table could mean anything, the raw extract had three structural problems that would have quietly corrupted every downstream metric:</p>
+
+        <ul>
+            <li><strong>168 exact-duplicate sales records</strong> spread across multiple spatial keys — silently inflating volume and value totals if left in.</li>
+            <li><strong>30,619 unvalued property records</strong> with no appraisal figure — the kind of gap that gets converted to <code>0</code> by default and quietly drags down every average in the workbook.</li>
+            <li>Inconsistent, unformatted date and boolean fields that made time-series and occupancy analysis impossible without rework.</li>
+        </ul>
+
+        <p>The instinct with missing values is often to fill them with zero so formulas don't break. I avoided that deliberately. A $0 appraisal isn't a low-value property — it's an unknown, and treating it as a real number would have skewed every market-tier calculation toward the bottom. Instead, I built a formula-driven routing system that classified those 30,619 records as <code>"N/A"</code> and excluded them from tier math, so a genuinely low-value sale and a missing appraisal never got confused.</p>
+
+        <h2>Building a Formula Engine, Not Just a Spreadsheet</h2>
+
+        <p>Once the master data model was verified, the goal was to make the workbook <em>answer questions live</em> rather than present a static snapshot. That meant three layers of formula work:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-search"></i> Dynamic Retrieval</h4>
+                <p>VLOOKUP for boundary-based market tiering, with XLOOKUP and INDEX/MATCH handling the lookups VLOOKUP couldn't do cleanly — associating property records across sheets without brittle column-index math.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-calculator"></i> Conditional Aggregation</h4>
+                <p>SUMIFS, COUNTIFS, and AVERAGEIFS built the localized statistics — per-city, per-year, per-price-tier — that the KPI dashboard reads from.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-filter"></i> Filter-Safe Totals</h4>
+                <p>Standard SUM formulas break the moment a slicer hides rows. Swapping in SUBTOTAL and SUMPRODUCT meant every KPI recalculates correctly no matter what the user has filtered.</p>
+            </div>
+        </div>
+
+        <p>That last point mattered more than it sounds. A dashboard that shows the wrong total the moment someone touches a filter is worse than no dashboard at all — it looks authoritative while being silently wrong. Building the aggregation layer to be filter-aware from the start was the difference between a report and a genuinely interactive tool.</p>
+
+        <h2>What the Data Actually Said</h2>
+
+        <p>With a verified model and a live formula layer in place, four findings stood out immediately:</p>
+
+        <table>
+            <tr>
+                <th>Finding</th>
+                <th>What it means</th>
+            </tr>
+            <tr>
+                <td>$18.50B across 56,468 sales</td>
+                <td>The full, de-duplicated market picture — not the inflated total the raw extract would have shown</td>
+            </tr>
+            <tr>
+                <td>52% growth to a $6.71B peak in 2015</td>
+                <td>A sharp expansion phase, followed by a 2016 cooldown worth watching as a leading indicator</td>
+            </tr>
+            <tr>
+                <td>~80% of capital in Nashville proper</td>
+                <td>Extreme geographic concentration — $14.73B of the $18.50B total sits in one submarket</td>
+            </tr>
+            <tr>
+                <td>32,826 sales in the $100K–$300K band</td>
+                <td>The market is fundamentally a mid-market volume story, not a luxury one</td>
+            </tr>
+        </table>
+
+        <p>None of these are surprising in isolation, but together they change what a stakeholder should actually do: put marketing and inventory dollars where the liquidity already is (Nashville proper and Antioch), list in late spring to catch the June seasonal peak the pivot data revealed, and treat the 2016 slowdown as a signal to watch — not ignore — before committing to further long-term capital deployment.</p>
+
+        <h2>Why Build a BI Dashboard Instead of Charts in a Deck</h2>
+
+        <p>The final layer was turning the formula engine into something a non-technical stakeholder could actually use: nine pivot tables, five KPI tiles, and a slicer-driven 2×3 chart matrix. The difference between this and a static set of charts in a slide deck is that the dashboard stays correct as the underlying question changes — filter to just 2015, just Antioch, just premium-tier sales, and every KPI and chart updates together, because the aggregation layer underneath was built to survive that.</p>
+
+        <p>That's really the throughline of this project: the interesting work wasn't the charts, it was making sure the numbers behind them were verified, defensively cleaned, and safe to filter. Excel gets dismissed as a "beginner" tool, but built this way it's doing the same job a BI platform would — just without the infrastructure.</p>
+
+        <div class="cta-section">
+            <h3>See the Full Breakdown</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Read the structured case study or explore the source workbook on GitHub</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="case-study-nashville-housing.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> View Case Study
+                </a>
+                <a href="https://github.com/EfeObus/Nashville-Housing" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

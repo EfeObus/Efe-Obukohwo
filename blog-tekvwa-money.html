@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building TEKVWA Money: One Codebase, Three Platforms, Real Bank Data | Efe Obukohwo</title>
+    <meta name="description" content="How I built and launched TEKVWA Money, a full-stack personal finance tracker shipping on web, Android, and iOS from a single React/Capacitor codebase, with live Plaid bank-linking and Gemini AI-narrated insights.">
+    <meta name="keywords" content="React, Express.js, PostgreSQL, Capacitor, Plaid, Gemini, Vertex AI, Personal Finance, Mobile Development, Fintech">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .blog-post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .blog-post-content h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .blog-post-content h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+        .blog-post-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            color: var(--gray-light);
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .blog-post-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .blog-post-content code {
+            background: var(--secondary-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .blog-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .feature-card {
+            background: var(--secondary-black);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .feature-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 10px 0 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .version-badge {
+            background: var(--gold);
+            color: var(--primary-black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="blog-post-hero">
+        <div class="container">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <span class="version-badge">v1.0 — Live</span>
+            <h1>Building <span class="golden-text">TEKVWA Money</span>: One Codebase, Three Platforms, Real Bank Data</h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> 2026</span>
+                <span><i class="far fa-clock"></i> 13 min read</span>
+                <span><i class="far fa-user"></i> Efe Obukohwo</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">React</span>
+                <span class="blog-tag">Express.js</span>
+                <span class="blog-tag">Capacitor</span>
+                <span class="blog-tag">Plaid</span>
+                <span class="blog-tag">Gemini AI</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post-content">
+        <img src="images/Tekvwa Money.png" alt="TEKVWA Money dashboard showing today's income, expenses, balance, and recent transactions" class="post-image">
+
+        <p>Most budgeting apps fail for a boring reason: they ask too much of the user. Connect every account, learn a categorization system, review every transaction by hand. People with a decent income still can't say where last month's money went, not because they're bad with money, but because the tool asked for more discipline than a habit-forming app should. TEKVWA Money is my attempt at the opposite bet — make tracking spending require almost no ongoing effort, and let the app do the noticing.</p>
+
+        <p>It's live now on web, Android, and iOS, built from a single React codebase, with a real bank-linking integration (Plaid, in Production, not a sandbox demo) and an AI layer that narrates spending patterns instead of just logging them.</p>
+
+        <div class="highlight-box">
+            <h4>💡 The Core Bet</h4>
+            <p>Financial leakage — small, frequent, unnoticed expenses — is a noticing problem, not a discipline problem. So the app's job is to eliminate manual entry wherever possible (statement import, bank sync, auto-categorization that learns from corrections) and surface the pattern before the user has to go looking for it (budget-aware alerts, AI-narrated insights, weekly/monthly summaries).</p>
+        </div>
+
+        <h2>One React App, Three Native Targets</h2>
+
+        <p>The client is a single React + Vite + Zustand app. Capacitor wraps that same build into real native Android and iOS projects — not a WebView pointed at a hosted URL, but the production bundle compiled directly into the app, talking to <code>https://tekvwamoney.com</code> instead of a dev proxy. There's no separate mobile codebase to keep in sync, no feature drift between platforms by accident.</p>
+
+        <p>That constraint shaped a lot of decisions I wouldn't have had to make building a web app alone:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-fingerprint"></i> Biometric App Lock</h4>
+                <p>Face ID / fingerprint gates the app on every open or resume, independent of the login session, with the token stored behind Android Keystore / iOS Keychain rather than a plain flag.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-bolt"></i> Home-Screen Quick Add</h4>
+                <p>Long-press shortcuts deep-link straight into the Add Income/Expense form with the amount field pre-focused — Android static shortcuts and iOS <code>UIApplicationShortcutItems</code>, same JS handling underneath.</p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fas fa-wifi-slash"></i> Offline Queuing</h4>
+                <p>Adding a transaction with no connection queues it locally with a "Pending sync" badge and replays on reconnect, instead of just failing.</p>
+            </div>
+        </div>
+
+        <p>The two platforms don't actually behave identically, and pretending otherwise is where native wrappers usually get you in trouble. iOS's <code>WKWebView</code> reserves the http/https URL schemes for real remote pages, so it silently falls back to <code>capacitor://localhost</code> no matter what the config says — that's not a bug in this app, it's an upstream constraint, and the backend's CORS allowlist and origin-checking middleware both have to know about it explicitly rather than trusting <code>URL.origin</code> (which returns the literal string <code>"null"</code> for non-special schemes like <code>capacitor:</code>, per the WHATWG spec). Small platform gaps like that are exactly the kind of thing that stay invisible until a real device surfaces them.</p>
+
+        <h2>Real Bank Data, Not a Demo</h2>
+
+        <p>Connect Bank links a real account through Plaid, running against Plaid's Production environment on web, Android, and iOS alike — new transactions sync in about once a day, auto-categorized the same way a manually uploaded statement is, with no review step required. For people who'd rather not link an account directly, statement import covers PDF, CSV, and XLSX uploads across 24+ Canadian banks and credit unions, staging transactions for review before anything is committed, and remembering category corrections for next time.</p>
+
+        <p>Keeping a separate, Super-Admin-only sandbox evaluation page for poking at Plaid's test environment — completely walled off from the customer-facing flow — turned out to matter more than I expected during development. It meant I could break things against fake data as often as I wanted without ever touching a real customer's connection.</p>
+
+        <h2>AI That Narrates, Never Calculates</h2>
+
+        <p>AI Insights uses Gemini through Vertex AI to generate daily, weekly, and monthly reads on spending behavior. The rule I held to throughout: the model only ever narrates numbers the app has already computed deterministically in SQL — it's never asked to do arithmetic itself. Total spend, category breakdowns, budget-vs-actual, merchant frequency — all of that is calculated first, and Gemini's only job is turning verified numbers into a sentence a person will actually read. That boundary matters a lot for a finance app; a model that's occasionally wrong about a dollar figure is a much bigger problem than a model that's occasionally awkward in prose.</p>
+
+        <h2>Alerts That Don't Cry Wolf</h2>
+
+        <p>Budget-driven spending alerts fire at 70%, 85%, and 100%+ thresholds — falling back to an income-based comparison for anyone without a budget set. The part that took more care than the thresholds themselves: deduplication. A naive implementation re-fires the same warning every time a new expense is added past a threshold, which trains users to ignore the notification entirely. Alerts here escalate once per threshold per period instead, so a 75% warning shows up once, not on every subsequent transaction until the period resets.</p>
+
+        <h2>What Shipping to Three App Stores Actually Costs</h2>
+
+        <p>The unglamorous parts took the most iteration. Safe-area padding for the iPhone's Dynamic Island needed both a viewport meta tag <em>and</em> matching CSS on every fixed-position full-screen element individually — body padding alone doesn't reach anything with <code>position: fixed</code>. The biometric prompt on iOS briefly resigns and reactivates the app as part of showing its own system UI, which raced against the app's own resume-triggered lock listener and would sometimes re-lock the screen the instant it had just unlocked — fixed with an explicit "unlock in flight" guard rather than trying to out-time the race. None of this shows up in a demo; all of it shows up on a real device on day one.</p>
+
+        <p>iOS push notifications are the one piece still incomplete — not from a code gap, but a $99/year Apple Developer Program membership gap. The client-side registration runs on iOS today and is harmless; it just can't be delivered to yet. Everything else — biometric lock, Quick Add shortcuts, Plaid, AI Insights — is verified live on both platforms.</p>
+
+        <div class="cta-section">
+            <h3>Try TEKVWA Money</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Track income and expenses, connect a real bank account, and get AI-narrated insights into your spending</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://tekvwamoney.com/" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Visit TEKVWA Money
+                </a>
+                <a href="https://github.com/EfeObus/Tekvwa-Money" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

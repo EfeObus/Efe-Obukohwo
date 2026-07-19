@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efe Obukohwo - Data Analyst Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .download-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .download-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pdf-btn:hover {
+            background: #c0392b;
+        }
+
+        .docx-btn:hover {
+            background: #2980b9;
+        }
+
+        .print-btn:hover {
+            background: #333;
+        }
+
+        .variant-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .variant-switch a {
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-family: 'Times New Roman', serif;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media print {
+            .download-buttons, .variant-switch {
+                display: none;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            font-size: 12px;
+        }
+
+        .resume-container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 11px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .professional-summary {
+            text-align: justify;
+            line-height: 1.7;
+            font-size: 11px;
+        }
+
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+
+        .job-header, .edu-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .job-title, .degree, .project-title {
+            font-weight: bold;
+            color: #000;
+            font-size: 13px;
+            flex: 1;
+        }
+
+        .company, .institution {
+            font-weight: 600;
+            color: #000;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .date {
+            font-style: italic;
+            color: #000;
+            font-size: 10px;
+            white-space: nowrap;
+            text-align: right;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .job-description ul, .project-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li, .project-description li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 10px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .job-description li:before, .project-description li:before {
+            content: "•";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 4px solid #000;
+        }
+
+        .skill-category h4 {
+            color: #000;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .skill-list {
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .cert-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #000;
+        }
+
+        .cert-title {
+            font-weight: bold;
+            color: #000;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+
+        .cert-issuer {
+            color: #000;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+
+        .cert-date {
+            color: #000;
+            font-size: 9px;
+            font-style: italic;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .gpa {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 6px;
+            margin-bottom: 4px;
+        }
+
+        .project-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .project-link i {
+            font-size: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .tech-tag {
+            background: #e3f2fd;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 8px;
+            font-weight: 500;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievements-list li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .achievements-list li:before {
+            content: "•";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        @media print {
+            body {
+                font-size: 11px;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                max-width: none;
+                padding: 0.3in;
+            }
+
+            .section {
+                margin-bottom: 15px;
+            }
+
+            .experience-item, .education-item, .project-item {
+                margin-bottom: 12px;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 0.5in;
+                size: letter;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="variant-switch">
+        <a href="resume-developer.html"><i class="fas fa-exchange-alt"></i> View Developer Resume</a>
+    </div>
+
+    <div class="download-buttons">
+        <a href="documents/Efe_Obukohwo_Resume_DataAnalyst.pdf" download="Efe_Obukohwo_Resume_DataAnalyst.pdf" class="download-btn pdf-btn">
+            <i class="fas fa-file-pdf"></i> Download PDF
+        </a>
+        <a href="documents/Efe_Obukohwo_Resume_DataAnalyst.docx" download="Efe_Obukohwo_Resume_DataAnalyst.docx" class="download-btn docx-btn">
+            <i class="fas fa-file-word"></i> Download DOCX
+        </a>
+        <button class="download-btn print-btn" onclick="window.print()">
+            <i class="fas fa-print"></i> Print
+        </button>
+    </div>
+
+    <div class="resume-container">
+        <!-- Header Section - Populated by JavaScript -->
+        <header class="header" id="resume-header">
+            <h1 class="name" id="resume-name"></h1>
+            <p class="title" id="resume-title"></p>
+            <div class="contact-info" id="resume-contact"></div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="professional-summary" id="resume-summary"></div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div id="resume-experience"></div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div id="resume-education"></div>
+        </section>
+
+        <!-- Key Projects -->
+        <section class="section">
+            <h2 class="section-title">Key Data Analytics Projects</h2>
+            <div id="resume-projects"></div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid" id="resume-skills"></div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <h2 class="section-title">Licenses & Certifications</h2>
+            <div class="certifications-grid" id="resume-certifications"></div>
+        </section>
+
+        <!-- Key Achievements -->
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div id="resume-achievements"></div>
+        </section>
+    </div>
+
+    <!-- Load portfolio data first -->
+    <script src="portfolio-data.js"></script>
+
+    <!-- Resume generator script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = window.portfolioData;
+            if (!data) {
+                console.error('Portfolio data not loaded!');
+                return;
+            }
+
+            const SKILL_CATEGORIES = ['Data Analysis & Visualization', 'Programming Languages', 'Databases & ORMs', 'Machine Learning & AI'];
+
+            // Populate Header
+            document.getElementById('resume-name').textContent = data.personal.name;
+            document.getElementById('resume-title').textContent = data.personal.dataAnalystTitle || data.personal.title;
+
+            const contactHTML = `
+                <div class="contact-item">
+                    <span>Email:</span>
+                    <span>${data.personal.email}</span>
+                </div>
+                <div class="contact-item">
+                    <span>Phone:</span>
+                    <span>${data.personal.phone}</span>
+                </div>
+                <div class="contact-item">
+                    <span>Address:</span>
+                    <span>${data.personal.location}</span>
+                </div>
+                <div class="contact-item">
+                    <span>LinkedIn:</span>
+                    <span>${data.personal.linkedin}</span>
+                </div>
+                <div class="contact-item">
+                    <span>GitHub:</span>
+                    <span>${data.personal.github}</span>
+                </div>
+            `;
+            document.getElementById('resume-contact').innerHTML = contactHTML;
+
+            // Populate Summary
+            document.getElementById('resume-summary').textContent = data.personal.dataAnalystSummary || data.personal.summary;
+
+            // Populate Experience
+            const experienceHTML = data.experience.map(job => `
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">${job.title}</div>
+                            <div class="company">${job.company}</div>
+                        </div>
+                        <div class="date">${job.date}</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            ${job.responsibilities.map(r => `<li>${r}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('resume-experience').innerHTML = experienceHTML;
+
+            // Populate Education
+            const educationHTML = data.education.map(edu => `
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">${edu.degree}</div>
+                            <div class="company">${edu.institution}</div>
+                        </div>
+                        <div class="date">${edu.date}</div>
+                    </div>
+                    <div style="font-size: 10px;">
+                        <strong>Key Courses:</strong> ${edu.courses}<br>
+                        <strong>Cumulative GPA:</strong> <span class="gpa">${edu.gpa}</span>${edu.honors ? ' and ' + edu.honors : ''}
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('resume-education').innerHTML = educationHTML;
+
+            // Populate Projects (Data Analyst category only)
+            const dataAnalystProjects = data.projects.filter(p => (p.category || []).includes('data-analyst')).slice(0, 6);
+            const projectsHTML = dataAnalystProjects.map(project => {
+                const links = [];
+                if (project.live) {
+                    links.push(`<a href="${project.live}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>`);
+                }
+                if (project.github) {
+                    links.push(`<a href="${project.github}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>`);
+                }
+                const linksHTML = links.length > 0 ? `<div class="project-links">${links.join(' ')}</div>` : '';
+
+                return `
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">${project.title}</div>
+                        <div class="date">${project.date}</div>
+                    </div>
+                    <div class="project-description">
+                        <ul>
+                            <li>${project.shortDescription}</li>
+                        </ul>
+                        ${linksHTML}
+                        <div class="tech-stack">
+                            ${project.technologies.slice(0, 6).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+            document.getElementById('resume-projects').innerHTML = projectsHTML;
+
+            // Populate Skills (Data Analyst-relevant categories, in priority order)
+            const skillsHTML = SKILL_CATEGORIES.filter(category => data.skills[category]).map(category => `
+                <div class="skill-category">
+                    <h4>${category}</h4>
+                    <div class="skill-list">${data.skills[category].join(', ')}</div>
+                </div>
+            `).join('');
+            document.getElementById('resume-skills').innerHTML = skillsHTML;
+
+            // Populate Certifications
+            const certificationsHTML = data.certifications.map(cert => `
+                <div class="cert-item">
+                    <div class="cert-title">${cert.title}</div>
+                    <div class="cert-issuer">${cert.issuer}</div>
+                    <div class="cert-date">${cert.date}</div>
+                </div>
+            `).join('');
+            document.getElementById('resume-certifications').innerHTML = certificationsHTML;
+
+            // Populate Achievements
+            const achievementsHTML = `
+                <ul class="achievements-list">
+                    ${data.achievements.map(a => `<li>${a}</li>`).join('')}
+                </ul>
+            `;
+            document.getElementById('resume-achievements').innerHTML = achievementsHTML;
+        });
+    </script>
+</body>
+</html>

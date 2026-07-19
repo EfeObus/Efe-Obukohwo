@@ -57,8 +57,8 @@ async function convertDocxFileToPdf(docxPath, outputPdfPath) {
 }
 
 async function generateResumePDF() {
-    const docxPath = path.join(__dirname, 'Efe_Obukohwo_Resume.docx');
-    const outputPath = path.join(__dirname, 'Efe_Obukohwo_Resume.pdf');
+    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume.docx');
+    const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume.pdf');
 
     console.log('Generating resume PDF from DOCX source...');
     const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
@@ -67,9 +67,31 @@ async function generateResumePDF() {
     return resultPath;
 }
 
+async function generateDataAnalystResumePDF() {
+    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_DataAnalyst.docx');
+    const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_DataAnalyst.pdf');
+
+    console.log('Generating Data Analyst resume PDF from DOCX source...');
+    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log(`Data Analyst resume PDF generated successfully: ${resultPath}`);
+
+    return resultPath;
+}
+
+async function generateDeveloperResumePDF() {
+    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Developer.docx');
+    const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Developer.pdf');
+
+    console.log('Generating Developer resume PDF from DOCX source...');
+    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log(`Developer resume PDF generated successfully: ${resultPath}`);
+
+    return resultPath;
+}
+
 async function generatePortfolioPDF() {
-    const docxPath = path.join(__dirname, 'Efe_Obukohwo_Portfolio.docx');
-    const outputPath = path.join(__dirname, 'Efe_Obukohwo_Portfolio.pdf');
+    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.docx');
+    const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.pdf');
 
     if (!fs.existsSync(docxPath)) {
         return null;
@@ -82,12 +104,19 @@ async function generatePortfolioPDF() {
     return resultPath;
 }
 
-module.exports = { generateResumePDF, generatePortfolioPDF };
+module.exports = {
+    generateResumePDF,
+    generateDataAnalystResumePDF,
+    generateDeveloperResumePDF,
+    generatePortfolioPDF
+};
 
 if (require.main === module) {
     (async () => {
         const outputs = [];
         outputs.push(await generateResumePDF());
+        outputs.push(await generateDataAnalystResumePDF());
+        outputs.push(await generateDeveloperResumePDF());
 
         const portfolioOutput = await generatePortfolioPDF();
         if (portfolioOutput) {

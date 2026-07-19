@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Nashville Housing Market Analysis - Advanced Excel BI | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into the Nashville Housing Market Analysis, an advanced Excel business intelligence project engineering 56,636 messy municipal records into a verified $18.50B market analysis.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section h3.subhead {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .chart-grid figure {
+            margin: 0;
+            background: #fcfcfb;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .chart-grid img {
+            width: 100%;
+            display: block;
+        }
+        .chart-grid figcaption {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
+            background: var(--secondary-black);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <h1><span class="golden-text">Nashville Housing</span> Market Analysis</h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">Advanced Excel Business Intelligence &amp; Market Analytics</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> 2013 – 2016 Data</span>
+                <span><i class="fas fa-code"></i> Data Analyst Portfolio Project</span>
+                <span><i class="fas fa-database"></i> 56,636 Raw Records</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/Nashville Housing Market Analysis.png" alt="Nashville Housing Market Analysis Dashboard" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>Project Overview</h2>
+            <p>Raw, unstructured municipal data often obscures critical commercial realities. This project focused on engineering a messy dataset of 56,636 rows into a robust, stakeholder-ready business intelligence solution using advanced Excel. By architecting a single, verified master data model and layering a dynamic formula engine, this project uncovered core macro trends, transaction seasonality, and geographical value distributions across the Nashville housing market.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Business Problem</h2>
+            <p>In its raw state, the public municipal housing dataset was unusable for strategic decision-making due to duplicate records, incomplete property appraisals, unformatted data features, and a lack of comparative metrics. Stakeholders required a clean database paired with an analytical framework to easily see where capital was being deployed and identify changing market trajectories over a four-year period.</p>
+            <div class="highlight-box">
+                <h3>Vision</h3>
+                <p>Turn a 56,636-row public extract riddled with duplicates and unformatted fields into a single verified master data model — and a formula engine that lets stakeholders slice it by year, city, and price tier without touching a line of code.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Methodology &amp; Technical Execution</h2>
+
+            <h3 class="subhead">Data Quality and Data Engineering</h3>
+            <ul>
+                <li><strong>De-duplication:</strong> Conducted algorithmic checks to flag and eliminate 168 exact-duplicate sales records across multiple spatial keys.</li>
+                <li><strong>Defensive Null Value Mapping:</strong> Designed a formula-driven routing system that categorized 30,619 unvalued records as "N/A" instead of converting them to zero, preventing structural skews in downstream market-tier analysis.</li>
+                <li><strong>Feature Isolation:</strong> Programmed derived calculation columns to parse time dimensions (SaleYear, SaleMonth) and standardized boolean flags.</li>
+            </ul>
+
+            <h3 class="subhead">Advanced Analytics Engine</h3>
+            <ul>
+                <li><strong>Dynamic Record Retrieval:</strong> Leveraged VLOOKUP for boundary-based market tiering, alongside complex XLOOKUP and INDEX/MATCH lookup systems to associate property records cleanly.</li>
+                <li><strong>Aggregated Micro-Insights:</strong> Constructed localized statistical lookups utilizing multi-criteria conditional filters including SUMIFS, COUNTIFS, and AVERAGEIFS.</li>
+                <li><strong>Filter-Aware Architecture:</strong> Replaced standard aggregation cells with custom SUBTOTAL and SUMPRODUCT logic arrays, allowing the workbook's metrics to safely recalculate in real time without dropping context.</li>
+            </ul>
+
+            <h3 class="subhead">Business Intelligence Dashboard</h3>
+            <ul>
+                <li>Constructed nine granular pivot tables evaluating rolling totals, localized price variations, and operational market distributions.</li>
+                <li>Built a custom front-end dashboard in Excel containing five main KPI indicators and a 2x3 interactive matrix chart layout, fully responsive to dynamic user slicers.</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/Nashville - Sales by Year.png" alt="Line chart showing Nashville housing sales volume by year, 2013 to 2016">
+                    <figcaption>Live pivot chart driven by SUMPRODUCT + slicers</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/Nashville - Sales by Month.png" alt="Bar chart showing Nashville housing sales by month, revealing a June seasonal peak">
+                    <figcaption>Seasonality surfaced via pivot table + SUMIFS</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Key Data Findings</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="number">$18.50B</div>
+                    <div class="label">Total Verified Market Value</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">56,468</div>
+                    <div class="label">Verified Single-Record Sales</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">$6.71B</div>
+                    <div class="label">2015 Peak Sales Volume</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">~80%</div>
+                    <div class="label">Capital Share — Nashville Proper</div>
+                </div>
+            </div>
+
+            <ul>
+                <li><strong>Aggregated Market Value:</strong> The dataset captured an overall market transaction profile totaling $18.50 billion across 56,468 verified single-record sales.</li>
+                <li><strong>The 2015 Peak:</strong> Discovered an aggressive growth phase where market volume climbed by 52.0% in dollar investment from 2013 to a distinct regional peak of $6.71 billion in 2015, before softening slightly in 2016.</li>
+                <li><strong>Geographic Concentration:</strong> Uncovered a heavy real estate centralization pattern where Nashville proper accounted for $14.73 billion — representing roughly 80% of all capital movement in the territory.</li>
+                <li><strong>Volume Distribution:</strong> Pinpointed that the regional market is built heavily on mid-market purchasing power, with 32,826 total transactions falling within the $100,000 to $300,000 threshold.</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/Nashville - Top 10 Cities by Value.png" alt="Horizontal bar chart showing total transaction value concentrated in Nashville versus surrounding cities">
+                    <figcaption>Capital concentration by city (Top 10)</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/Nashville - Sales by Category.png" alt="Bar chart showing sales split across budget, mid-market, and premium price tiers">
+                    <figcaption>Budget / mid-market / premium volume split</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Strategic Impact &amp; Recommendations</h2>
+
+            <div class="highlight-box">
+                <h3>Geographical Resource Allocation</h3>
+                <p>Recommended that investors prioritize inventory and marketing capital toward Nashville proper and Antioch, as these two sub-markets anchor the vast majority of regional liquidity.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Seasonal Launch Strategy</h3>
+                <p>Advised stakeholders to time property listings for late spring to directly capture the peak purchasing season that historically peaks in June.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Risk Mitigation</h3>
+                <p>Highlighted the volume and value cooling observed in 2016 as a key leading indicator to monitor closely before engaging in further unhedged long-term capital acquisitions.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Tools &amp; Techniques</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fas fa-table"></i><span>Advanced Excel</span></div>
+                <div class="tech-item"><i class="fas fa-search"></i><span>VLOOKUP/XLOOKUP</span></div>
+                <div class="tech-item"><i class="fas fa-crosshairs"></i><span>INDEX/MATCH</span></div>
+                <div class="tech-item"><i class="fas fa-calculator"></i><span>SUMPRODUCT</span></div>
+                <div class="tech-item"><i class="fas fa-th-large"></i><span>9 Pivot Tables</span></div>
+                <div class="tech-item"><i class="fas fa-sliders-h"></i><span>Dynamic Slicers</span></div>
+                <div class="tech-item"><i class="fas fa-broom"></i><span>Data Cleaning</span></div>
+                <div class="tech-item"><i class="fas fa-chart-line"></i><span>Business Intelligence</span></div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Explore the Full Analysis</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Review the source workbook on GitHub or download the full narrative report</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/EfeObus/Nashville-Housing" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="documents/Nashville Housing Market Analysis.pdf" download class="btn btn-outline">
+                    <i class="fas fa-file-pdf"></i> Download Full Report (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
