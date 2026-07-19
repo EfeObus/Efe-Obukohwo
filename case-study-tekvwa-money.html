@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: TEKVWA Money - Full-Stack Personal Finance Platform | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into TEKVWA Money, a full-stack personal finance tracker live on web, Android, and iOS from a single codebase, with real Plaid bank-linking and Gemini AI-narrated insights.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: var(--secondary-black);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .feature-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-card p {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .status-badge {
+            background: var(--gold);
+            color: var(--primary-black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <span class="status-badge">v1.0 — Live on Web, Android &amp; iOS</span>
+            <h1><span class="golden-text">TEKVWA Money</span></h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">Full-Stack Personal Finance Platform</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> 2026 – Present</span>
+                <span><i class="fas fa-mobile-alt"></i> Web · Android · iOS</span>
+                <span><i class="fas fa-university"></i> Live Plaid Integration</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/Tekvwa Money.png" alt="TEKVWA Money dashboard showing today's income, expenses, balance, and recent transactions" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>The Problem</h2>
+            <p>TEKVWA Money exists to solve financial leakage — the silent loss of money through small, frequent, unnoticed expenses. Many people earn a decent income but still struggle to save, not from a lack of discipline but from a lack of visibility into where the money is actually going. Most existing budgeting tools make this worse by demanding bank connections, complex categorization systems, or constant manual entry before they deliver any value.</p>
+            <div class="highlight-box">
+                <h3>Design Philosophy</h3>
+                <p>Make financial tracking require almost no ongoing effort, and let the app do the noticing — automatic bank statement imports, self-learning categorization, budget-aware alerts, and AI-narrated summaries, instead of asking the user to build a new habit from scratch.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>What It Is</h2>
+            <p>A full-stack personal finance application built with React, Express.js, PostgreSQL, Zustand, and Tailwind CSS, shipped as a website and as native Android and iOS apps from a single Capacitor-wrapped codebase. Users can record income and expenses, import bank statements, link a real bank account, set budgets, monitor spending alerts, and generate exportable financial reports — all live in production, not a demo build.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Core Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4><i class="fas fa-university"></i> Connect Bank (Plaid)</h4>
+                    <p>Real bank-account linking running against Plaid's Production environment on web, Android, and iOS. New transactions sync in about once a day, auto-categorized with no manual review step.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-file-import"></i> Statement Import</h4>
+                    <p>PDF/CSV/XLSX upload across 24+ Canadian banks and credit unions, with duplicate detection and category corrections remembered for future imports.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-robot"></i> Gemini AI Insights</h4>
+                    <p>Daily/weekly/monthly spending narratives via Vertex AI. The model only ever narrates numbers the app already computed deterministically — never asked to calculate anything itself.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-bell"></i> Budget-Driven Alerts</h4>
+                    <p>Spending warnings at 70%, 85%, and 100%+ thresholds, deduplicated so an alert escalates once per period instead of firing on every subsequent transaction.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-fingerprint"></i> Biometric App Lock</h4>
+                    <p>Face ID/fingerprint gates the native apps on open or resume, independent of the login session, with the token secured behind Android Keystore / iOS Keychain.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-users-cog"></i> Full RBAC</h4>
+                    <p>Customer, Staff (Support/Finance Analyst/Auditor), Admin, and Super Admin roles, each with a dedicated dashboard and an operational audit trail.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="tech-item"><i class="fab fa-node-js"></i><span>Express.js</span></div>
+                <div class="tech-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+                <div class="tech-item"><i class="fas fa-bolt"></i><span>Zustand</span></div>
+                <div class="tech-item"><i class="fas fa-wind"></i><span>Tailwind CSS</span></div>
+                <div class="tech-item"><i class="fas fa-mobile-alt"></i><span>Capacitor</span></div>
+                <div class="tech-item"><i class="fas fa-university"></i><span>Plaid API</span></div>
+                <div class="tech-item"><i class="fas fa-brain"></i><span>Gemini (Vertex AI)</span></div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>One Codebase, Two Very Different Platforms</h2>
+            <p>Capacitor wraps the same React build into real native Android and iOS projects — the production bundle compiled directly into each app, talking to the production API rather than a dev proxy. But the platforms don't behave identically underneath, and the app has to know about the gaps explicitly:</p>
+            <ul>
+                <li><strong>iOS's WKWebView URL scheme limitation:</strong> iOS reserves the http/https schemes for real remote pages, so it silently falls back to <code>capacitor://localhost</code> regardless of config. The backend's CORS allowlist and origin-checking middleware both account for this explicitly — including reconstructing the origin from protocol + host, since the WHATWG spec returns the literal string <code>"null"</code> for <code>.origin</code> on non-special schemes like <code>capacitor:</code>.</li>
+                <li><strong>Safe-area insets:</strong> the iPhone's Dynamic Island needs both a <code>viewport-fit=cover</code> meta tag and matching <code>env(safe-area-inset-*)</code> CSS applied directly to every fixed-position full-screen element (the lock screen, notification center, mobile sidebar) — body padding alone doesn't reach anything with <code>position: fixed</code>.</li>
+                <li><strong>Biometric prompt resume race:</strong> presenting Face ID briefly resigns and reactivates the app as part of showing its own system UI, which used to race against the app's own resume-triggered lock listener — occasionally re-locking the screen the instant it had just unlocked. Fixed with an explicit "unlock in flight" guard rather than trying to out-time the race.</li>
+                <li><strong>CocoaPods, not Swift Package Manager:</strong> the biometric plugin ships only a <code>.podspec</code>, no <code>Package.swift</code> — SPM would silently drop it instead of failing the build.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Security</h2>
+            <ul>
+                <li>Hybrid session transport: an httpOnly/Secure/SameSite=Lax cookie on web (never readable by page scripts), a Bearer token on native — cookies aren't reliable cross-origin inside a Capacitor WebView</li>
+                <li>Plaid access tokens encrypted at rest; AI Insights authenticate via Application Default Credentials rather than a stored API key</li>
+                <li>Password hashing with bcrypt, server-side input validation on every write endpoint, and a configurable account-lockout threshold after repeated failed logins</li>
+                <li>A Super Admin-only Plaid Sandbox evaluation page, completely walled off from the customer-facing flow, for testing without ever touching a real connection</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Known Limitations</h2>
+            <p>Documented rather than hidden, since this is a real production app, not a polished demo:</p>
+            <ul>
+                <li><strong>No iOS push notifications yet</strong> — needs a paid Apple Developer Program membership to generate the APNs key. The client-side registration code already runs on iOS and is harmless; push will work with no further code changes once that's available. Android push is live today.</li>
+                <li><strong>Offline transaction queuing is live code, not manually verified</strong> — it's actively wired into the Income/Expense stores and queues correctly, but hasn't had a deliberate airplane-mode test pass on a real device yet.</li>
+                <li><strong>No frontend test suite</strong> — the backend has a real vitest + supertest suite; the client doesn't have equivalent coverage yet.</li>
+            </ul>
+        </section>
+
+        <div class="cta-section">
+            <h3>Try TEKVWA Money</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Track income and expenses, connect a real bank account, and get AI-narrated insights into your spending</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://tekvwamoney.com/" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Visit TEKVWA Money
+                </a>
+                <a href="https://github.com/EfeObus/Tekvwa-Money" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

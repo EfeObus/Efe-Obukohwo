@@ -133,10 +133,11 @@ const portfolioData = {
             title: "TEKVWA Money",
             description: "TEKVWA Money is a full-stack personal finance tracking application solving financial leakage — the silent loss of money through small, unnoticed expenses. Built with React, Express.js, PostgreSQL, Zustand, and Tailwind CSS, and shipped as a website plus native Android and iOS apps (Capacitor) from a single codebase. Features real bank-account linking via Plaid (live in Production on web, Android, and iOS), Gemini/Vertex AI-narrated spending insights, automated PDF/CSV/XLSX bank statement import with self-learning auto-categorization across 24+ Canadian banks and credit unions, budget-driven spending alerts, biometric app lock (Face ID/fingerprint), push notifications, and exportable PDF/Excel/CSV reports. Includes a full RBAC system (Customer/Staff/Admin/Super Admin) with a Super Admin operations dashboard for audit logging, security history, and maintenance mode, backed by a real automated test suite and 16 tracked database migrations.",
             shortDescription: "Built and launched a full-stack personal finance platform (web, Android, iOS) from a single Capacitor/React codebase, integrating live Plaid bank-linking, Gemini AI-narrated insights, and automated statement import across 24+ Canadian banks",
-            date: "2026 – Present",
+            date: "April 2026 – Present",
             technologies: ["React", "Express.js", "PostgreSQL", "Zustand", "Tailwind CSS", "Capacitor (Android/iOS)", "Plaid API", "Gemini (Vertex AI)", "Firebase Cloud Messaging"],
             github: "https://github.com/EfeObus/Tekvwa-Money",
             live: "https://tekvwamoney.com/",
+            caseStudy: "case-study-tekvwa-money.html",
             image: "images/Tekvwa Money.png",
             featured: true,
             category: ["developer"]
