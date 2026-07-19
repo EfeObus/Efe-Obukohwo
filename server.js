@@ -9,7 +9,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+const ALLOWED_ORIGINS = [
+    'https://efeobus.github.io',
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173'
+];
+
+app.use(cors({
+    origin(origin, callback) {
+        // Allow requests with no Origin header (curl, server-to-server, health checks)
+        if (!origin || ALLOWED_ORIGINS.includes(origin)) {
+            return callback(null, true);
+        }
+        callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

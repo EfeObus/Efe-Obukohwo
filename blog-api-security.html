@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
     <script>
@@ -16,7 +17,7 @@
     <meta name="keywords" content="API Security, Rate Limiting, Machine Learning, XSS Protection, CSRF, Flask, Python, Cybersecurity">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         .blog-post-hero {
             background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
@@ -1277,8 +1278,8 @@ flask security audit --output report.json</pre>
                     <div class="footer-section">
                         <h4>Follow Me</h4>
                         <div class="footer-social">
-                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>

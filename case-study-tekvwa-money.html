@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
     <script>
@@ -15,7 +16,7 @@
     <meta name="description" content="Deep dive into TEKVWA Money, a full-stack personal finance tracker live on web, Android, and iOS from a single codebase, with real Plaid bank-linking and Gemini AI-narrated insights.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         .case-study-hero {
             background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
@@ -300,10 +301,10 @@
             <h3>Try TEKVWA Money</h3>
             <p style="color: var(--gray-light); margin-bottom: 25px;">Track income and expenses, connect a real bank account, and get AI-narrated insights into your spending</p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://tekvwamoney.com/" target="_blank" class="btn btn-primary">
+                <a href="https://tekvwamoney.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                     <i class="fas fa-rocket"></i> Visit TEKVWA Money
                 </a>
-                <a href="https://github.com/EfeObus/Tekvwa-Money" target="_blank" class="btn btn-outline">
+                <a href="https://github.com/EfeObus/Tekvwa-Money" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
                     <i class="fab fa-github"></i> GitHub
                 </a>
             </div>
@@ -331,8 +332,8 @@
                     <div class="footer-section">
                         <h4>Follow Me</h4>
                         <div class="footer-social">
-                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/EfeObus/" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
