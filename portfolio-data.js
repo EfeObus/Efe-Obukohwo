@@ -290,6 +290,19 @@ const portfolioData = {
             category: ["developer"]
         },
         {
+            title: "Online Retail SQL Analysis",
+            description: "Designed a normalized PostgreSQL database (5 tables + 1 staging table, 3NF, indexed foreign keys) for a 500,000+ row UK e-commerce transaction dataset, then wrote 30 production-ready SQL queries covering customer segmentation (RFM, LTV, cohort retention), product performance and cross-sell analysis, temporal trends, and anomaly detection using window functions (RANK, LAG, SUM OVER, NTILE, PERCENTILE_CONT), CTEs, and statistical aggregation. Surfaced that £8.91M in revenue from 4,339 customers is 82% UK-concentrated, that the top 10% of customers drive 61% of revenue, and that sub-£5 budget products generate 71% of revenue despite being a volume rather than margin business. Went further than reporting results: audited the query outputs themselves and documented real data-quality findings, including a CURRENT_DATE bug that silently mislabeled 100% of customers as \"Inactive\" and a cohort query that only ever returned month zero — the kind of self-auditing that separates production analysis from a one-off script.",
+            shortDescription: "Designed a normalized PostgreSQL schema and wrote 30 production SQL queries analyzing 500K+ e-commerce transactions, uncovering revenue concentration and segmentation insights while auditing and documenting real bugs in the analysis itself",
+            date: "Jul 2026",
+            technologies: ["PostgreSQL", "SQL", "Window Functions", "CTEs", "RFM Segmentation", "Cohort Analysis", "Database Design"],
+            github: "https://github.com/EfeObus/Online-Retail-SQL-Analysis",
+            live: null,
+            caseStudy: "case-study-online-retail-sql.html",
+            image: "images/Online Retail SQL Analysis.png",
+            featured: true,
+            category: ["data-analyst"]
+        },
+        {
             title: "Nashville Housing Market Analysis",
             description: "Engineered a raw, unstructured municipal housing dataset of 56,636 rows into a verified, stakeholder-ready business intelligence solution using advanced Excel. De-duplicated 168 exact-duplicate sales records, designed defensive null-value routing that classified 30,619 unvalued records as \"N/A\" instead of zero to prevent market-tier skew, and engineered derived time-dimension and boolean flag columns. Built a dynamic formula engine combining VLOOKUP, XLOOKUP, and INDEX/MATCH for record retrieval with SUMIFS/COUNTIFS/AVERAGEIFS for localized statistics, and replaced standard aggregations with SUBTOTAL and SUMPRODUCT logic so every metric recalculates safely under live filters. Delivered a BI dashboard with 9 pivot tables, 5 KPI indicators, and a slicer-driven 2x3 matrix chart layout. Uncovered $18.50B in verified transaction value across 56,468 sales, a 52% volume surge to a $6.71B peak in 2015, ~80% capital concentration in Nashville proper, and a 2016 cooling trend — insights translated into geographic allocation, seasonal listing timing, and risk-monitoring recommendations for stakeholders.",
             shortDescription: "Transformed 56,636 messy municipal housing records (2013-2016) into a verified $18.50B market analysis using a dynamic Excel formula engine (VLOOKUP/XLOOKUP/SUMPRODUCT), 9 pivot tables, and a KPI dashboard",

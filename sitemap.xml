@@ -61,6 +61,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-online-retail-sql.html</loc>
+        <lastmod>2026-07-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://efeobus.github.io/Efe-Obukohwo/blog-tekvwa-money.html</loc>
         <lastmod>2026-07-19</lastmod>
         <changefreq>monthly</changefreq>
@@ -117,6 +123,12 @@
     <url>
         <loc>https://efeobus.github.io/Efe-Obukohwo/blog-humanitarian-data.html</loc>
         <lastmod>2026-01-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/case-study-online-retail-sql.html</loc>
+        <lastmod>2026-07-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6E5QMP9NDK');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Online Retail SQL Analysis - PostgreSQL Business Intelligence | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into the Online Retail SQL Analysis project: a normalized PostgreSQL database and 30 production SQL queries analyzing 500,000+ e-commerce transactions, including self-audited data-quality findings.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section h3.subhead {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .code-block {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .code-block pre {
+            color: var(--gray-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <h1><span class="golden-text">Online Retail</span> SQL Analysis</h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">PostgreSQL Database Design &amp; Advanced Business Intelligence</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> Dec 2010 – Dec 2011 Data</span>
+                <span><i class="fas fa-database"></i> 500,000+ Transactions</span>
+                <span><i class="fas fa-code"></i> 30 Production SQL Queries</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/Online Retail SQL Analysis.png" alt="Online Retail SQL Analysis dashboard showing revenue KPIs, a window-function query, and customer lifetime value results" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>Project Overview</h2>
+            <p>A complete SQL analytics project built on the UCI Online Retail dataset — 500,000+ line-item transactions from a UK-based online gift and homeware wholesaler. I designed a normalized PostgreSQL schema from the raw CSV export, then wrote 30 production-ready queries covering customer segmentation, product performance, temporal trends, and anomaly detection using window functions, CTEs, and statistical aggregation. The goal wasn't just to produce numbers — it was to produce numbers I could defend, which meant auditing my own query outputs for the kind of quiet mistakes that make analysis wrong without looking wrong.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Data</h2>
+            <p>Each row in the raw export is one product line on one invoice, not one "purchase" — a single customer order typically spans many rows. The dataset covers December 1, 2010 through December 9, 2011, and reads like a wholesale gift catalog: lanterns, ceramic jars, novelty stationery, with order sizes ranging from single units to an 80,995-unit bulk order of the same SKU. A large share of customers are wholesalers buying to resell, not retail consumers — which shapes almost every downstream finding.</p>
+            <div class="highlight-box">
+                <h3>Why This Dataset Makes a Real SQL Portfolio Piece</h3>
+                <p>It has the properties that make analytics work hard in practice: ~25% of rows carry no CustomerID, returns need correct sign handling, non-product rows (manual adjustments, postage) are mixed into the fact table, and revenue follows a genuinely skewed long-tail distribution rather than a clean synthetic curve. Queries that look right on a toy dataset need real adjustment here.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Database Design</h2>
+            <p>Normalized the raw single-table CSV export into a proper relational schema before writing a single analytical query:</p>
+            <ul>
+                <li><strong>5 core tables + 1 staging table:</strong> <code>countries</code> (38 rows), <code>customers</code> (4,372), <code>products</code> (4,070), <code>invoices</code> (22,190), <code>invoice_details</code> (397,924 line items), plus a <code>staging_raw_import</code> table holding the untouched 500,000-row source for traceability back to the original export.</li>
+                <li><strong>3NF with surrogate keys:</strong> SERIAL primary keys and indexed foreign keys across the fact/dimension relationships, rather than querying the flat CSV structure directly.</li>
+                <li><strong>Correct type handling:</strong> DECIMAL/NUMERIC casting throughout so currency aggregation doesn't accumulate floating-point drift across hundreds of thousands of rows.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Query Techniques</h2>
+            <p>30 queries organized into customer analytics, product analysis, temporal trends, and advanced analytics, built with:</p>
+            <ul>
+                <li><strong>Window functions:</strong> RANK() for product/customer leaderboards, LAG() for month-over-month growth, SUM() OVER (PARTITION BY...) for running totals, NTILE() for LTV quartiles, PERCENTILE_CONT() for top-1% transaction thresholds</li>
+                <li><strong>CTEs:</strong> multi-step logic for RFM segmentation, cohort retention, and a Herfindahl-style product diversity index</li>
+                <li><strong>Statistical functions:</strong> STDDEV-based anomaly detection for unusual order patterns</li>
+            </ul>
+            <div class="code-block">
+                <pre>-- Cumulative revenue by country (running total via window function)
+WITH daily_country_revenue AS (
+  SELECT DATE(i.invoice_date) AS sale_date,
+         co.country_name,
+         ROUND(SUM(id.line_total)::NUMERIC, 2) AS daily_revenue
+  FROM invoices i
+  JOIN invoice_details id ON i.invoice_id = id.invoice_id
+  JOIN customers c ON i.customer_id = c.customer_id
+  JOIN countries co ON c.country_id = co.country_id
+  GROUP BY DATE(i.invoice_date), co.country_name
+)
+SELECT sale_date, country_name, daily_revenue,
+       SUM(daily_revenue) OVER (
+         PARTITION BY country_name ORDER BY sale_date
+       ) AS cumulative_revenue
+FROM daily_country_revenue
+ORDER BY country_name, sale_date;</pre>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Key Findings</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="number">£8.91M</div>
+                    <div class="label">Total Revenue Analyzed</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">82%</div>
+                    <div class="label">Revenue from the UK Alone</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">61%</div>
+                    <div class="label">Revenue from Top 10% of Customers</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">71%</div>
+                    <div class="label">Revenue from Sub-£5 Products</div>
+                </div>
+            </div>
+            <ul>
+                <li><strong>Revenue concentration is moderate, not extreme:</strong> the top 10% of customers by lifetime value drive 61% of revenue — closer to a 60/10 split than the textbook 80/20, and the single highest-value customer (Netherlands, £280,206 across 74 orders) more than doubles the #2 account.</li>
+                <li><strong>It's a volume business, not a margin business:</strong> budget products under £5 make up 2,854 of 3,665 products sold and 71% of total revenue, while luxury items (£25+) are only 41 products and 2.8% of revenue.</li>
+                <li><strong>The UK isn't the largest market — it's nearly the entire market:</strong> 82% of revenue from 3,921 of 4,339 customers. Netherlands is #2 by revenue share (3.2%) with only 9 customers, implying large wholesale order values rather than a broad consumer base.</li>
+                <li><strong>No Saturday transactions exist anywhere in the dataset</strong> — not low weekend volume, an actual gap consistent with the warehouse being closed Saturdays. Thursday is the highest-revenue day (£1.98M); 12:00–13:00 is the single highest-revenue hour.</li>
+                <li><strong>November 2011 is the clear seasonal peak</strong> (2,658 transactions, £1.16M) — consistent with pre-holiday wholesale buying, with month-over-month revenue swinging between -21% and +48% in complete months.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Auditing My Own Analysis</h2>
+            <p>Running a query and getting a result isn't the same as the result being right. Rather than stopping at "the queries ran successfully," I inspected the actual exported outputs against the raw data and found three real problems in my own analysis:</p>
+            <div class="highlight-box">
+                <h3>The CURRENT_DATE Bug</h3>
+                <p>Queries classifying customers as Active/At Risk/Dormant compared purchase dates to <code>CURRENT_DATE</code>. Since the dataset ends in December 2011, every customer's "days since last purchase" is now 5,000+ days — so the recency segmentation showed <strong>100% of customers as "Inactive,"</strong> carrying zero information as written. The fix: anchor recency to <code>(SELECT MAX(invoice_date) FROM invoices)</code> instead of today's date.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>The Cohort Query That Only Returned Month Zero</h3>
+                <p>The cohort retention query was designed to show a month-1/2/3/6+ retention curve. The actual export had exactly 13 rows — one per cohort month, all at <code>months_since_first_purchase = 0</code>. The retention curve the query was built to produce never appeared, a real bug worth catching before quoting a "70% retention by month 3" number that the query never actually computed.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>An Anomaly Filter Too Permissive to Be Useful</h3>
+                <p>The STDDEV-based anomaly detection query flagged 3,396 of 3,754 customers (90%) as "High Volume Spikes" at a 1.5 standard deviation threshold — too loose to function as an outlier filter on this data. Documented as a known limitation with the fix (tightening to 2–3 STDDEV) rather than shipping a misleading "anomaly" label on 90% of customers.</p>
+            </div>
+            <p>Also documented: ~25% of raw rows have no CustomerID and are silently excluded from every customer-level query (meaning customer-grouped revenue always undercounts true activity), and December 2011 is a partial month (9 days) that produces a misleading -55% month-over-month "decline" if not excluded from seasonal comparisons.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Tools &amp; Techniques</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+                <div class="tech-item"><i class="fas fa-table"></i><span>3NF Schema Design</span></div>
+                <div class="tech-item"><i class="fas fa-window-restore"></i><span>Window Functions</span></div>
+                <div class="tech-item"><i class="fas fa-layer-group"></i><span>CTEs</span></div>
+                <div class="tech-item"><i class="fas fa-users"></i><span>RFM Segmentation</span></div>
+                <div class="tech-item"><i class="fas fa-history"></i><span>Cohort Analysis</span></div>
+                <div class="tech-item"><i class="fas fa-exclamation-triangle"></i><span>Anomaly Detection</span></div>
+                <div class="tech-item"><i class="fas fa-check-double"></i><span>Data Quality Auditing</span></div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Explore the Full Analysis</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Browse the schema, all 30 queries, and the full documentation on GitHub</p>
+            <a href="https://github.com/EfeObus/Online-Retail-SQL-Analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

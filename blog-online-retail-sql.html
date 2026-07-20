@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6E5QMP9NDK');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Query Ran, But Was It Right? A SQL Analysis of 500K Retail Transactions | Efe Obukohwo</title>
+    <meta name="description" content="How I designed a normalized PostgreSQL database and wrote 30 production SQL queries over 500,000+ e-commerce transactions - then audited my own results and found real bugs before trusting the numbers.">
+    <meta name="keywords" content="SQL, PostgreSQL, Window Functions, CTEs, RFM Segmentation, Cohort Analysis, Data Analyst, Database Design">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .blog-post-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .blog-post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .blog-post-content h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .blog-post-content h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+        .blog-post-content p {
+            color: var(--gray-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .blog-post-content ul, .blog-post-content ol {
+            color: var(--gray-light);
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .blog-post-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .blog-post-content code {
+            background: var(--secondary-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+        }
+        .code-block {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .code-block pre {
+            color: var(--gray-light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .blog-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        th {
+            background: var(--secondary-black);
+            color: var(--gold);
+        }
+        td {
+            color: var(--gray-light);
+        }
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 10px 0 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="blog-post-hero">
+        <div class="container">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <h1>The Query Ran, But Was It <span class="golden-text">Right?</span></h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> July 2026</span>
+                <span><i class="far fa-clock"></i> 10 min read</span>
+                <span><i class="far fa-user"></i> Efe Obukohwo</span>
+            </div>
+            <div class="blog-tags">
+                <span class="blog-tag">PostgreSQL</span>
+                <span class="blog-tag">Window Functions</span>
+                <span class="blog-tag">Data Quality</span>
+                <span class="blog-tag">SQL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <article class="blog-post-content">
+        <img src="images/Online Retail SQL Analysis.png" alt="Online Retail SQL Analysis dashboard showing revenue KPIs, a window-function query, and customer lifetime value results" class="post-image">
+
+        <p>It's easy to treat a SQL query as done the moment it returns rows without an error. No red text, no exception — must be correct. That assumption is exactly what breaks real analysis, and it's what I set out to stress-test with this project: a normalized PostgreSQL database and 30 production queries over 500,000+ e-commerce transactions, where I deliberately went back and audited my own outputs instead of trusting a clean execution.</p>
+
+        <p>I found three real bugs in my own analysis. Here's what happened, and why I think the auditing mattered more than the queries themselves.</p>
+
+        <div class="highlight-box">
+            <h4>📊 The Dataset</h4>
+            <p>The UCI Online Retail dataset: 500,000+ line items from a UK-based gift and homeware wholesaler, December 2010 to December 2011. £8.91M in revenue, 4,339 customers, 38 countries — and 25% of rows missing a CustomerID entirely.</p>
+        </div>
+
+        <h2>Schema First, Queries Second</h2>
+
+        <p>The raw export is a single flat CSV — one row per product line per invoice, no relationships, no keys. Before writing a single analytical query, I normalized it into five core tables (<code>countries</code>, <code>customers</code>, <code>products</code>, <code>invoices</code>, <code>invoice_details</code>) plus a staging table holding the untouched original import, so every derived number can be traced back to source. Third normal form, surrogate keys, indexed foreign keys — the boring part of the project, and the part that made everything after it possible to trust.</p>
+
+        <h2>Thirty Queries, One Running-Total Example</h2>
+
+        <p>The 30 queries span customer segmentation (RFM, LTV quartiles via NTILE), product performance and cross-sell pairs, temporal patterns, and anomaly detection. Window functions carry most of the weight — here's cumulative revenue by country using <code>SUM() OVER (PARTITION BY ... ORDER BY ...)</code>, one query, no procedural loop needed:</p>
+
+        <div class="code-block">
+            <pre>WITH daily_country_revenue AS (
+  SELECT DATE(i.invoice_date) AS sale_date,
+         co.country_name,
+         ROUND(SUM(id.line_total)::NUMERIC, 2) AS daily_revenue
+  FROM invoices i
+  JOIN invoice_details id ON i.invoice_id = id.invoice_id
+  JOIN customers c ON i.customer_id = c.customer_id
+  JOIN countries co ON c.country_id = co.country_id
+  GROUP BY DATE(i.invoice_date), co.country_name
+)
+SELECT sale_date, country_name, daily_revenue,
+       SUM(daily_revenue) OVER (
+         PARTITION BY country_name ORDER BY sale_date
+       ) AS cumulative_revenue
+FROM daily_country_revenue
+ORDER BY country_name, sale_date;</pre>
+        </div>
+
+        <p>The findings this surfaced were real and specific: 82% of revenue from the UK alone, the top 10% of customers driving 61% of revenue (a moderate concentration, not the textbook 80/20), and — the one that reframes the whole business — sub-£5 products generating 71% of revenue while £25+ items are only 2.8%. This is a volume business built on cheap, high-frequency items, not a margin business, and that single finding changes what "optimize revenue" should even mean for this company.</p>
+
+        <h2>Then I Stopped Trusting My Own Output</h2>
+
+        <p>A query that runs without error and a query that's correct are two different claims. So instead of stopping at "the queries executed," I went back through the exported results and checked them against what I actually expected to see — and found three problems that a green checkmark would never have caught.</p>
+
+        <h3>Bug 1: Every Customer Was "Inactive"</h3>
+        <p>My recency segmentation compared purchase dates to <code>CURRENT_DATE</code> — a totally reasonable pattern in a live application. But this is a static, historical dataset ending in December 2011. Every customer's "days since last purchase" was therefore 5,000+ days, and the query dutifully labeled <strong>100% of customers as "Inactive."</strong> The label wasn't wrong, exactly — it was just computed against the wrong reference point, and it carried zero analytical information as a result. The fix is one line: anchor recency to <code>(SELECT MAX(invoice_date) FROM invoices)</code> instead of today's date.</p>
+
+        <h3>Bug 2: A Retention Curve That Was Never Actually Computed</h3>
+        <p>The cohort analysis query was designed to show retention across months 0, 1, 2, 3, 6+ after a customer's first purchase. The actual exported result had exactly 13 rows — one per signup month, every single one at month zero. The month-over-month retention curve the query was built to produce simply never appeared in the output. If I'd only glanced at "13 rows, looks like cohort data" and moved on, I'd have been one confident sentence away from quoting a retention curve that was never actually there.</p>
+
+        <h3>Bug 3: An Anomaly Filter That Flagged Everyone</h3>
+        <p>My STDDEV-based outlier detection, tuned to a 1.5 standard deviation threshold, flagged 3,396 of 3,754 customers — 90% — as "High Volume Spikes." A filter that flags nine out of every ten data points isn't a filter. Rather than quietly shipping that number, I documented it as a known limitation with the actual fix (tightening to 2–3 STDDEV) rather than letting a technically-executed query imply a finding it didn't support.</p>
+
+        <table>
+            <tr>
+                <th>What I Assumed</th>
+                <th>What Was Actually True</th>
+            </tr>
+            <tr>
+                <td>Query ran without error = result is trustworthy</td>
+                <td>3 of ~5 "advanced" queries had a logic bug invisible without checking real output</td>
+            </tr>
+            <tr>
+                <td>CURRENT_DATE is a safe default for recency</td>
+                <td>Only true for live data — a historical dataset needs a fixed reference date</td>
+            </tr>
+            <tr>
+                <td>A returned row count that "looks right" confirms correctness</td>
+                <td>13 rows looked plausible for 13 cohort months; it was actually 13 wrong rows</td>
+            </tr>
+        </table>
+
+        <h2>Why This Is the Part Worth Talking About</h2>
+
+        <p>Anyone can learn RANK(), LAG(), and a CTE syntax from documentation. What's harder to teach — and what I think actually separates a portfolio SQL project from production-grade analysis — is the discipline to go back and ask "does this number actually mean what I think it means?" before it goes in front of a stakeholder. Every one of these three bugs would have produced a plausible-looking, wrong answer if I'd shipped the first version. Documenting them wasn't an afterthought to the project; it was the project working as intended.</p>
+
+        <div class="cta-section">
+            <h3>See the Full Breakdown</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Read the structured case study or explore all 30 queries and the schema on GitHub</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="case-study-online-retail-sql.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> View Case Study
+                </a>
+                <a href="https://github.com/EfeObus/Online-Retail-SQL-Analysis" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
