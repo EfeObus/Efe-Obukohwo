@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { spawnSync } = require('child_process');
+const { buildPortfolioHTML } = require('./generate-portfolio-html.js');
+const portfolioData = require('./portfolio-data.js');
 
 function convertDocxToHtml(docxPath) {
     const htmlPath = path.join(os.tmpdir(), `${path.basename(docxPath, '.docx')}-${Date.now()}.html`);
@@ -101,18 +103,32 @@ async function generateTeacherResumePDF() {
 }
 
 async function generatePortfolioPDF() {
-    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.pdf');
 
-    if (!fs.existsSync(docxPath)) {
-        return null;
+    console.log('Generating portfolio PDF from brand-styled HTML template...');
+    const html = buildPortfolioHTML(portfolioData);
+
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
+    try {
+        const page = await browser.newPage();
+        await page.setContent(html, { waitUntil: 'networkidle0' });
+        await page.pdf({
+            path: outputPath,
+            format: 'A4',
+            printBackground: true,
+            margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
+            displayHeaderFooter: false
+        });
+    } finally {
+        await browser.close();
     }
 
-    console.log('Generating portfolio PDF from DOCX source...');
-    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
-    console.log(`Portfolio PDF generated successfully: ${resultPath}`);
-
-    return resultPath;
+    console.log(`Portfolio PDF generated successfully: ${outputPath}`);
+    return outputPath;
 }
 
 module.exports = {

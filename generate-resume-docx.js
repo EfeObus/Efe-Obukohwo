@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const data = require('./portfolio-data.js');
+const { generatePortfolioDOCX } = require('./generate-portfolio-docx.js');
 
 function createSectionHeader(title) {
     return new Paragraph({
@@ -192,19 +193,13 @@ function addEducation(children) {
     });
 }
 
-function addProjects(children, includeAllProjects, variant) {
+function addProjects(children, variant) {
     const config = RESUME_VARIANTS[variant];
-    const sectionTitle = includeAllProjects ? 'Portfolio Projects' : 'Key Projects';
-    let projects;
-    if (includeAllProjects) {
-        projects = data.projects;
-    } else if (config) {
-        projects = data.projects.filter((p) => (p.category || []).includes(config.projectCategory)).slice(0, 6);
-    } else {
-        projects = data.projects.filter((p) => p.featured).slice(0, 6);
-    }
+    const projects = config
+        ? data.projects.filter((p) => (p.category || []).includes(config.projectCategory)).slice(0, 6)
+        : data.projects.filter((p) => p.featured).slice(0, 6);
 
-    children.push(createSectionHeader(sectionTitle));
+    children.push(createSectionHeader('Key Projects'));
 
     projects.forEach((project) => {
         const links = [];
@@ -278,18 +273,6 @@ function addCertifications(children) {
     });
 }
 
-function addAchievements(children) {
-    children.push(createSectionHeader('Key Achievements'));
-    (data.achievements || []).forEach((achievement) => {
-        children.push(
-            new Paragraph({
-                children: [new TextRun({ text: `• ${achievement}`, size: 20, font: 'Times New Roman' })],
-                spacing: { after: 50 }
-            })
-        );
-    });
-}
-
 async function writeDocx(children, outputName) {
     const doc = new Document({
         sections: [
@@ -319,7 +302,7 @@ async function generateResumeDOCX() {
     addSkills(children);
     addExperience(children);
     addEducation(children);
-    addProjects(children, false);
+    addProjects(children);
     addCertifications(children);
 
     const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume.docx');
@@ -335,7 +318,7 @@ async function generateDataAnalystResumeDOCX() {
     addSkills(children, 'data-analyst');
     addExperience(children, 'data-analyst');
     addEducation(children);
-    addProjects(children, false, 'data-analyst');
+    addProjects(children, 'data-analyst');
     addCertifications(children);
 
     const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_DataAnalyst.docx');
@@ -351,7 +334,7 @@ async function generateDeveloperResumeDOCX() {
     addSkills(children, 'developer');
     addExperience(children, 'developer');
     addEducation(children);
-    addProjects(children, false, 'developer');
+    addProjects(children, 'developer');
     addCertifications(children);
 
     const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_Developer.docx');
@@ -367,28 +350,11 @@ async function generateTeacherResumeDOCX() {
     addSkills(children, 'teacher');
     addExperience(children, 'teacher');
     addEducation(children);
-    addProjects(children, false, 'teacher');
+    addProjects(children, 'teacher');
     addCertifications(children);
 
     const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_Teacher.docx');
     console.log(`Teacher resume DOCX generated successfully: ${outputPath}`);
-    return outputPath;
-}
-
-async function generatePortfolioDOCX() {
-    console.log('Generating portfolio DOCX from portfolio-data.js...');
-    const children = [];
-    addHeader(children);
-    addSummary(children);
-    addSkills(children);
-    addExperience(children);
-    addEducation(children);
-    addProjects(children, true);
-    addCertifications(children);
-    addAchievements(children);
-
-    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Portfolio.docx');
-    console.log(`Portfolio DOCX generated successfully: ${outputPath}`);
     return outputPath;
 }
 
