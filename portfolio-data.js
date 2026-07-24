@@ -72,20 +72,9 @@ const portfolioData = {
             ]
         },
         {
-            title: "IT Consultant",
-            company: "Finecare Diagnostic Limited",
-            date: "Oct 2020 – Oct 2021",
-            location: "Sapele, Nigeria",
-            responsibilities: [
-                "Devised and executed IT infrastructure solutions, including network setup and maintenance, boosting operational efficiency",
-                "Achieved a 65% increase in accounting accuracy by introducing invoicing software for receipts generation",
-                "Conducted market research and customer surveys to identify business expansion opportunities"
-            ]
-        },
-        {
             title: "IT Support Specialist",
             company: "Delta State College of Education, Nigeria",
-            date: "Nov 2018 – Oct 2020",
+            date: "Nov 2017 – Oct 2019",
             location: "Mosogar, Nigeria",
             responsibilities: [
                 "Led the installation and configuration of 40 workstations, ensuring optimal performance and 100% user satisfaction",
@@ -147,7 +136,7 @@ const portfolioData = {
             title: "VwaTek Apply",
             description: "Professional AI career suite built with Kotlin Multiplatform, delivering native experiences for iOS, Android, and Web from a single codebase with Koin dependency injection and a clean data/domain/presentation architecture shared across all three targets. Powered by Gemini 2.0 Flash, it provides comprehensive job search optimization including ATS resume scoring with keyword gap analysis, AI-powered contextual resume rewriting using X-Y-Z impact framework, tailored cover letter generation, and full resume version control. Features tough AI recruiter mock interviews with STAR method coaching, Canadian salary intelligence with NOC code matching and negotiation strategies, and LinkedIn profile optimization. Built production-grade: encrypted on-device persistence (SQLDelight), offline-first support with automatic cross-device sync and conflict resolution, and observability via Firebase Crashlytics, Sentry, and Prometheus/Micrometer metrics on the Ktor backend. Built for the Canadian market with full PIPEDA compliance and Canadian data residency (Montreal), with subscription tiers (Free/Pro/Premium) via Stripe, Apple IAP, and Google Play Billing, plus enterprise SSO support (SAML, OIDC, Azure AD, Okta).",
             shortDescription: "Architected a Kotlin Multiplatform AI career suite (iOS, Android, Web) from one codebase with Koin DI, offline-first sync with conflict resolution, and Prometheus/Sentry observability, powered by Gemini 2.0 Flash",
-            date: "Feb 2026 – Present",
+            date: "Nov 2024 – Present",
             technologies: ["Kotlin Multiplatform", "Compose Multiplatform", "Gemini 2.0 Flash", "Ktor", "Koin", "PostgreSQL", "SQLDelight", "Firebase", "Sentry", "Stripe", "Railway"],
             github: "https://github.com/EfeObus/VwaTek-Apply",
             live: "https://vwatek-apply-production.up.railway.app",
@@ -159,7 +148,7 @@ const portfolioData = {
             title: "JTOV Network",
             description: "An advanced AI-powered mentorship platform that connects professionals through intelligent matching, skill development, and interactive networking tools. Features include AI-powered smart matching for mentors/mentees based on compatible skills and goals, real-time messaging and WebRTC video calling, gamification elements with achievements and leveling, AI-generated career roadmaps, structured learning paths, and an analytics dashboard for tracking progress. Includes an AI Learning Hub with personalized tutoring, skill gap analysis, and smart recommendations. Features a complete video learning platform with course management, interactive quizzes, and progress tracking. Built with comprehensive admin/staff dashboards, audit logging, and support ticket system. Implements enterprise security including CSRF protection, rate limiting, secure sessions, and Helmet security headers.",
             shortDescription: "Engineered an AI-powered mentorship platform with intelligent matching, WebRTC video calling, and gamification, plus a full video-learning system with course management and progress tracking",
-            date: "Jan 2026 – Present",
+            date: "Jan 2024 – Present",
             technologies: ["React", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Drizzle ORM", "WebSockets", "WebRTC", "OpenAI API", "TailwindCSS", "Framer Motion"],
             github: "https://github.com/EfeObus/JTOV-Network",
             live: null,
@@ -184,7 +173,7 @@ const portfolioData = {
             title: "WonderWorld Learning Adventure",
             description: "Research-driven adaptive early-childhood learning platform for ages 2–8, blending cognitive science, early-years pedagogy, and game design. Features a multi-domain curriculum covering literacy (letter formation, phonemic awareness, reading fluency), numeracy (subitizing, counting, early arithmetic), and social-emotional learning. Uses Item Response Theory (Rasch Model) for real-time personalization maintaining ~75% success probability. Includes multi-sensory SVG stroke tracing, on-device offline speech recognition, narrative game worlds with mascot-guided progression, and a parent dashboard with progress tracking. COPPA and GDPR-K compliant with offline-first architecture for low-connectivity environments. Achieves 60 FPS across mobile and web.",
             shortDescription: "Designed an adaptive early-childhood learning platform (ages 2-8) applying Item Response Theory to personalize difficulty in real time, sustaining 60 FPS with offline speech recognition and COPPA/GDPR-K compliance",
-            date: "Dec 2025 – Present",
+            date: "Jan 2023 – Nov 2023",
             technologies: ["Flutter", "Dart", "Flame Engine", "Python", "FastAPI", "PostgreSQL", "Redis", "NumPy", "Speech-to-Text", "Adaptive Learning"],
             github: "https://github.com/EfeObus/WonderWorld-Learning-Adventure",
             live: null,
@@ -258,7 +247,7 @@ const portfolioData = {
             title: "Tekevwe LegalEagleAI",
             description: "Web application designed to streamline legal document management and analysis. Provides features such as document generation, editing, and summarization, leveraging AI to assist users with legal research, contract creation, and risk analysis. The platform includes dashboards for activity tracking, quick actions, and recent documents, as well as collaboration tools with an AI chat assistant for insights and support.",
             shortDescription: "Developed an AI-powered legal document platform automating contract generation, drafting, and risk analysis, with an integrated AI chat assistant for legal research",
-            date: "Oct 2024 – Present",
+            date: "Nov 2022 – Present",
             technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "PostgreSQL", "OpenAI API", "Drizzle ORM"],
             github: "https://github.com/EfeObus/LegalEagleAI",
             live: null,
@@ -270,7 +259,7 @@ const portfolioData = {
             title: "TekVwarho Properties",
             description: "Nigerian property rental platform connecting landlords and tenants directly, eliminating middlemen to ensure transparency, security, and automation in rentals. Features ID verification, fraud detection, secure lease storage, and real-time communication. Landlords pay ₦10,000/year for unlimited listings and auto-generated legal agreements, while tenants pay ₦5,000/year for advanced search and agreement management.",
             shortDescription: "Launched a Nigerian property rental marketplace connecting landlords and tenants directly, automating ID verification, fraud detection, and legal agreement generation",
-            date: "Feb 2025 – Present",
+            date: "Feb 2022 – Present",
             technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "PostgreSQL", "Paystack", "WebSocket"],
             github: "https://github.com/EfeObus/TekVwarho-Properties",
             live: "https://tekvwarho-properties-production.up.railway.app/",
