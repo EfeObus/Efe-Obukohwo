@@ -32,13 +32,13 @@ const RESUME_VARIANTS = {
     developer: {
         title: () => data.personal.developerTitle || data.personal.title,
         summary: () => data.personal.developerSummary || data.personal.summary,
-        skillCategories: null,
+        skillCategories: ['Programming Languages', 'Frontend Technologies', 'Backend & APIs', 'Mobile Development', 'Cloud & DevOps', 'Machine Learning & AI', 'Data Analysis & Visualization', 'Databases & ORMs'],
         projectCategory: 'developer'
     },
     teacher: {
         title: () => data.personal.teacherTitle || data.personal.title,
         summary: () => data.personal.teacherSummary || data.personal.summary,
-        skillCategories: ['Data Analysis & Visualization', 'Programming Languages'],
+        skillCategories: ['Teaching & Education', 'Data Analysis & Visualization', 'Programming Languages'],
         projectCategory: 'teacher'
     }
 };
@@ -221,10 +221,9 @@ function addProjects(children, includeAllProjects, variant) {
             })
         );
 
-        const descriptionText = includeAllProjects ? project.description : project.shortDescription;
         children.push(
             new Paragraph({
-                children: [new TextRun({ text: `• ${descriptionText}`, size: 20, font: 'Times New Roman' })],
+                children: [new TextRun({ text: `• ${project.shortDescription}`, size: 20, font: 'Times New Roman' })],
                 indent: { left: 360 },
                 spacing: { after: 50 }
             })

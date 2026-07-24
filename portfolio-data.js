@@ -372,7 +372,8 @@ const portfolioData = {
         "Cloud & DevOps": ["Google Cloud Run", "Cloud SQL", "Secret Manager", "AWS", "GitHub Actions (CI/CD)", "Firebase", "Prometheus/Micrometer", "Sentry"],
         "Machine Learning & AI": ["Scikit-learn", "XGBoost", "LightGBM", "Random Forest", "AutoML", "OpenAI API", "Gemini (Vertex AI)"],
         "Data Analysis & Visualization": ["Pandas", "Tableau", "Power BI", "Excel", "SPSS", "Apache Spark", "Apache Hive"],
-        "Databases & ORMs": ["PostgreSQL", "MySQL", "Oracle", "SQLAlchemy", "Sequelize", "Drizzle ORM", "Prisma", "Airtable"]
+        "Databases & ORMs": ["PostgreSQL", "MySQL", "Oracle", "SQLAlchemy", "Sequelize", "Drizzle ORM", "Prisma", "Airtable"],
+        "Teaching & Education": ["Curriculum Design", "Classroom Instruction", "Data-Driven Instruction", "Lesson-Plan Digitization", "Student Coaching & Mentorship", "Instructional Technology"]
     },
 
     // Certifications
