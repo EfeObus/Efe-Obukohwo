@@ -34,6 +34,12 @@ const RESUME_VARIANTS = {
         summary: () => data.personal.developerSummary || data.personal.summary,
         skillCategories: null,
         projectCategory: 'developer'
+    },
+    teacher: {
+        title: () => data.personal.teacherTitle || data.personal.title,
+        summary: () => data.personal.teacherSummary || data.personal.summary,
+        skillCategories: ['Data Analysis & Visualization', 'Programming Languages'],
+        projectCategory: 'teacher'
     }
 };
 
@@ -349,6 +355,22 @@ async function generateDeveloperResumeDOCX() {
     return outputPath;
 }
 
+async function generateTeacherResumeDOCX() {
+    console.log('Generating Teacher resume DOCX from portfolio-data.js...');
+    const children = [];
+    addHeader(children, 'teacher');
+    addSummary(children, 'teacher');
+    addSkills(children, 'teacher');
+    addExperience(children);
+    addEducation(children);
+    addProjects(children, false, 'teacher');
+    addCertifications(children);
+
+    const outputPath = await writeDocx(children, 'documents/Efe_Obukohwo_Resume_Teacher.docx');
+    console.log(`Teacher resume DOCX generated successfully: ${outputPath}`);
+    return outputPath;
+}
+
 async function generatePortfolioDOCX() {
     console.log('Generating portfolio DOCX from portfolio-data.js...');
     const children = [];
@@ -370,6 +392,7 @@ module.exports = {
     generateResumeDOCX,
     generateDataAnalystResumeDOCX,
     generateDeveloperResumeDOCX,
+    generateTeacherResumeDOCX,
     generatePortfolioDOCX
 };
 
@@ -379,6 +402,7 @@ if (require.main === module) {
         outputs.push(await generateResumeDOCX());
         outputs.push(await generateDataAnalystResumeDOCX());
         outputs.push(await generateDeveloperResumeDOCX());
+        outputs.push(await generateTeacherResumeDOCX());
         outputs.push(await generatePortfolioDOCX());
         console.log('DOCX generation complete:', outputs);
         process.exit(0);

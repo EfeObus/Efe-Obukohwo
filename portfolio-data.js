@@ -5,14 +5,14 @@ const portfolioData = {
     // Personal Information
     personal: {
         name: "Efe Obukohwo",
-        title: "Full Stack Developer | Python Developer | Data Engineer",
+        title: "Data Analyst | Business Intelligence & Database Consultant",
         email: "efe.obukohwo@outlook.com",
         phone: "+1 (905) 781-9825",
         location: "North York, Toronto, ON, Canada",
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
         portfolio: "efeobus.github.io/Efe-Obukohwo",
-        summary: "Full Stack Developer with 5+ years of experience architecting production platforms across web, cloud, and native mobile. Shipped full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes and 88.3% ML prediction accuracy, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Experienced across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into production features, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime.",
+        summary: "Data Analyst with hands-on experience turning messy, high-volume datasets into stakeholder-ready business intelligence using advanced Excel, SQL, and Python. Engineered a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a dynamic formula engine (VLOOKUP/XLOOKUP, SUMPRODUCT, 9 pivot tables) and a slicer-driven KPI dashboard. Background spans AML/fraud transaction monitoring (SQL, pivot tables, STR reporting), humanitarian database consulting (25% efficiency gains via Airtable/SQL optimization), and trend analysis with SPSS, Tableau, and Power BI. Also a full-stack developer at heart: completed a hands-on internship architecting a production Flask/MySQL real estate analytics platform (88.3% ML prediction accuracy, 20+ REST endpoints, Dockerized CI/CD), and independently designs, builds, and ships full-stack web and mobile projects end-to-end.",
 
         // Role-tailored headline + summary used by the Data Analyst resume variant
         dataAnalystTitle: "Data Analyst | Business Intelligence & Database Consultant",
@@ -20,7 +20,11 @@ const portfolioData = {
 
         // Role-tailored headline + summary used by the Developer resume variant
         developerTitle: "Full Stack Developer | Python Developer | Data Engineer",
-        developerSummary: "Full Stack Developer with 5+ years of experience architecting production platforms across web, cloud, and native mobile. Shipped full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes and 88.3% ML prediction accuracy, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Experienced across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into production features, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
+        developerSummary: "Full Stack Developer with hands-on internship experience and a self-driven portfolio of independently designed, built, and shipped applications across web, cloud, and native mobile. During a full-stack internship at Zodiac Tech Toronto, architected and shipped a production Flask/MySQL real estate analytics platform processing 49,551+ properties with 88.3% ML prediction accuracy, a 20+ endpoint REST API, and a Dockerized CI/CD pipeline achieving 99.9% uptime while leading a team of 5 developers. Independently built full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Self-directed across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into personal projects, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Brings a Data Analyst's rigor for clean data and measurable outcomes to every system built.",
+
+        // Role-tailored headline + summary used by the Teacher/Educator resume variant
+        teacherTitle: "Computer Science & IT Educator | Technology & Data Instructor",
+        teacherSummary: "Technology educator with hands-on classroom and IT leadership experience teaching computer science, data processing, and digital literacy in Nigerian secondary schools. As IT Department Lead, led a departmental initiative to digitize lesson-plan creation and approval via the school website, increasing teacher collaboration and efficiency by 50%. As a Data Processing Teacher, pioneered the school's transition from manual to digital result computation, improving accuracy and cutting processing time by 75% while applying data-driven teaching strategies that lifted average student grades by 20%. As a Computer Science Teacher, designed a project-based curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment and coaching the school's coding team to a first-place regional competition win. Brings the same structured, data-informed approach to the classroom that underlies current work as a Data Analyst and Full-Stack Developer."
     },
 
     // Work Experience
@@ -38,6 +42,17 @@ const portfolioData = {
             ]
         },
         {
+            title: "Customer Service Representative",
+            company: "IGNITE Student Life, Humber College",
+            date: "Aug 2024 – May 2025",
+            location: "Toronto, ON",
+            responsibilities: [
+                "Automated a manual student registration and check-in workflow for the IGNITE Sleep Lounge, eliminating manual processing for 20,000+ students and cutting processing time by 90%",
+                "Led root-cause analysis on the insurance opt-in process, redesigning the workflow to cut processing time by 15%",
+                "Resolved billing issues and account discrepancies across a high volume of inbound student inquiries via phone, email, and live chat"
+            ]
+        },
+        {
             title: "Database Consultant",
             company: "Humanitarian Outcomes",
             date: "May 2023 – Dec 2025",
@@ -50,19 +65,28 @@ const portfolioData = {
             ]
         },
         {
-            title: "Customer Service Representative",
-            company: "IGNITE Student Life, Humber College",
-            date: "Aug 2024 – May 2025",
-            location: "Toronto, ON",
+            title: "Research Analyst",
+            company: "Flip Foundation, Inc.",
+            date: "May 2023 – Aug 2023 (Concurrent)",
+            location: "Canada",
             responsibilities: [
-                "Resolved billing issues and account discrepancies across a high volume of inbound student inquiries via phone, email, and live chat",
-                "Advised students on IGNITE services, wellness resources, and campus events while consistently meeting call-resolution and satisfaction targets"
+                "Conducted quantitative and qualitative analysis on leadership barriers among LGBTQ+ and BIPOC youth using SPSS, SQL, and Excel, then visualized findings in Power BI and Infogram for stakeholder presentations",
+                "Authored research reports synthesizing key trends and statistical findings, presenting outcomes directly to stakeholders to guide data-driven program decisions"
+            ]
+        },
+        {
+            title: "IT Department Lead",
+            company: "Our Lady of Nigeria Secondary School",
+            date: "Jan 2021 – Aug 2021 (Part-time)",
+            location: "Oghara, Delta State, Nigeria",
+            responsibilities: [
+                "Led a departmental initiative to digitize lesson-plan creation and approval via the school website, increasing teacher collaboration and efficiency by 50%"
             ]
         },
         {
             title: "Compliance Officer - AML/Fraud",
             company: "United Bank for Africa (UBA)",
-            date: "Nov 2019 – Aug 2022",
+            date: "Nov 2019 – Aug 2022 (Third-Party Contract, Full-Time)",
             location: "Sapele, Nigeria",
             responsibilities: [
                 "Monitored and analyzed daily transactions across a retail and corporate client portfolio, detecting and preventing money laundering, terrorist financing, and fraud",
@@ -72,14 +96,32 @@ const portfolioData = {
             ]
         },
         {
+            title: "Data Processing Teacher",
+            company: "Our Lady of Nigeria Secondary School",
+            date: "Sep 2019 – Aug 2021 (Part-time)",
+            location: "Oghara, Delta State, Nigeria",
+            responsibilities: [
+                "Pioneered the school's transition from manual to digital result computation, improving accuracy and cutting processing time by 75%, while applying data-driven teaching strategies that lifted average student grades by 20%"
+            ]
+        },
+        {
             title: "IT Support Specialist",
             company: "Delta State College of Education, Nigeria",
-            date: "Nov 2017 – Oct 2019",
+            date: "Nov 2017 – Oct 2019 (Part-time)",
             location: "Mosogar, Nigeria",
             responsibilities: [
                 "Led the installation and configuration of 40 workstations, ensuring optimal performance and 100% user satisfaction",
                 "Resolved technical issues for 65+ end-users promptly and accurately while strengthening antivirus and cybersecurity protocols across all systems",
                 "Implemented a remote support system, streamlining registration and payment assistance for students"
+            ]
+        },
+        {
+            title: "Computer Science Teacher",
+            company: "Mosogar Model Secondary School",
+            date: "Sep 2016 – Aug 2018 (Part-time)",
+            location: "Mosogar, Delta State, Nigeria",
+            responsibilities: [
+                "Designed a project-based computer science curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment, and coached the school's coding team to a first-place regional competition win"
             ]
         }
     ],
@@ -305,7 +347,7 @@ const portfolioData = {
             live: null,
             image: "images/Wonderworld learning adventure.png",
             featured: true,
-            category: ["developer"]
+            category: ["developer", "teacher"]
         }
     ],
 
@@ -324,16 +366,40 @@ const portfolioData = {
     // Certifications
     certifications: [
         {
-            title: "Hands-On Introduction SQL",
+            title: "Programming Foundations: Fundamentals",
             issuer: "LinkedIn Learning",
-            date: "Dec 2023",
-            icon: "fa-database"
+            date: "Jan 2025",
+            icon: "fa-code"
+        },
+        {
+            title: "Customer Service: Working in a Customer Contact Center",
+            issuer: "LinkedIn Learning",
+            date: "Apr 2023",
+            icon: "fa-headset"
+        },
+        {
+            title: "Phone-Based Customer Service",
+            issuer: "LinkedIn Learning",
+            date: "Apr 2023",
+            icon: "fa-phone"
+        },
+        {
+            title: "Learning C++",
+            issuer: "LinkedIn Learning",
+            date: "Mar 2023",
+            icon: "fa-laptop-code"
         },
         {
             title: "NVivo 2018 Essential Training",
             issuer: "LinkedIn Learning",
             date: "Feb 2023",
             icon: "fa-chart-pie"
+        },
+        {
+            title: "Hands-On Introduction SQL",
+            issuer: "LinkedIn Learning",
+            date: "Dec 2022",
+            icon: "fa-database"
         },
         {
             title: "Intermediate SQL for Data Scientists",
@@ -350,7 +416,7 @@ const portfolioData = {
         {
             title: "Jobberman Soft-Skills Training",
             issuer: "Jobberman",
-            date: "Feb 2022",
+            date: "Mar 2022",
             icon: "fa-users"
         }
     ],

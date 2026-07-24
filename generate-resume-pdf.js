@@ -89,6 +89,17 @@ async function generateDeveloperResumePDF() {
     return resultPath;
 }
 
+async function generateTeacherResumePDF() {
+    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Teacher.docx');
+    const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Teacher.pdf');
+
+    console.log('Generating Teacher resume PDF from DOCX source...');
+    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log(`Teacher resume PDF generated successfully: ${resultPath}`);
+
+    return resultPath;
+}
+
 async function generatePortfolioPDF() {
     const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Portfolio.pdf');
@@ -108,6 +119,7 @@ module.exports = {
     generateResumePDF,
     generateDataAnalystResumePDF,
     generateDeveloperResumePDF,
+    generateTeacherResumePDF,
     generatePortfolioPDF
 };
 
@@ -117,6 +129,7 @@ if (require.main === module) {
         outputs.push(await generateResumePDF());
         outputs.push(await generateDataAnalystResumePDF());
         outputs.push(await generateDeveloperResumePDF());
+        outputs.push(await generateTeacherResumePDF());
 
         const portfolioOutput = await generatePortfolioPDF();
         if (portfolioOutput) {
