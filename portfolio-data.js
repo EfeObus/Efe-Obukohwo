@@ -11,7 +11,7 @@ const portfolioData = {
         location: "North York, Toronto, ON, Canada",
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
-        summary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime.",
+        summary: "Full Stack Developer with 5+ years of experience architecting production platforms across web, cloud, and native mobile. Shipped full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes and 88.3% ML prediction accuracy, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Experienced across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into production features, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime.",
 
         // Role-tailored headline + summary used by the Data Analyst resume variant
         dataAnalystTitle: "Data Analyst | Business Intelligence & Database Consultant",
@@ -19,7 +19,7 @@ const portfolioData = {
 
         // Role-tailored headline + summary used by the Developer resume variant
         developerTitle: "Full Stack Developer | Python Developer | Data Engineer",
-        developerSummary: "Full Stack Developer and Python Developer with 5+ years of expertise in backend development, database engineering, and machine learning. Proven track record of architecting production-ready platforms (FastAPI, Flask, Node.js, React) with 88.3% ML prediction accuracy and 500+ API routes. Specialized in Python, PostgreSQL, JavaScript/TypeScript, and cloud technologies (AWS, Docker). Strong experience building enterprise-grade systems with XGBoost, Scikit-learn, and real-time data pipelines. Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
+        developerSummary: "Full Stack Developer with 5+ years of experience architecting production platforms across web, cloud, and native mobile. Shipped full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes and 88.3% ML prediction accuracy, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Experienced across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into production features, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime."
     },
 
     // Work Experience
@@ -144,10 +144,10 @@ const portfolioData = {
         },
         {
             title: "VwaTek Apply",
-            description: "Professional AI career suite built with Kotlin Multiplatform, delivering native experiences for iOS, Android, and Web from a single codebase. Powered by Gemini 2.0 Flash, it provides comprehensive job search optimization including ATS resume scoring with keyword gap analysis, AI-powered contextual resume rewriting using X-Y-Z impact framework, tailored cover letter generation, and resume version control. Features tough AI recruiter mock interviews with STAR method coaching, Canadian salary intelligence with NOC code matching and negotiation strategies, and LinkedIn profile optimization. Built for the Canadian market with full PIPEDA compliance, Canadian data residency (Montreal), and bilingual support. Includes subscription tiers (Free/Pro/Premium) with Stripe, Apple IAP, and Google Play Billing integration, plus enterprise SSO support (SAML, OIDC, Azure AD, Okta).",
-            shortDescription: "Built a Kotlin Multiplatform AI career suite spanning iOS, Android, and Web from one codebase, shipping ATS resume scoring, AI interview coaching, and Canadian salary intelligence powered by Gemini 2.0 Flash",
+            description: "Professional AI career suite built with Kotlin Multiplatform, delivering native experiences for iOS, Android, and Web from a single codebase with Koin dependency injection and a clean data/domain/presentation architecture shared across all three targets. Powered by Gemini 2.0 Flash, it provides comprehensive job search optimization including ATS resume scoring with keyword gap analysis, AI-powered contextual resume rewriting using X-Y-Z impact framework, tailored cover letter generation, and full resume version control. Features tough AI recruiter mock interviews with STAR method coaching, Canadian salary intelligence with NOC code matching and negotiation strategies, and LinkedIn profile optimization. Built production-grade: encrypted on-device persistence (SQLDelight), offline-first support with automatic cross-device sync and conflict resolution, and observability via Firebase Crashlytics, Sentry, and Prometheus/Micrometer metrics on the Ktor backend. Built for the Canadian market with full PIPEDA compliance and Canadian data residency (Montreal), with subscription tiers (Free/Pro/Premium) via Stripe, Apple IAP, and Google Play Billing, plus enterprise SSO support (SAML, OIDC, Azure AD, Okta).",
+            shortDescription: "Architected a Kotlin Multiplatform AI career suite (iOS, Android, Web) from one codebase with Koin DI, offline-first sync with conflict resolution, and Prometheus/Sentry observability, powered by Gemini 2.0 Flash",
             date: "Feb 2026 – Present",
-            technologies: ["Kotlin", "Compose Multiplatform", "Gemini 2.0 Flash", "Ktor", "PostgreSQL", "SQLDelight", "Firebase", "Stripe", "Railway"],
+            technologies: ["Kotlin Multiplatform", "Compose Multiplatform", "Gemini 2.0 Flash", "Ktor", "Koin", "PostgreSQL", "SQLDelight", "Firebase", "Sentry", "Stripe", "Railway"],
             github: "https://github.com/EfeObus/VwaTek-Apply",
             live: "https://vwatek-apply-production.up.railway.app",
             image: "images/Vwatek Apply.png",
@@ -177,7 +177,7 @@ const portfolioData = {
             caseStudy: "case-study-proaudit.html",
             image: "images/Tekvwarho Pro Audit.png",
             featured: true,
-            category: ["developer"]
+            category: ["developer", "data-analyst"]
         },
         {
             title: "WonderWorld Learning Adventure",
@@ -204,13 +204,13 @@ const portfolioData = {
             category: ["developer"]
         },
         {
-            title: "TekVwarho Analysis Platform",
-            description: "Comprehensive web-based statistical analysis platform (v4.2.1) with AI-powered report generation. Features 17 analysis types including Bayesian analysis, survival analysis, power analysis, and time series forecasting. Includes complete data management tools (merge, append, split, filter, sort, transform), WCAG 2.1 AA accessibility compliance, GDPR-compliant user authentication, and multi-format export (SPSS, Stata, SAS). Built with Flask, PostgreSQL, and OpenAI GPT-4 integration for intelligent result interpretation. Features health endpoints for container orchestration, keyboard shortcuts for power users, and professional report generation in DOCX/PDF formats. Available globally with Canadian PIPEDA compliance.",
-            shortDescription: "Shipped a no-code analytics platform offering 17 statistical analysis types and AI-powered report generation, achieving WCAG 2.1 AA accessibility and SPSS/Stata/SAS interoperability",
+            title: "Tekvwa Analysis Platform",
+            description: "Tekvwa Analysis (v4.4.0, rebranded from TekVwarho Analysis) is a comprehensive statistical analysis platform with AI-powered reporting, migrated from Railway to Google Cloud Run (Cloud SQL, Secret Manager, Artifact Registry) with AI generation moved from the OpenAI API to Vertex AI (Gemini) authenticated via Application Default Credentials, eliminating any API key to store or rotate. Built around five core capabilities: an Excel-like data-entry grid for direct spreadsheet input, a deterministic auto-analysis engine that profiles uploaded data and recommends the statistically appropriate test with a plain-language rationale, plain-language interpretation panels (headline, key findings, caveats, glossary) on every one of 17 analysis pages, interactive drag/resize dashboards with per-chart pinning that persist per user, and AI reports that embed real chart images alongside Gemini-narrated analysis with a deterministic fallback so reports are never empty. Hardened app-wide login enforcement across every page and API call, and debugged a real data-type-detection bug that crashed the upload pipeline on fully-populated numeric columns, reproduced and fixed against a live 536,000-row dataset.",
+            shortDescription: "Migrated a 17-module statistical analysis platform from Railway to Google Cloud Run and OpenAI to Vertex AI (Gemini via Application Default Credentials), shipping an auto-analysis recommendation engine, interactive drag/resize dashboards, and app-wide security hardening",
             date: "Jan 2025 – Present",
-            technologies: ["Flask", "PostgreSQL", "OpenAI API", "Plotly.js", "Bootstrap", "Python"],
+            technologies: ["Flask", "PostgreSQL", "Google Cloud Run", "Vertex AI (Gemini)", "Cloud SQL", "Plotly.js", "Bootstrap", "Python"],
             github: "https://github.com/EfeObus/TekVwarho-Analysis",
-            live: "https://tekvwarho-analysis-production.up.railway.app/",
+            live: "https://tekvwarho-analysis-551794668026.northamerica-northeast1.run.app/",
             caseStudy: "case-study-analysis.html",
             image: "images/TekVwarho Analysis.png",
             featured: true,
@@ -300,12 +300,12 @@ const portfolioData = {
             caseStudy: "case-study-online-retail-sql.html",
             image: "images/Online Retail SQL Analysis.png",
             featured: true,
-            category: ["data-analyst"]
+            category: ["data-analyst", "developer"]
         },
         {
             title: "Nashville Housing Market Analysis",
-            description: "Engineered a raw, unstructured municipal housing dataset of 56,636 rows into a verified, stakeholder-ready business intelligence solution using advanced Excel. De-duplicated 168 exact-duplicate sales records, designed defensive null-value routing that classified 30,619 unvalued records as \"N/A\" instead of zero to prevent market-tier skew, and engineered derived time-dimension and boolean flag columns. Built a dynamic formula engine combining VLOOKUP, XLOOKUP, and INDEX/MATCH for record retrieval with SUMIFS/COUNTIFS/AVERAGEIFS for localized statistics, and replaced standard aggregations with SUBTOTAL and SUMPRODUCT logic so every metric recalculates safely under live filters. Delivered a BI dashboard with 9 pivot tables, 5 KPI indicators, and a slicer-driven 2x3 matrix chart layout. Uncovered $18.50B in verified transaction value across 56,468 sales, a 52% volume surge to a $6.71B peak in 2015, ~80% capital concentration in Nashville proper, and a 2016 cooling trend — insights translated into geographic allocation, seasonal listing timing, and risk-monitoring recommendations for stakeholders.",
-            shortDescription: "Transformed 56,636 messy municipal housing records (2013-2016) into a verified $18.50B market analysis using a dynamic Excel formula engine (VLOOKUP/XLOOKUP/SUMPRODUCT), 9 pivot tables, and a KPI dashboard",
+            description: "Engineered a raw, unstructured municipal housing dataset of 56,636 rows into a verified, stakeholder-ready business intelligence solution using advanced Excel. De-duplicated 168 exact-duplicate sales records, designed defensive null-value routing that classified 30,619 unvalued records as \"N/A\" instead of zero to prevent market-tier skew, and engineered derived time-dimension and boolean flag columns. Built a dynamic formula engine combining VLOOKUP, XLOOKUP, and INDEX/MATCH for record retrieval with SUMIFS/COUNTIFS/AVERAGEIFS for localized statistics, and replaced standard aggregations with SUBTOTAL and SUMPRODUCT logic so every metric recalculates safely under live filters. Delivered a BI dashboard with 9 pivot tables, 5 KPI indicators, and a slicer-driven 2x3 matrix chart layout. Uncovered $18.50B in verified transaction value across 56,468 sales — a $327,581 average against a $205,838 median sale price, flagging significant high-value outlier skew — progressing from 11,338 sales ($2.78B) in 2013 to a 16,794-sale, $6.71B peak in 2015 (52% dollar-volume growth) before cooling to 14,055 sales ($4.23B) in 2016. Also surfaced ~80% capital concentration in Nashville proper and an 8.6% vacant-property sale rate — insights translated into geographic allocation, seasonal listing timing, and risk-monitoring recommendations for stakeholders.",
+            shortDescription: "Transformed 56,636 messy municipal housing records (2013-2016) into a verified $18.50B market analysis — surfacing a $327,581 average vs. $205,838 median sale price to flag outlier skew — via an Excel formula engine (VLOOKUP/XLOOKUP/SUMPRODUCT) and a 9-pivot-table KPI dashboard",
             date: "Jul 2026",
             technologies: ["Microsoft Excel", "VLOOKUP/XLOOKUP", "INDEX/MATCH", "Pivot Tables", "SUMPRODUCT", "Data Cleaning", "Business Intelligence"],
             github: "https://github.com/EfeObus/Nashville-Housing",
@@ -319,10 +319,12 @@ const portfolioData = {
 
     // Skills organized by category
     skills: {
-        "Programming Languages": ["Python", "JavaScript", "TypeScript", "HTML5", "CSS3", "SQL", "Java"],
-        "Frontend Technologies": ["React", "Tailwind CSS", "Bootstrap", "Vite", "Responsive Design"],
-        "Backend & APIs": ["Flask", "FastAPI", "Node.js", "Express.js", "RESTful APIs", "JWT", "Docker", "Git"],
-        "Machine Learning & AI": ["Scikit-learn", "XGBoost", "LightGBM", "Random Forest", "AutoML", "OpenAI API"],
+        "Programming Languages": ["Python", "JavaScript", "TypeScript", "Kotlin", "HTML5", "CSS3", "SQL", "Java"],
+        "Frontend Technologies": ["React", "Zustand", "Tailwind CSS", "Bootstrap", "Vite", "Responsive Design"],
+        "Backend & APIs": ["Flask", "FastAPI", "Node.js", "Express.js", "Ktor", "RESTful APIs", "JWT", "Plaid API", "Docker", "Git"],
+        "Mobile Development": ["Kotlin Multiplatform", "Compose Multiplatform", "Capacitor (Android/iOS)", "SQLDelight", "Koin (DI)", "Biometric Auth", "Push Notifications (FCM/APNs)"],
+        "Cloud & DevOps": ["Google Cloud Run", "Cloud SQL", "Secret Manager", "AWS", "GitHub Actions (CI/CD)", "Firebase", "Prometheus/Micrometer", "Sentry"],
+        "Machine Learning & AI": ["Scikit-learn", "XGBoost", "LightGBM", "Random Forest", "AutoML", "OpenAI API", "Gemini (Vertex AI)"],
         "Data Analysis & Visualization": ["Pandas", "Tableau", "Power BI", "Excel", "SPSS", "Apache Spark", "Apache Hive"],
         "Databases & ORMs": ["PostgreSQL", "MySQL", "Oracle", "SQLAlchemy", "Sequelize", "Drizzle ORM", "Prisma", "Airtable"]
     },
