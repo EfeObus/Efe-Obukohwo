@@ -500,8 +500,9 @@
             // Populate Summary
             document.getElementById('resume-summary').textContent = data.personal.developerSummary || data.personal.summary;
 
-            // Populate Experience
-            const experienceHTML = data.experience.map(job => `
+            // Populate Experience (Developer-relevant roles only)
+            const relevantExperience = data.experience.filter(job => (job.relevantTo || []).includes('developer'));
+            const experienceHTML = relevantExperience.map(job => `
                 <div class="experience-item">
                     <div class="job-header">
                         <div>

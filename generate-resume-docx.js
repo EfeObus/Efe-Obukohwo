@@ -122,10 +122,15 @@ function addSkills(children, variant) {
     );
 }
 
-function addExperience(children) {
+function addExperience(children, variant) {
     children.push(createSectionHeader('Professional Experience'));
 
-    data.experience.forEach((exp) => {
+    const config = RESUME_VARIANTS[variant];
+    const experience = config
+        ? data.experience.filter((exp) => (exp.relevantTo || []).includes(config.projectCategory))
+        : data.experience;
+
+    experience.forEach((exp) => {
         children.push(
             new Paragraph({
                 children: [
@@ -329,7 +334,7 @@ async function generateDataAnalystResumeDOCX() {
     addHeader(children, 'data-analyst');
     addSummary(children, 'data-analyst');
     addSkills(children, 'data-analyst');
-    addExperience(children);
+    addExperience(children, 'data-analyst');
     addEducation(children);
     addProjects(children, false, 'data-analyst');
     addCertifications(children);
@@ -345,7 +350,7 @@ async function generateDeveloperResumeDOCX() {
     addHeader(children, 'developer');
     addSummary(children, 'developer');
     addSkills(children, 'developer');
-    addExperience(children);
+    addExperience(children, 'developer');
     addEducation(children);
     addProjects(children, false, 'developer');
     addCertifications(children);
@@ -361,7 +366,7 @@ async function generateTeacherResumeDOCX() {
     addHeader(children, 'teacher');
     addSummary(children, 'teacher');
     addSkills(children, 'teacher');
-    addExperience(children);
+    addExperience(children, 'teacher');
     addEducation(children);
     addProjects(children, false, 'teacher');
     addCertifications(children);

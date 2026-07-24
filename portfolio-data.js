@@ -34,6 +34,7 @@ const portfolioData = {
             company: "Zodiac Tech Toronto",
             date: "May 2025 – August 2025",
             location: "Toronto, ON",
+            relevantTo: ["developer", "data-analyst"],
             responsibilities: [
                 "Architected an AI-powered real estate analytics platform processing 49,551+ Canadian properties, achieving 88.3% ML prediction accuracy with an ensemble of XGBoost, LightGBM, and Random Forest",
                 "Led full-stack development of a production Flask application with MySQL and a 20+ endpoint REST API, shipping interactive property mapping and investment analytics",
@@ -46,6 +47,7 @@ const portfolioData = {
             company: "IGNITE Student Life, Humber College",
             date: "Aug 2024 – May 2025",
             location: "Toronto, ON",
+            relevantTo: ["developer", "data-analyst"],
             responsibilities: [
                 "Automated a manual student registration and check-in workflow for the IGNITE Sleep Lounge, eliminating manual processing for 20,000+ students and cutting processing time by 90%",
                 "Led root-cause analysis on the insurance opt-in process, redesigning the workflow to cut processing time by 15%",
@@ -57,6 +59,7 @@ const portfolioData = {
             company: "Humanitarian Outcomes",
             date: "May 2023 – Dec 2025",
             location: "Remote",
+            relevantTo: ["data-analyst", "developer"],
             responsibilities: [
                 "Resolved data-integrity issues across the GDHO Airtable and database while designing optimized schemas with the team lead, driving a 25% increase in operational efficiency",
                 "Conducted trend analysis using SPSS and SQL, then visualized findings in Tableau and Power BI to drive data-informed decisions for humanitarian stakeholders worldwide",
@@ -69,6 +72,7 @@ const portfolioData = {
             company: "Flip Foundation, Inc.",
             date: "May 2023 – Aug 2023 (Concurrent)",
             location: "Canada",
+            relevantTo: ["data-analyst"],
             responsibilities: [
                 "Conducted quantitative and qualitative analysis on leadership barriers among LGBTQ+ and BIPOC youth using SPSS, SQL, and Excel, then visualized findings in Power BI and Infogram for stakeholder presentations",
                 "Authored research reports synthesizing key trends and statistical findings, presenting outcomes directly to stakeholders to guide data-driven program decisions"
@@ -79,8 +83,10 @@ const portfolioData = {
             company: "Our Lady of Nigeria Secondary School",
             date: "Jan 2021 – Aug 2021 (Part-time)",
             location: "Oghara, Delta State, Nigeria",
+            relevantTo: ["teacher"],
             responsibilities: [
-                "Led a departmental initiative to digitize lesson-plan creation and approval via the school website, increasing teacher collaboration and efficiency by 50%"
+                "Led a departmental initiative to digitize lesson-plan creation and approval through the school website, replacing a fully manual, paper-based process",
+                "Streamlined lesson-plan review and approval turnaround for the department, increasing teacher collaboration and operational efficiency by 50%"
             ]
         },
         {
@@ -88,6 +94,7 @@ const portfolioData = {
             company: "United Bank for Africa (UBA)",
             date: "Nov 2019 – Aug 2022 (Third-Party Contract, Full-Time)",
             location: "Sapele, Nigeria",
+            relevantTo: ["data-analyst"],
             responsibilities: [
                 "Monitored and analyzed daily transactions across a retail and corporate client portfolio, detecting and preventing money laundering, terrorist financing, and fraud",
                 "Investigated 30+ system-generated alerts weekly using SQL queries and advanced Excel (VLOOKUP, Pivot Tables) to identify and escalate suspicious activity",
@@ -98,10 +105,12 @@ const portfolioData = {
         {
             title: "Data Processing Teacher",
             company: "Our Lady of Nigeria Secondary School",
-            date: "Sep 2019 – Aug 2021 (Part-time)",
+            date: "Sep 2019 – Aug 2021 (Full-time)",
             location: "Oghara, Delta State, Nigeria",
+            relevantTo: ["teacher", "data-analyst"],
             responsibilities: [
-                "Pioneered the school's transition from manual to digital result computation, improving accuracy and cutting processing time by 75%, while applying data-driven teaching strategies that lifted average student grades by 20%"
+                "Pioneered the school's transition from manual to digital result computation, improving grading accuracy and cutting processing time by 75%",
+                "Applied data-driven teaching strategies informed by student performance trends, lifting average student grades by 20%"
             ]
         },
         {
@@ -109,6 +118,7 @@ const portfolioData = {
             company: "Delta State College of Education, Nigeria",
             date: "Nov 2017 – Oct 2019 (Part-time)",
             location: "Mosogar, Nigeria",
+            relevantTo: ["teacher"],
             responsibilities: [
                 "Led the installation and configuration of 40 workstations, ensuring optimal performance and 100% user satisfaction",
                 "Resolved technical issues for 65+ end-users promptly and accurately while strengthening antivirus and cybersecurity protocols across all systems",
@@ -120,8 +130,10 @@ const portfolioData = {
             company: "Mosogar Model Secondary School",
             date: "Sep 2016 – Aug 2018 (Part-time)",
             location: "Mosogar, Delta State, Nigeria",
+            relevantTo: ["teacher"],
             responsibilities: [
-                "Designed a project-based computer science curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment, and coached the school's coding team to a first-place regional competition win"
+                "Designed and delivered a project-based computer science curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment",
+                "Coached the school's coding team through a competitive programming curriculum, leading them to a first-place win at a regional competition"
             ]
         }
     ],
