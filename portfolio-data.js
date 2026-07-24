@@ -118,6 +118,8 @@ const portfolioData = {
     ],
 
     // Projects - Add new projects here and they will appear on both projects.html and resume.html
+    // Ordering: ongoing projects first (most recent start date first), then
+    // completed projects last (also most recent start date first within that group)
     projects: [
         {
             title: "TEKVWA Money",
@@ -131,6 +133,44 @@ const portfolioData = {
             image: "images/Tekvwa Money.png",
             featured: true,
             category: ["developer"]
+        },
+        {
+            title: "TekVwa Life",
+            description: "Secure digital autobiography and legacy-preservation platform that enables users to write, organize, and protect their life stories using a professionally structured 28-chapter framework. TekVwa Life combines narrative creation, life-event and achievement tracking, and post-death legacy access into a single privacy-first system. Built with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export, the platform transforms personal history into a permanent, transferable digital asset for families, historians, and estate planning purposes.",
+            shortDescription: "Built a digital autobiography and legacy-preservation platform around a 28-chapter framework, with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export",
+            date: "Dec 2025 – Present",
+            technologies: ["Node.js", "Express.js", "PostgreSQL (AWS RDS)", "Prisma ORM", "React", "Material UI", "JWT Authentication"],
+            github: "https://github.com/EfeObus/TekVwa-Life",
+            live: "https://tekvwa-life-production.up.railway.app/",
+            image: "images/TekVwa Life.png",
+            featured: true,
+            category: ["developer"]
+        },
+        {
+            title: "TekVwarho ProAudit",
+            description: "Nigeria's premier enterprise-grade tax compliance, payroll, and forensic audit platform built for the 2026 Nigerian Tax Reform. Automates complex statutory obligations—PAYE, VAT, CIT, WHT, pension, and NRS e-invoicing—while providing audit-ready records, immutable evidence, and regulator-friendly reports for FIRS and external auditors. Features include a 2026-compliant tax engine, full Nigerian payroll system with progressive PAYE bands, world-class forensic audit capabilities (Benford's Law fraud detection, Z-Score anomaly analysis, 3-way matching, hash-chain immutable ledger), and NDPA 2023 security compliance with AES-256-GCM encryption. Built with 500+ API routes, 80+ database models, and 400+ automated tests.",
+            shortDescription: "Built an enterprise Nigerian tax-compliance and forensic-audit platform spanning 500+ API routes and 400+ automated tests, featuring Benford's Law fraud detection and a hash-chain immutable ledger",
+            date: "Oct 2025 – Present",
+            technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "HTMX", "TailwindCSS", "Celery", "Redis", "Cryptography"],
+            github: "https://github.com/EfeObus/TekVwarho-ProAudit",
+            live: "https://ingenious-emotion-production-c3c3.up.railway.app/",
+            caseStudy: "case-study-proaudit.html",
+            image: "images/Tekvwarho Pro Audit.png",
+            featured: true,
+            category: ["developer", "data-analyst"]
+        },
+        {
+            title: "Tekvwa Analysis Platform",
+            description: "Tekvwa Analysis (v4.4.0, rebranded from TekVwarho Analysis) is a comprehensive statistical analysis platform with AI-powered reporting, migrated from Railway to Google Cloud Run (Cloud SQL, Secret Manager, Artifact Registry) with AI generation moved from the OpenAI API to Vertex AI (Gemini) authenticated via Application Default Credentials, eliminating any API key to store or rotate. Built around five core capabilities: an Excel-like data-entry grid for direct spreadsheet input, a deterministic auto-analysis engine that profiles uploaded data and recommends the statistically appropriate test with a plain-language rationale, plain-language interpretation panels (headline, key findings, caveats, glossary) on every one of 17 analysis pages, interactive drag/resize dashboards with per-chart pinning that persist per user, and AI reports that embed real chart images alongside Gemini-narrated analysis with a deterministic fallback so reports are never empty. Hardened app-wide login enforcement across every page and API call, and debugged a real data-type-detection bug that crashed the upload pipeline on fully-populated numeric columns, reproduced and fixed against a live 536,000-row dataset.",
+            shortDescription: "Migrated a 17-module statistical analysis platform from Railway to Google Cloud Run and OpenAI to Vertex AI (Gemini via Application Default Credentials), shipping an auto-analysis recommendation engine, interactive drag/resize dashboards, and app-wide security hardening",
+            date: "Jan 2025 – Present",
+            technologies: ["Flask", "PostgreSQL", "Google Cloud Run", "Vertex AI (Gemini)", "Cloud SQL", "Plotly.js", "Bootstrap", "Python"],
+            github: "https://github.com/EfeObus/TekVwarho-Analysis",
+            live: "https://tekvwarho-analysis-551794668026.northamerica-northeast1.run.app/",
+            caseStudy: "case-study-analysis.html",
+            image: "images/TekVwarho Analysis.png",
+            featured: true,
+            category: ["developer", "data-analyst"]
         },
         {
             title: "VwaTek Apply",
@@ -153,93 +193,6 @@ const portfolioData = {
             github: "https://github.com/EfeObus/JTOV-Network",
             live: null,
             image: "images/JTOV Network.png",
-            featured: true,
-            category: ["developer"]
-        },
-        {
-            title: "TekVwarho ProAudit",
-            description: "Nigeria's premier enterprise-grade tax compliance, payroll, and forensic audit platform built for the 2026 Nigerian Tax Reform. Automates complex statutory obligations—PAYE, VAT, CIT, WHT, pension, and NRS e-invoicing—while providing audit-ready records, immutable evidence, and regulator-friendly reports for FIRS and external auditors. Features include a 2026-compliant tax engine, full Nigerian payroll system with progressive PAYE bands, world-class forensic audit capabilities (Benford's Law fraud detection, Z-Score anomaly analysis, 3-way matching, hash-chain immutable ledger), and NDPA 2023 security compliance with AES-256-GCM encryption. Built with 500+ API routes, 80+ database models, and 400+ automated tests.",
-            shortDescription: "Built an enterprise Nigerian tax-compliance and forensic-audit platform spanning 500+ API routes and 400+ automated tests, featuring Benford's Law fraud detection and a hash-chain immutable ledger",
-            date: "Oct 2025 – Present",
-            technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "HTMX", "TailwindCSS", "Celery", "Redis", "Cryptography"],
-            github: "https://github.com/EfeObus/TekVwarho-ProAudit",
-            live: "https://ingenious-emotion-production-c3c3.up.railway.app/",
-            caseStudy: "case-study-proaudit.html",
-            image: "images/Tekvwarho Pro Audit.png",
-            featured: true,
-            category: ["developer", "data-analyst"]
-        },
-        {
-            title: "WonderWorld Learning Adventure",
-            description: "Research-driven adaptive early-childhood learning platform for ages 2–8, blending cognitive science, early-years pedagogy, and game design. Features a multi-domain curriculum covering literacy (letter formation, phonemic awareness, reading fluency), numeracy (subitizing, counting, early arithmetic), and social-emotional learning. Uses Item Response Theory (Rasch Model) for real-time personalization maintaining ~75% success probability. Includes multi-sensory SVG stroke tracing, on-device offline speech recognition, narrative game worlds with mascot-guided progression, and a parent dashboard with progress tracking. COPPA and GDPR-K compliant with offline-first architecture for low-connectivity environments. Achieves 60 FPS across mobile and web.",
-            shortDescription: "Designed an adaptive early-childhood learning platform (ages 2-8) applying Item Response Theory to personalize difficulty in real time, sustaining 60 FPS with offline speech recognition and COPPA/GDPR-K compliance",
-            date: "Jan 2023 – Nov 2023",
-            technologies: ["Flutter", "Dart", "Flame Engine", "Python", "FastAPI", "PostgreSQL", "Redis", "NumPy", "Speech-to-Text", "Adaptive Learning"],
-            github: "https://github.com/EfeObus/WonderWorld-Learning-Adventure",
-            live: null,
-            image: "images/Wonderworld learning adventure.png",
-            featured: true,
-            category: ["developer"]
-        },
-        {
-            title: "TekVwa Life",
-            description: "Secure digital autobiography and legacy-preservation platform that enables users to write, organize, and protect their life stories using a professionally structured 28-chapter framework. TekVwa Life combines narrative creation, life-event and achievement tracking, and post-death legacy access into a single privacy-first system. Built with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export, the platform transforms personal history into a permanent, transferable digital asset for families, historians, and estate planning purposes.",
-            shortDescription: "Built a digital autobiography and legacy-preservation platform around a 28-chapter framework, with enterprise-grade security, Canadian data residency, and professional PDF/DOCX export",
-            date: "Dec 2025 – Present",
-            technologies: ["Node.js", "Express.js", "PostgreSQL (AWS RDS)", "Prisma ORM", "React", "Material UI", "JWT Authentication"],
-            github: "https://github.com/EfeObus/TekVwa-Life",
-            live: "https://tekvwa-life-production.up.railway.app/",
-            image: "images/TekVwa Life.png",
-            featured: true,
-            category: ["developer"]
-        },
-        {
-            title: "Tekvwa Analysis Platform",
-            description: "Tekvwa Analysis (v4.4.0, rebranded from TekVwarho Analysis) is a comprehensive statistical analysis platform with AI-powered reporting, migrated from Railway to Google Cloud Run (Cloud SQL, Secret Manager, Artifact Registry) with AI generation moved from the OpenAI API to Vertex AI (Gemini) authenticated via Application Default Credentials, eliminating any API key to store or rotate. Built around five core capabilities: an Excel-like data-entry grid for direct spreadsheet input, a deterministic auto-analysis engine that profiles uploaded data and recommends the statistically appropriate test with a plain-language rationale, plain-language interpretation panels (headline, key findings, caveats, glossary) on every one of 17 analysis pages, interactive drag/resize dashboards with per-chart pinning that persist per user, and AI reports that embed real chart images alongside Gemini-narrated analysis with a deterministic fallback so reports are never empty. Hardened app-wide login enforcement across every page and API call, and debugged a real data-type-detection bug that crashed the upload pipeline on fully-populated numeric columns, reproduced and fixed against a live 536,000-row dataset.",
-            shortDescription: "Migrated a 17-module statistical analysis platform from Railway to Google Cloud Run and OpenAI to Vertex AI (Gemini via Application Default Credentials), shipping an auto-analysis recommendation engine, interactive drag/resize dashboards, and app-wide security hardening",
-            date: "Jan 2025 – Present",
-            technologies: ["Flask", "PostgreSQL", "Google Cloud Run", "Vertex AI (Gemini)", "Cloud SQL", "Plotly.js", "Bootstrap", "Python"],
-            github: "https://github.com/EfeObus/TekVwarho-Analysis",
-            live: "https://tekvwarho-analysis-551794668026.northamerica-northeast1.run.app/",
-            caseStudy: "case-study-analysis.html",
-            image: "images/TekVwarho Analysis.png",
-            featured: true,
-            category: ["developer", "data-analyst"]
-        },
-        {
-            title: "TK Reports - AI-Powered Data Analysis",
-            description: "Advanced AI-powered data analytics platform that transforms datasets into comprehensive, professional-grade analytical reports. Built with Flask and OpenAI GPT-4 Turbo, it combines statistical analysis (mean, median, mode, standard deviation, skewness, kurtosis, outlier detection), machine learning insights, correlation analysis, and natural language generation to produce executive-ready reports in DOCX and PDF formats. Features research objective-driven analysis, 5 professional visualizations with detailed interpretations, handles up to 100MB file uploads, supports CSV/XLSX/XLS/TSV formats, and delivers 15+ page comprehensive reports with AI-generated executive summaries, key findings, insights, and actionable recommendations.",
-            shortDescription: "Built a GPT-4-powered analytics platform that transforms raw datasets into 15+ page executive reports, automating statistical analysis, outlier detection, and visualization generation",
-            date: "Oct 2024",
-            technologies: ["Python", "Flask", "OpenAI GPT-4", "Pandas", "NumPy", "SciPy", "Matplotlib", "Seaborn"],
-            github: "https://github.com/EfeObus/TK-Reports",
-            live: null,
-            image: "images/TK Reports.png",
-            featured: true,
-            category: ["developer", "data-analyst"]
-        },
-        {
-            title: "Zodiac Real Estate AI",
-            description: "Production-ready real estate analytics platform with 88.3% accuracy machine learning, combining real-time economic data for property valuations and market analysis across 49,551+ Canadian properties.",
-            shortDescription: "Delivered a real estate analytics platform achieving 88.3% ML prediction accuracy across 49,551+ Canadian properties, integrating real-time economic data feeds",
-            date: "May 2025 – Aug 2025",
-            technologies: ["Python", "Flask", "MySQL", "Scikit-learn", "XGBoost", "Docker", "JavaScript"],
-            github: "https://github.com/EfeObus/NextProperty",
-            live: null,
-            caseStudy: "case-study-zodiac.html",
-            image: "images/Zodiac Real Estate.png",
-            featured: true,
-            category: ["developer", "data-analyst"]
-        },
-        {
-            title: "IGNITE Sleep Lounge Automation",
-            description: "Digital check-in and waiver system for Humber College's IGNITE facilities, automating student registration, time tracking, and staff oversight with real-time functionality and admin dashboard.",
-            shortDescription: "Automated student check-in for Humber College's IGNITE facilities, replacing manual sign-in with real-time registration tracking and an admin dashboard",
-            date: "Sep 2024 – May 2025",
-            technologies: ["Node.js", "Express", "PostgreSQL", "JavaScript", "JWT", "HTML/CSS"],
-            github: "https://github.com/EfeObus/IGNITE-Sleep-Lounge-and-Zenzone",
-            live: null,
-            image: "images/Ignite Sleep Lounge.png",
             featured: true,
             category: ["developer"]
         },
@@ -268,18 +221,6 @@ const portfolioData = {
             category: ["developer"]
         },
         {
-            title: "Agho Hospital Management System",
-            description: "Comprehensive desktop and web application to streamline hospital operations with role-based access control. Features patient management, appointment scheduling, doctor management, and user administration. Includes both web interface (port 5140) and console mode with security features like password hashing, SQL injection prevention, and role-based permissions for administrators, doctors, receptionists, and nurses.",
-            shortDescription: "Built a hospital management system with role-based access control across 4 staff roles, securing patient data with SHA-256 hashing and SQL-injection prevention",
-            date: "2025",
-            technologies: ["Java", "Java Swing", "PostgreSQL", "JDBC", "SHA-256", "Web Server"],
-            github: "https://github.com/EfeObus/Agho-Hospital-Management",
-            live: null,
-            image: "images/Agho Hospital Managaemtn.png",
-            featured: true,
-            category: ["developer"]
-        },
-        {
             title: "Online Retail SQL Analysis",
             description: "Designed a normalized PostgreSQL database (5 tables + 1 staging table, 3NF, indexed foreign keys) for a 500,000+ row UK e-commerce transaction dataset, then wrote 30 production-ready SQL queries covering customer segmentation (RFM, LTV, cohort retention), product performance and cross-sell analysis, temporal trends, and anomaly detection using window functions (RANK, LAG, SUM OVER, NTILE, PERCENTILE_CONT), CTEs, and statistical aggregation. Surfaced that £8.91M in revenue from 4,339 customers is 82% UK-concentrated, that the top 10% of customers drive 61% of revenue, and that sub-£5 budget products generate 71% of revenue despite being a volume rather than margin business. Went further than reporting results: audited the query outputs themselves and documented real data-quality findings, including a CURRENT_DATE bug that silently mislabeled 100% of customers as \"Inactive\" and a cohort query that only ever returned month zero — the kind of self-auditing that separates production analysis from a one-off script.",
             shortDescription: "Designed a normalized PostgreSQL schema and wrote 30 production SQL queries analyzing 500K+ e-commerce transactions, uncovering revenue concentration and segmentation insights while auditing and documenting real bugs in the analysis itself",
@@ -304,6 +245,67 @@ const portfolioData = {
             image: "images/Nashville Housing Market Analysis.png",
             featured: true,
             category: ["data-analyst"]
+        },
+        {
+            title: "Agho Hospital Management System",
+            description: "Comprehensive desktop and web application to streamline hospital operations with role-based access control. Features patient management, appointment scheduling, doctor management, and user administration. Includes both web interface (port 5140) and console mode with security features like password hashing, SQL injection prevention, and role-based permissions for administrators, doctors, receptionists, and nurses.",
+            shortDescription: "Built a hospital management system with role-based access control across 4 staff roles, securing patient data with SHA-256 hashing and SQL-injection prevention",
+            date: "2025",
+            technologies: ["Java", "Java Swing", "PostgreSQL", "JDBC", "SHA-256", "Web Server"],
+            github: "https://github.com/EfeObus/Agho-Hospital-Management",
+            live: null,
+            image: "images/Agho Hospital Managaemtn.png",
+            featured: true,
+            category: ["developer"]
+        },
+        {
+            title: "Zodiac Real Estate AI",
+            description: "Production-ready real estate analytics platform with 88.3% accuracy machine learning, combining real-time economic data for property valuations and market analysis across 49,551+ Canadian properties.",
+            shortDescription: "Delivered a real estate analytics platform achieving 88.3% ML prediction accuracy across 49,551+ Canadian properties, integrating real-time economic data feeds",
+            date: "May 2025 – Aug 2025",
+            technologies: ["Python", "Flask", "MySQL", "Scikit-learn", "XGBoost", "Docker", "JavaScript"],
+            github: "https://github.com/EfeObus/NextProperty",
+            live: null,
+            caseStudy: "case-study-zodiac.html",
+            image: "images/Zodiac Real Estate.png",
+            featured: true,
+            category: ["developer", "data-analyst"]
+        },
+        {
+            title: "TK Reports - AI-Powered Data Analysis",
+            description: "Advanced AI-powered data analytics platform that transforms datasets into comprehensive, professional-grade analytical reports. Built with Flask and OpenAI GPT-4 Turbo, it combines statistical analysis (mean, median, mode, standard deviation, skewness, kurtosis, outlier detection), machine learning insights, correlation analysis, and natural language generation to produce executive-ready reports in DOCX and PDF formats. Features research objective-driven analysis, 5 professional visualizations with detailed interpretations, handles up to 100MB file uploads, supports CSV/XLSX/XLS/TSV formats, and delivers 15+ page comprehensive reports with AI-generated executive summaries, key findings, insights, and actionable recommendations.",
+            shortDescription: "Built a GPT-4-powered analytics platform that transforms raw datasets into 15+ page executive reports, automating statistical analysis, outlier detection, and visualization generation",
+            date: "Oct 2024",
+            technologies: ["Python", "Flask", "OpenAI GPT-4", "Pandas", "NumPy", "SciPy", "Matplotlib", "Seaborn"],
+            github: "https://github.com/EfeObus/TK-Reports",
+            live: null,
+            image: "images/TK Reports.png",
+            featured: true,
+            category: ["developer", "data-analyst"]
+        },
+        {
+            title: "IGNITE Sleep Lounge Automation",
+            description: "Digital check-in and waiver system for Humber College's IGNITE facilities, automating student registration, time tracking, and staff oversight with real-time functionality and admin dashboard.",
+            shortDescription: "Automated student check-in for Humber College's IGNITE facilities, replacing manual sign-in with real-time registration tracking and an admin dashboard",
+            date: "Sep 2024 – May 2025",
+            technologies: ["Node.js", "Express", "PostgreSQL", "JavaScript", "JWT", "HTML/CSS"],
+            github: "https://github.com/EfeObus/IGNITE-Sleep-Lounge-and-Zenzone",
+            live: null,
+            image: "images/Ignite Sleep Lounge.png",
+            featured: true,
+            category: ["developer"]
+        },
+        {
+            title: "WonderWorld Learning Adventure",
+            description: "Research-driven adaptive early-childhood learning platform for ages 2–8, blending cognitive science, early-years pedagogy, and game design. Features a multi-domain curriculum covering literacy (letter formation, phonemic awareness, reading fluency), numeracy (subitizing, counting, early arithmetic), and social-emotional learning. Uses Item Response Theory (Rasch Model) for real-time personalization maintaining ~75% success probability. Includes multi-sensory SVG stroke tracing, on-device offline speech recognition, narrative game worlds with mascot-guided progression, and a parent dashboard with progress tracking. COPPA and GDPR-K compliant with offline-first architecture for low-connectivity environments. Achieves 60 FPS across mobile and web.",
+            shortDescription: "Designed an adaptive early-childhood learning platform (ages 2-8) applying Item Response Theory to personalize difficulty in real time, sustaining 60 FPS with offline speech recognition and COPPA/GDPR-K compliance",
+            date: "Jan 2023 – Nov 2023",
+            technologies: ["Flutter", "Dart", "Flame Engine", "Python", "FastAPI", "PostgreSQL", "Redis", "NumPy", "Speech-to-Text", "Adaptive Learning"],
+            github: "https://github.com/EfeObus/WonderWorld-Learning-Adventure",
+            live: null,
+            image: "images/Wonderworld learning adventure.png",
+            featured: true,
+            category: ["developer"]
         }
     ],
 
