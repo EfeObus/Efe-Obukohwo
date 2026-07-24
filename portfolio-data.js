@@ -68,7 +68,7 @@ const portfolioData = {
             ]
         },
         {
-            title: "Research Analyst",
+            title: "Research Analyst Intern",
             company: "Flip Foundation, Inc.",
             date: "May 2023 – Aug 2023 (Concurrent)",
             location: "Canada",
