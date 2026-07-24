@@ -11,6 +11,7 @@ const portfolioData = {
         location: "North York, Toronto, ON, Canada",
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
+        portfolio: "efeobus.github.io/Efe-Obukohwo",
         summary: "Full Stack Developer with 5+ years of experience architecting production platforms across web, cloud, and native mobile. Shipped full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes and 88.3% ML prediction accuracy, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Experienced across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into production features, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Demonstrated ability to lead development teams, optimize database systems (25% efficiency improvements), and deploy scalable infrastructure with 99.9% uptime.",
 
         // Role-tailored headline + summary used by the Data Analyst resume variant

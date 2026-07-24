@@ -75,7 +75,7 @@ function addHeader(children, variant) {
         new Paragraph({
             children: [
                 new TextRun({
-                    text: `LinkedIn: ${data.personal.linkedin} | GitHub: ${data.personal.github}`,
+                    text: `Portfolio: ${data.personal.portfolio} | LinkedIn: ${data.personal.linkedin} | GitHub: ${data.personal.github}`,
                     size: 18,
                     font: 'Times New Roman'
                 })
