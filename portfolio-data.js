@@ -81,7 +81,7 @@ const portfolioData = {
         {
             title: "IT Department Lead",
             company: "Our Lady of Nigeria Secondary School",
-            date: "Jan 2021 – Aug 2021 (Part-time)",
+            date: "Jan 2021 – Aug 2021 (Full-time)",
             location: "Oghara, Delta State, Nigeria",
             relevantTo: ["teacher"],
             responsibilities: [
