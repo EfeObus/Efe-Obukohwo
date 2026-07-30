@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6E5QMP9NDK');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: GDHO Dataset Analysis - Humanitarian Sector ML Pipeline | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into the GDHO Dataset Analysis: cleaning, 20 statistical insights, and a LightGBM budget-estimator pipeline built on 125,125 org-year rows from the Global Database of Humanitarian Organisations.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section h3.subhead {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .chart-grid figure {
+            margin: 0;
+            background: #fcfcfb;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .chart-grid img {
+            width: 100%;
+            display: block;
+        }
+        .chart-grid figcaption {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
+            background: var(--secondary-black);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <h1><span class="golden-text">GDHO</span> Dataset Analysis</h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">Humanitarian Sector Analytics &amp; Budget-Estimator ML Pipeline</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> 2006 – 2024 Data</span>
+                <span><i class="fas fa-code"></i> Data Analyst Portfolio Project</span>
+                <span><i class="fas fa-database"></i> 125,125 Org-Year Rows</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/GDHO Dataset Analysis.png" alt="Bar charts showing share of organizations by type and median operating expenditure by type on a log scale" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>Project Overview</h2>
+            <p>The Global Database of Humanitarian Organisations (GDHO) tracks close to every organization doing humanitarian work worldwide — national NGOs, international NGOs, Red Cross/Crescent societies, and UN agencies — from 2006 through 2024. This project cleans the raw 2025 release, computes 20 statistically-backed insights about the shape and health of the sector, and builds a machine-learning pipeline that estimates an organization's budget from its operational profile, treating the dataset's own data-quality limitations as a first-class finding rather than a footnote.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Business Problem</h2>
+            <p>GDHO is one of the only datasets that shows the humanitarian sector's full long tail — not just the large organizations that publish their own financial reports. That is also its core limitation: because most tracked organizations don't publish detailed financials, GDHO itself has to estimate a great deal of what it reports. Donors, coordination bodies, and researchers need both the sector-level picture and an honest read on how much of that picture is directly reported versus modeled.</p>
+            <div class="highlight-box">
+                <h3>Vision</h3>
+                <p>Clean and analyze 125,125 org-year rows across 7,301 organizations, surface the structural findings that matter for decision-makers, and build an independent budget-estimator model — while explicitly auditing how much of the underlying data is GDHO's own imputation rather than audited financial reporting.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Methodology &amp; Technical Execution</h2>
+
+            <h3 class="subhead">Data Cleaning &amp; Scope</h3>
+            <ul>
+                <li><strong>Scope:</strong> 125,125 org-year rows × 282 columns (2006-2024), covering 7,301 unique organizations — 42 core descriptive/financial fields plus ~240 binary country-of-operation flags.</li>
+                <li><strong>Provenance audit:</strong> Only ~7% of reported Operating Expenditure (OPE) values and ~5% of Staff values carry an "Actual" provenance flag — the rest are GDHO's own imputations, which directly shaped how confidently any absolute totals could be stated.</li>
+            </ul>
+
+            <h3 class="subhead">Exploratory Analysis (20 Insights)</h3>
+            <ul>
+                <li>Computed sector composition, budget concentration, geography, and data-quality statistics across the full panel, each backed by a computed figure rather than a visual impression.</li>
+                <li>Flagged structural data-quality issues head-on: a 26.5% missing "International or national" field that's cheaply inferable from <code>Type</code>, a <code>% Hum</code> field exceeding 100% for 30% of rows, and hundreds of organizations sharing an identical imputed OPE value — evidence GDHO imputes by bucket (Type/Tier/Sub-region/Year), not per organization.</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/GDHO - Org Count by Year.png" alt="Line chart showing tracked organizations per year from 2006 to 2024, peaking in 2020 then declining">
+                    <figcaption>Tracked organizations per year, 2006-2024</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/GDHO - Staff vs Budget.png" alt="Scatter plot showing the correlation between staff headcount and operating expenditure">
+                    <figcaption>Staff headcount as a proxy for budget (r=0.63)</figcaption>
+                </figure>
+            </div>
+
+            <h3 class="subhead">Budget-Estimator ML Pipeline</h3>
+            <ul>
+                <li><strong>Leakage control:</strong> Deliberately excluded every field derived from or co-dependent with the target (<code>Tier</code>, <code>HumExp</code>, <code>% Hum</code>, inflation-adjusted/original-currency OPE, and all <code>*Imputed</code> flags), since <code>Tier</code> alone is a near-deterministic budget band.</li>
+                <li><strong>Organization-grouped evaluation:</strong> Because the same organization repeats across up to 19 years, used a <code>GroupShuffleSplit</code> by organization ID (80/20 orgs, zero overlap) rather than a random row split, which would leak and understate error. Model selection used 5-fold <code>GroupKFold</code> cross-validation within the training split only.</li>
+                <li><strong>Model comparison:</strong> Evaluated LightGBM, Random Forest, Ridge, and a median-dummy baseline; LightGBM won on held-out, never-seen organizations.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Key Data Findings</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="number">6,780x</div>
+                    <div class="label">Median Budget Gap, NNGO vs. UN</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">81% / 3.4%</div>
+                    <div class="label">NNGO Share of Orgs vs. Budget</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">0.796</div>
+                    <div class="label">Held-Out R² (LightGBM)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">2.8%</div>
+                    <div class="label">Test Median Absolute % Error</div>
+                </div>
+            </div>
+
+            <ul>
+                <li><strong>A long-tail sector:</strong> National NGOs are 81% of tracked organizations in 2024 but only 3.4% of total reported budget — median OPE spans roughly 6,780x between a national NGO (~$528K) and a UN agency (~$3.58B).</li>
+                <li><strong>The sector may have peaked in 2020:</strong> Tracked organizations grew every year from 2006 (6,225) to 2020 (7,165), then fell 21% to 5,662 by 2024 — consistent with, but not conclusively caused by, the pandemic era.</li>
+                <li><strong>Most reported financials are estimates:</strong> Only ~7% of OPE values carry an "Actual" flag; the rest are GDHO's own imputations, and the single most common 2024 OPE value is shared by 882 different organizations.</li>
+                <li><strong>Staff is the strongest predictor of budget</strong> in the LightGBM model, ahead of Year, national/international staff split, and sub-region — consistent with the raw r=0.63 correlation found in EDA.</li>
+                <li><strong>The model's accuracy comes with a caveat:</strong> because most training labels are themselves GDHO-imputed, part of the 0.796 R² reflects the model re-deriving GDHO's own imputation formula rather than discovering independently verified ground truth — documented explicitly rather than presented as a clean validation result.</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/GDHO - Feature Importance.png" alt="Horizontal bar chart of the top 15 LightGBM feature importances, led by Staff">
+                    <figcaption>Top LightGBM feature importances</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/GDHO - Predicted vs Actual.png" alt="Scatter plot of predicted versus actual log budget for held-out organizations, closely tracking the diagonal">
+                    <figcaption>Predicted vs. actual budget — held-out orgs</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Strategic Impact &amp; Recommendations</h2>
+
+            <div class="highlight-box">
+                <h3>Treat Totals as Estimates, Not Audited Figures</h3>
+                <p>Any stakeholder using GDHO's absolute budget totals should present them as model-based estimates — with only ~7% of underlying figures directly reported, headline sector-spend numbers should carry that caveat visibly.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Use the Model as a Fallback, Not a Ground Truth</h3>
+                <p>The LightGBM estimator is genuinely useful for organizations with no reported financials at all, but its accuracy against GDHO's own imputed labels should not be read as validation against independently audited financial reporting.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Prioritize Direct Reporting Where It's Missing</h3>
+                <p>Given how much of the dataset's financial picture rests on bucket-level imputation, closing direct-reporting gaps for the largest under-reported organizations would meaningfully improve sector-wide budget accuracy.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Tools &amp; Techniques</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fas fa-table"></i><span>Pandas</span></div>
+                <div class="tech-item"><i class="fas fa-robot"></i><span>Scikit-learn</span></div>
+                <div class="tech-item"><i class="fas fa-bolt"></i><span>LightGBM</span></div>
+                <div class="tech-item"><i class="fas fa-chart-bar"></i><span>Matplotlib</span></div>
+                <div class="tech-item"><i class="fas fa-broom"></i><span>Data Cleaning</span></div>
+                <div class="tech-item"><i class="fas fa-layer-group"></i><span>Feature Engineering</span></div>
+                <div class="tech-item"><i class="fas fa-sitemap"></i><span>Group-Based Validation</span></div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Explore the Full Analysis</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Review the source code and reports on GitHub, or download the plain-language business report</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/EfeObus/Global-Database-of-Humanitarian-Organizations-Analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="documents/GDHO Dataset Analysis.pdf" download class="btn btn-outline">
+                    <i class="fas fa-file-pdf"></i> Download Business Report (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

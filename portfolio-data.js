@@ -275,19 +275,6 @@ const portfolioData = {
             category: ["developer"]
         },
         {
-            title: "Northwind Traders Tableau Analysis",
-            description: "Built an executive performance and commercial analytics workbook in Tableau on the classic Northwind Traders sample database, directly joining seven relational tables (customers, orders, order details, products, categories, employees, shippers) to analyze 3 years of sales data (2013-2015) across 21 countries. Designed an interactive dashboard with Top N, Start Date, and End Date parameters driving dynamic filtering across revenue, order, and customer trend worksheets. Uncovered $1.35M in total revenue across 830 orders and 89 unique customers, with the top 3 customers (Horst Kloss, Jose Pavarotti, Roland Mendel) generating $346.4K — 25.6% of total revenue. Identified Côte de Blaye as the top revenue product at $150.0K, Beverages and Dairy Products as the highest-volume categories (over 42% of units shipped), and a consistent seasonal pattern with revenue peaking in April and December around a May-June dip. Delivered strategic recommendations covering key-account management, inventory seasonality smoothing, and carrier consolidation to reduce the $78.24 average per-order freight cost, published as both an interactive Tableau Public dashboard and an executive PDF report.",
-            shortDescription: "Analyzed 3 years of Northwind Traders sales data (2013-2015) across 21 countries in Tableau, surfacing $1.35M revenue, 25.6% customer-concentration risk in the top 3 accounts, and seasonal demand peaks via a parameter-driven interactive dashboard",
-            date: "Jul 2026",
-            technologies: ["Tableau", "Tableau Public", "Data Visualization", "Business Intelligence", "Data Modeling", "Dashboard Design"],
-            github: "https://github.com/EfeObus/North-Wind-Traders-Tableau-Analysis",
-            live: "https://public.tableau.com/app/profile/efe.obukohwo2950/viz/EfeObukohwoNorthwindTraders/NorthWindTradersDashboard",
-            caseStudy: "case-study-northwind-traders.html",
-            image: "images/Northwind Traders Tableau Analysis.png",
-            featured: true,
-            category: ["data-analyst"]
-        },
-        {
             title: "Online Retail SQL Analysis",
             description: "Designed a normalized PostgreSQL database (5 tables + 1 staging table, 3NF, indexed foreign keys) for a 500,000+ row UK e-commerce transaction dataset, then wrote 30 production-ready SQL queries covering customer segmentation (RFM, LTV, cohort retention), product performance and cross-sell analysis, temporal trends, and anomaly detection using window functions (RANK, LAG, SUM OVER, NTILE, PERCENTILE_CONT), CTEs, and statistical aggregation. Surfaced that £8.91M in revenue from 4,339 customers is 82% UK-concentrated, that the top 10% of customers drive 61% of revenue, and that sub-£5 budget products generate 71% of revenue despite being a volume rather than margin business. Went further than reporting results: audited the query outputs themselves and documented real data-quality findings, including a CURRENT_DATE bug that silently mislabeled 100% of customers as \"Inactive\" and a cohort query that only ever returned month zero — the kind of self-auditing that separates production analysis from a one-off script.",
             shortDescription: "Designed a normalized PostgreSQL schema and wrote 30 production SQL queries analyzing 500K+ e-commerce transactions, uncovering revenue concentration and segmentation insights while auditing and documenting real bugs in the analysis itself",
@@ -314,6 +301,19 @@ const portfolioData = {
             category: ["data-analyst"]
         },
         {
+            title: "GDHO Dataset Analysis",
+            description: "Built a full analysis and machine-learning pipeline on the Global Database of Humanitarian Organisations (GDHO) 2025 release — 125,125 org-year rows across 7,301 unique humanitarian organizations (national NGOs, international NGOs, Red Cross/Crescent societies, UN agencies) tracked from 2006 to 2024. Cleaned and typed the raw export, then computed 20 statistically-backed insights covering sector composition, budget concentration, geography, and data-quality limitations: national NGOs are 81% of organizations but only 3.4% of reported budget (a ~6,780x median-budget gap to UN agencies), only ~7% of reported budgets carry an \"Actual\" provenance flag versus GDHO's own imputation, and hundreds of organizations share identical imputed budget figures — evidence GDHO imputes by bucket rather than per organization. Built a LightGBM budget-estimator pipeline as an independent cross-check, deliberately excluding every field derived from or co-dependent with the target to avoid leakage, and evaluated with an organization-level (not row-level) train/test split since the same organization repeats across up to 19 years — achieving a 0.796 held-out R² and 2.8% median absolute percentage error on organizations never seen in training. Documented an honest limitation: because most training labels are themselves GDHO-imputed, a meaningful share of the model's accuracy reflects re-deriving GDHO's own imputation formula rather than discovering independently verified ground truth. Delivered as a technical insights report, an ML methodology report, and a plain-language business report for non-technical stakeholders.",
+            shortDescription: "Cleaned and analyzed 125,125 org-year rows covering 7,301 humanitarian organizations (GDHO 2025, 2006-2024), surfacing a 6,780x median-budget gap between national NGOs and UN agencies, then built a LightGBM budget estimator (0.796 held-out R², org-grouped train/test split) with an honest audit of its own imputation limitations",
+            date: "Nov 2025",
+            technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "LightGBM", "Matplotlib", "Feature Engineering", "Data Cleaning"],
+            github: "https://github.com/EfeObus/Global-Database-of-Humanitarian-Organizations-Analysis",
+            live: null,
+            caseStudy: "case-study-gdho.html",
+            image: "images/GDHO Dataset Analysis.png",
+            featured: true,
+            category: ["data-analyst", "developer"]
+        },
+        {
             title: "Agho Hospital Management System",
             description: "Comprehensive desktop and web application to streamline hospital operations with role-based access control. Features patient management, appointment scheduling, doctor management, and user administration. Includes both web interface (port 5140) and console mode with security features like password hashing, SQL injection prevention, and role-based permissions for administrators, doctors, receptionists, and nurses.",
             shortDescription: "Built a hospital management system with role-based access control across 4 staff roles, securing patient data with SHA-256 hashing and SQL-injection prevention",
@@ -337,6 +337,19 @@ const portfolioData = {
             image: "images/Zodiac Real Estate.png",
             featured: true,
             category: ["developer", "data-analyst"]
+        },
+        {
+            title: "Northwind Traders Tableau Analysis",
+            description: "Built an executive performance and commercial analytics workbook in Tableau on the classic Northwind Traders sample database, directly joining seven relational tables (customers, orders, order details, products, categories, employees, shippers) to analyze 3 years of sales data (2013-2015) across 21 countries. Designed an interactive dashboard with Top N, Start Date, and End Date parameters driving dynamic filtering across revenue, order, and customer trend worksheets. Uncovered $1.35M in total revenue across 830 orders and 89 unique customers, with the top 3 customers (Horst Kloss, Jose Pavarotti, Roland Mendel) generating $346.4K — 25.6% of total revenue. Identified Côte de Blaye as the top revenue product at $150.0K, Beverages and Dairy Products as the highest-volume categories (over 42% of units shipped), and a consistent seasonal pattern with revenue peaking in April and December around a May-June dip. Delivered strategic recommendations covering key-account management, inventory seasonality smoothing, and carrier consolidation to reduce the $78.24 average per-order freight cost, published as both an interactive Tableau Public dashboard and an executive PDF report.",
+            shortDescription: "Analyzed 3 years of Northwind Traders sales data (2013-2015) across 21 countries in Tableau, surfacing $1.35M revenue, 25.6% customer-concentration risk in the top 3 accounts, and seasonal demand peaks via a parameter-driven interactive dashboard",
+            date: "Apr 2025",
+            technologies: ["Tableau", "Tableau Public", "Data Visualization", "Business Intelligence", "Data Modeling", "Dashboard Design"],
+            github: "https://github.com/EfeObus/North-Wind-Traders-Tableau-Analysis",
+            live: "https://public.tableau.com/app/profile/efe.obukohwo2950/viz/EfeObukohwoNorthwindTraders/NorthWindTradersDashboard",
+            caseStudy: "case-study-northwind-traders.html",
+            image: "images/Northwind Traders Tableau Analysis.png",
+            featured: true,
+            category: ["data-analyst"]
         },
         {
             title: "TK Reports - AI-Powered Data Analysis",
