@@ -275,6 +275,19 @@ const portfolioData = {
             category: ["developer"]
         },
         {
+            title: "Northwind Traders Tableau Analysis",
+            description: "Built an executive performance and commercial analytics workbook in Tableau on the classic Northwind Traders sample database, directly joining seven relational tables (customers, orders, order details, products, categories, employees, shippers) to analyze 3 years of sales data (2013-2015) across 21 countries. Designed an interactive dashboard with Top N, Start Date, and End Date parameters driving dynamic filtering across revenue, order, and customer trend worksheets. Uncovered $1.35M in total revenue across 830 orders and 89 unique customers, with the top 3 customers (Horst Kloss, Jose Pavarotti, Roland Mendel) generating $346.4K — 25.6% of total revenue. Identified Côte de Blaye as the top revenue product at $150.0K, Beverages and Dairy Products as the highest-volume categories (over 42% of units shipped), and a consistent seasonal pattern with revenue peaking in April and December around a May-June dip. Delivered strategic recommendations covering key-account management, inventory seasonality smoothing, and carrier consolidation to reduce the $78.24 average per-order freight cost, published as both an interactive Tableau Public dashboard and an executive PDF report.",
+            shortDescription: "Analyzed 3 years of Northwind Traders sales data (2013-2015) across 21 countries in Tableau, surfacing $1.35M revenue, 25.6% customer-concentration risk in the top 3 accounts, and seasonal demand peaks via a parameter-driven interactive dashboard",
+            date: "Jul 2026",
+            technologies: ["Tableau", "Tableau Public", "Data Visualization", "Business Intelligence", "Data Modeling", "Dashboard Design"],
+            github: "https://github.com/EfeObus/North-Wind-Traders-Tableau-Analysis",
+            live: "https://public.tableau.com/app/profile/efe.obukohwo2950/viz/EfeObukohwoNorthwindTraders/NorthWindTradersDashboard",
+            caseStudy: "case-study-northwind-traders.html",
+            image: "images/Northwind Traders Tableau Analysis.png",
+            featured: true,
+            category: ["data-analyst"]
+        },
+        {
             title: "Online Retail SQL Analysis",
             description: "Designed a normalized PostgreSQL database (5 tables + 1 staging table, 3NF, indexed foreign keys) for a 500,000+ row UK e-commerce transaction dataset, then wrote 30 production-ready SQL queries covering customer segmentation (RFM, LTV, cohort retention), product performance and cross-sell analysis, temporal trends, and anomaly detection using window functions (RANK, LAG, SUM OVER, NTILE, PERCENTILE_CONT), CTEs, and statistical aggregation. Surfaced that £8.91M in revenue from 4,339 customers is 82% UK-concentrated, that the top 10% of customers drive 61% of revenue, and that sub-£5 budget products generate 71% of revenue despite being a volume rather than margin business. Went further than reporting results: audited the query outputs themselves and documented real data-quality findings, including a CURRENT_DATE bug that silently mislabeled 100% of customers as \"Inactive\" and a cohort query that only ever returned month zero — the kind of self-auditing that separates production analysis from a one-off script.",
             shortDescription: "Designed a normalized PostgreSQL schema and wrote 30 production SQL queries analyzing 500K+ e-commerce transactions, uncovering revenue concentration and segmentation insights while auditing and documenting real bugs in the analysis itself",

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6E5QMP9NDK');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Northwind Traders Tableau Analysis - Executive BI Dashboard | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into the Northwind Traders Tableau Analysis, a 3-year executive performance and commercial analytics dashboard covering $1.35M in revenue across 21 countries.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        .case-study-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: var(--gray-light);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .case-study-section {
+            margin-bottom: 50px;
+        }
+        .case-study-section h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 15px;
+        }
+        .case-study-section h3.subhead {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+        }
+        .case-study-section p, .case-study-section li {
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .case-study-section ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .case-study-section li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: var(--secondary-black);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: var(--secondary-black);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .metric-card .number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .metric-card .label {
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+        .case-study-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .chart-grid figure {
+            margin: 0;
+            background: #fcfcfb;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .chart-grid img {
+            width: 100%;
+            display: block;
+        }
+        .chart-grid figcaption {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
+            background: var(--secondary-black);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--secondary-black);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero">
+        <div class="container">
+            <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            <h1><span class="golden-text">Northwind Traders</span> Tableau Analysis</h1>
+            <p style="font-size: 1.3rem; color: var(--gray-light);">Executive Performance &amp; Commercial Analytics Dashboard</p>
+            <div class="case-study-meta">
+                <span><i class="fas fa-calendar"></i> 2013 – 2015 Data</span>
+                <span><i class="fas fa-code"></i> Data Analyst Portfolio Project</span>
+                <span><i class="fas fa-globe"></i> 21 Countries</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <div class="case-study-content">
+        <img src="images/Northwind Traders Tableau Analysis.png" alt="Northwind Traders Tableau executive dashboard showing revenue, orders, customers, and shipping KPIs" class="case-study-image">
+
+        <section class="case-study-section">
+            <h2>Project Overview</h2>
+            <p>Northwind Traders is the classic multi-table sample business dataset — seven relational tables covering customers, orders, order line items, products, categories, employees, and shippers. Rather than pre-joining the data outside the tool, this project connects all seven tables directly inside Tableau and builds a single executive dashboard that lets a board-level audience explore three years of global sales performance (2013–2015) without touching a spreadsheet.</p>
+        </section>
+
+        <section class="case-study-section">
+            <h2>The Business Problem</h2>
+            <p>Raw transactional tables spread across customers, orders, and line items don't answer executive questions on their own. Leadership needed a single view that could answer: where is revenue concentrated, which products and categories actually move the business, how does demand shift across the calendar, and how efficient is the logistics network — all filterable by date range and top-N cohort, on demand.</p>
+            <div class="highlight-box">
+                <h3>Vision</h3>
+                <p>Join seven relational tables natively in Tableau and surface one interactive dashboard — driven by Top N, Start Date, and End Date parameters — that turns three years of order-level data into an executive-ready read on revenue, customers, products, seasonality, and logistics.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Methodology &amp; Technical Execution</h2>
+
+            <h3 class="subhead">Data Modeling</h3>
+            <ul>
+                <li><strong>Relational join in Tableau:</strong> Connected <code>categories</code>, <code>customers</code>, <code>employees</code>, <code>products</code>, <code>orders</code>, <code>order_details</code>, and <code>shippers</code> directly, building the full order-to-product-to-customer chain natively rather than pre-flattening the data.</li>
+                <li><strong>Scope:</strong> 830 orders and 2,155 order line items spanning 2013-07-04 to 2015-05-06, across 91 customer records and 21 countries.</li>
+            </ul>
+
+            <h3 class="subhead">Dashboard &amp; Parameters</h3>
+            <ul>
+                <li>Built 16 worksheets covering revenue trend, order trend, customer trend, top customers, top products, category revenue and sub-category, average discount trend, average shipping cost per order, and carrier distribution.</li>
+                <li>Wired <strong>Top N</strong>, <strong>Start Date</strong>, and <strong>End Date</strong> parameters into the dashboard so every worksheet re-filters together — the same interaction pattern used to drill from full-period totals down to any custom date range or cohort size.</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/Northwind Traders - Month Performance.png" alt="Bar and line chart showing monthly revenue and quantity performance, peaking in April and December">
+                    <figcaption>Monthly revenue &amp; quantity — Tableau worksheet</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/Northwind Traders - Top Products.png" alt="Horizontal bar chart of the top 5 products by revenue, led by Côte de Blaye at 150.0k">
+                    <figcaption>Top 5 products by revenue — Tableau worksheet</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Key Data Findings</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="number">$1.35M</div>
+                    <div class="label">Total Revenue (2013-2015)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">830</div>
+                    <div class="label">Fulfilled Orders</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">25.6%</div>
+                    <div class="label">Revenue From Top 3 Customers</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">$78.24</div>
+                    <div class="label">Avg. Freight Cost Per Order</div>
+                </div>
+            </div>
+
+            <ul>
+                <li><strong>Customer concentration:</strong> The top 3 customers — Horst Kloss ($117.5K), Jose Pavarotti ($115.7K), and Roland Mendel ($113.2K) — generate $346.4K combined, or 25.6% of all revenue.</li>
+                <li><strong>Product performance:</strong> Côte de Blaye is the single largest revenue driver at $150.0K, well ahead of Thüringer Rostbratwurst ($87.7K) and Raclette Courdavault ($76.3K).</li>
+                <li><strong>Category volume:</strong> Beverages (286.5K units) and Dairy Products (251.3K units) dominate physical volume shipped — over 42% of total units moved.</li>
+                <li><strong>Seasonality:</strong> Revenue and order volume peak in early Q2 (April) and late Q4 (December), consistent with holiday replenishment cycles, with a mid-year dip around May–June.</li>
+                <li><strong>Logistics:</strong> Freight is split fairly evenly across three carriers, with United Package carrying the largest share (39.3% of shipments) ahead of Speedy Express (30.0%) and Federal Shipping (30.7%).</li>
+            </ul>
+
+            <div class="chart-grid">
+                <figure>
+                    <img src="images/Northwind Traders - Top Customers.png" alt="Horizontal bar chart of the top 5 customers by revenue, led by Horst Kloss at 117.5k">
+                    <figcaption>Top 5 customers by revenue</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/Northwind Traders - Category and Carrier.png" alt="Bar chart of product categories by quantity sold alongside a donut chart of orders delivered by carrier">
+                    <figcaption>Category volume &amp; carrier distribution</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Strategic Impact &amp; Recommendations</h2>
+
+            <div class="highlight-box">
+                <h3>Key Account Management</h3>
+                <p>Formalize VIP loyalty programs for the top 3 clients, who together represent over a quarter of total revenue — protecting the accounts with the highest concentration risk.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Inventory Seasonality Smoothing</h3>
+                <p>Adjust inventory buffers ahead of the recurring May–June demand dip while staying ready for the April and Q4 volume spikes.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Carrier Contract Renegotiation</h3>
+                <p>Consolidate shipping volume across United Package, Speedy Express, and Federal Shipping to bring down the $78.24 average per-order freight cost.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Category Expansion</h3>
+                <p>Cross-sell premium products like Côte de Blaye into the highest-volume categories — Beverages and Dairy Products — to lift margin without adding new logistics complexity.</p>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <h2>Tools &amp; Techniques</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fas fa-chart-line"></i><span>Tableau</span></div>
+                <div class="tech-item"><i class="fas fa-globe"></i><span>Tableau Public</span></div>
+                <div class="tech-item"><i class="fas fa-sitemap"></i><span>Data Modeling</span></div>
+                <div class="tech-item"><i class="fas fa-sliders-h"></i><span>Parameter Controls</span></div>
+                <div class="tech-item"><i class="fas fa-th-large"></i><span>Dashboard Design</span></div>
+                <div class="tech-item"><i class="fas fa-chart-pie"></i><span>Business Intelligence</span></div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Explore the Full Analysis</h3>
+            <p style="color: var(--gray-light); margin-bottom: 25px;">Explore the live interactive dashboard, review the source workbook on GitHub, or download the full executive report</p>
+            <div class="cta-buttons">
+                <a href="https://public.tableau.com/app/profile/efe.obukohwo2950/viz/EfeObukohwoNorthwindTraders/NorthWindTradersDashboard" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                </a>
+                <a href="https://github.com/EfeObus/North-Wind-Traders-Tableau-Analysis" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="documents/Northwind Traders Tableau Analysis.pdf" download class="btn btn-outline">
+                    <i class="fas fa-file-pdf"></i> Download Full Report (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
