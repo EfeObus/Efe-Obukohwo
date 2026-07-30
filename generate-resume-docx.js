@@ -27,20 +27,42 @@ const RESUME_VARIANTS = {
     'data-analyst': {
         title: () => data.personal.dataAnalystTitle || data.personal.title,
         summary: () => data.personal.dataAnalystSummary || data.personal.summary,
-        skillCategories: ['Data Analysis & Visualization', 'Programming Languages', 'Databases & ORMs', 'Machine Learning & AI'],
-        projectCategory: 'data-analyst'
+        skills: {
+            'Data Analysis & Visualization': ['Pandas', 'Tableau', 'Power BI', 'Excel', 'SPSS', 'Apache Spark', 'Apache Hive'],
+            'Programming Languages': ['Python', 'SQL'],
+            'Databases': ['PostgreSQL', 'MySQL', 'Oracle', 'Airtable'],
+            'Machine Learning & AI': ['Scikit-learn', 'XGBoost', 'LightGBM', 'Random Forest', 'AutoML']
+        },
+        projectCategory: 'data-analyst',
+        projectsTitle: 'Key Data Analytics Projects',
+        keyProjects: ['GDHO Dataset Analysis', 'Northwind Traders Tableau Analysis', 'Nashville Housing Market Analysis', 'Online Retail SQL Analysis']
     },
     developer: {
         title: () => data.personal.developerTitle || data.personal.title,
         summary: () => data.personal.developerSummary || data.personal.summary,
-        skillCategories: ['Programming Languages', 'Frontend Technologies', 'Backend & APIs', 'Mobile Development', 'Cloud & DevOps', 'Machine Learning & AI', 'Data Analysis & Visualization', 'Databases & ORMs'],
-        projectCategory: 'developer'
+        skills: {
+            'Programming Languages': ['Python', 'JavaScript', 'TypeScript', 'Kotlin', 'HTML5', 'CSS3', 'SQL', 'Java'],
+            'Frontend Technologies': ['React', 'Zustand', 'Tailwind CSS', 'Bootstrap', 'Vite', 'Responsive Design'],
+            'Backend & APIs': ['Flask', 'FastAPI', 'Node.js', 'Express.js', 'Ktor', 'RESTful APIs', 'JWT', 'Plaid API', 'Docker', 'Git'],
+            'Mobile Development': ['Kotlin Multiplatform', 'Compose Multiplatform', 'Capacitor (Android/iOS)', 'SQLDelight', 'Koin (DI)', 'Biometric Auth', 'Push Notifications (FCM/APNs)'],
+            'Cloud & DevOps': ['Google Cloud Run', 'Cloud SQL', 'Secret Manager', 'AWS', 'GitHub Actions (CI/CD)', 'Firebase', 'Prometheus/Micrometer', 'Sentry'],
+            'Machine Learning & AI': ['Scikit-learn', 'XGBoost', 'LightGBM', 'Random Forest', 'AutoML', 'OpenAI API', 'Gemini (Vertex AI)'],
+            'Databases & ORMs': ['PostgreSQL', 'MySQL', 'SQLAlchemy', 'Sequelize', 'Drizzle ORM', 'Prisma']
+        },
+        projectCategory: 'developer',
+        projectsTitle: 'Key Projects',
+        keyProjects: ['Zodiac Real Estate AI', 'TEKVWA Money', 'VwaTek Apply', 'TekVwarho ProAudit']
     },
     teacher: {
         title: () => data.personal.teacherTitle || data.personal.title,
         summary: () => data.personal.teacherSummary || data.personal.summary,
-        skillCategories: ['Teaching & Education', 'Data Analysis & Visualization', 'Programming Languages'],
-        projectCategory: 'teacher'
+        skills: {
+            'Teaching & Education': ['Curriculum Design', 'Classroom Instruction', 'Data-Driven Instruction', 'Lesson-Plan Digitization', 'Student Coaching & Mentorship', 'Instructional Technology'],
+            'Data Analysis & Visualization': ['Excel', 'Power BI'],
+            'Programming Languages': ['Python', 'SQL']
+        },
+        projectCategory: 'teacher',
+        projectsTitle: 'Key Education & Curriculum Projects'
     }
 };
 
@@ -111,8 +133,8 @@ function addSummary(children, variant) {
 
 function addSkills(children, variant) {
     const config = RESUME_VARIANTS[variant];
-    const categories = config && config.skillCategories ? config.skillCategories : Object.keys(data.skills);
-    const allSkills = categories.filter((c) => data.skills[c]).flatMap((c) => data.skills[c]);
+    const skillMap = config && config.skills ? config.skills : data.skills;
+    const allSkills = Object.values(skillMap).flat();
 
     children.push(createSectionHeader('Core Competencies'));
     children.push(
@@ -195,11 +217,16 @@ function addEducation(children) {
 
 function addProjects(children, variant) {
     const config = RESUME_VARIANTS[variant];
-    const projects = config
-        ? data.projects.filter((p) => (p.category || []).includes(config.projectCategory)).slice(0, 6)
-        : data.projects.filter((p) => p.featured).slice(0, 6);
+    let projects;
+    if (config && config.keyProjects) {
+        projects = config.keyProjects.map((title) => data.projects.find((p) => p.title === title)).filter(Boolean);
+    } else if (config) {
+        projects = data.projects.filter((p) => (p.category || []).includes(config.projectCategory)).slice(0, 4);
+    } else {
+        projects = data.projects.filter((p) => p.featured).slice(0, 4);
+    }
 
-    children.push(createSectionHeader('Key Projects'));
+    children.push(createSectionHeader(config && config.projectsTitle ? config.projectsTitle : 'Key Projects'));
 
     projects.forEach((project) => {
         const links = [];

@@ -20,7 +20,7 @@ const portfolioData = {
 
         // Role-tailored headline + summary used by the Developer resume variant
         developerTitle: "Full Stack Developer | Python Developer | Data Engineer",
-        developerSummary: "Full Stack Developer with hands-on internship experience and a self-driven portfolio of independently designed, built, and shipped applications across web, cloud, and native mobile. During a full-stack internship at Zodiac Tech Toronto, architected and shipped a production Flask/MySQL real estate analytics platform processing 49,551+ properties with 88.3% ML prediction accuracy, a 20+ endpoint REST API, and a Dockerized CI/CD pipeline achieving 99.9% uptime while leading a team of 5 developers. Independently built full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Self-directed across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into personal projects, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Brings a Data Analyst's rigor for clean data and measurable outcomes to every system built.",
+        developerSummary: "Full Stack Developer with hands-on internship experience and a self-driven portfolio of independently designed, built, and shipped applications across web, cloud, and native mobile. During a full-stack internship at Zodiac Tech Toronto, architected and shipped a production Flask/MySQL real estate analytics platform processing 49,551+ properties with 88.3% ML prediction accuracy, a 20+ endpoint REST API, and a Dockerized CI/CD pipeline achieving 99.9% staging uptime while leading a team of 5 developers. Independently built full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Self-directed across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into personal projects, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Brings a Data Analyst's rigor for clean data and measurable outcomes to every system built.",
 
         // Role-tailored headline + summary used by the Teacher/Educator resume variant
         teacherTitle: "Computer Science & IT Educator | Technology & Data Instructor",
@@ -38,8 +38,8 @@ const portfolioData = {
             responsibilities: [
                 "Architected an AI-powered real estate analytics platform processing 49,551+ Canadian properties, achieving 88.3% ML prediction accuracy with an ensemble of XGBoost, LightGBM, and Random Forest",
                 "Led full-stack development of a production Flask application with MySQL and a 20+ endpoint REST API, shipping interactive property mapping and investment analytics",
-                "Implemented a 5-tier API security system with ML-powered XSS/CSRF detection and behavioral analysis, achieving a 100% attack-prevention rate in testing",
-                "Deployed a Dockerized CI/CD pipeline achieving 99.9% uptime, <400ms API response times, and 85% test coverage while leading a team of 5 developers"
+                "Implemented a 5-tier API security system with ML-powered XSS/CSRF detection and behavioral analysis, achieving a 100% attack-prevention rate in internal penetration testing",
+                "Deployed a Dockerized CI/CD pipeline achieving 99.9% staging uptime, <400ms API response times, and 85% test coverage while leading a team of 5 developers"
             ]
         },
         {
@@ -120,7 +120,7 @@ const portfolioData = {
             location: "Mosogar, Nigeria",
             relevantTo: ["teacher"],
             responsibilities: [
-                "Led the installation and configuration of 40 workstations, ensuring optimal performance and 100% user satisfaction",
+                "Led the installation and configuration of 40 workstations, ensuring optimal performance with zero reported issues post-installation",
                 "Resolved technical issues for 65+ end-users promptly and accurately while strengthening antivirus and cybersecurity protocols across all systems",
                 "Implemented a remote support system, streamlining registration and payment assistance for students"
             ]
@@ -302,7 +302,7 @@ const portfolioData = {
         },
         {
             title: "GDHO Dataset Analysis",
-            description: "Built a full analysis and machine-learning pipeline on the Global Database of Humanitarian Organisations (GDHO) 2025 release — 125,125 org-year rows across 7,301 unique humanitarian organizations (national NGOs, international NGOs, Red Cross/Crescent societies, UN agencies) tracked from 2006 to 2024. Cleaned and typed the raw export, then computed 20 statistically-backed insights covering sector composition, budget concentration, geography, and data-quality limitations: national NGOs are 81% of organizations but only 3.4% of reported budget (a ~6,780x median-budget gap to UN agencies), only ~7% of reported budgets carry an \"Actual\" provenance flag versus GDHO's own imputation, and hundreds of organizations share identical imputed budget figures — evidence GDHO imputes by bucket rather than per organization. Built a LightGBM budget-estimator pipeline as an independent cross-check, deliberately excluding every field derived from or co-dependent with the target to avoid leakage, and evaluated with an organization-level (not row-level) train/test split since the same organization repeats across up to 19 years — achieving a 0.796 held-out R² and 2.8% median absolute percentage error on organizations never seen in training. Documented an honest limitation: because most training labels are themselves GDHO-imputed, a meaningful share of the model's accuracy reflects re-deriving GDHO's own imputation formula rather than discovering independently verified ground truth. Delivered as a technical insights report, an ML methodology report, and a plain-language business report for non-technical stakeholders.",
+            description: "Extended real-world database consulting experience gained as a contract Database Consultant at Humanitarian Outcomes (May 2023 – Dec 2025), working directly with the GDHO Airtable and database, into a full independent analysis and machine-learning pipeline on Humanitarian Outcomes' own published Global Database of Humanitarian Organisations (GDHO) 2025 release — 125,125 org-year rows across 7,301 unique humanitarian organizations (national NGOs, international NGOs, Red Cross/Crescent societies, UN agencies) tracked from 2006 to 2024. Cleaned and typed the raw export, then computed 20 statistically-backed insights covering sector composition, budget concentration, geography, and data-quality limitations: national NGOs are 81% of organizations but only 3.4% of reported budget (a ~6,780x median-budget gap to UN agencies), only ~7% of reported budgets carry an \"Actual\" provenance flag versus GDHO's own imputation, and hundreds of organizations share identical imputed budget figures — evidence GDHO imputes by bucket rather than per organization. Built a LightGBM budget-estimator pipeline as an independent cross-check, deliberately excluding every field derived from or co-dependent with the target to avoid leakage, and evaluated with an organization-level (not row-level) train/test split since the same organization repeats across up to 19 years — achieving a 0.796 held-out R² and 2.8% median absolute percentage error on organizations never seen in training. Documented an honest limitation: because most training labels are themselves GDHO-imputed, a meaningful share of the model's accuracy reflects re-deriving GDHO's own imputation formula rather than discovering independently verified ground truth. Delivered as a technical insights report, an ML methodology report, and a plain-language business report for non-technical stakeholders.",
             shortDescription: "Cleaned and analyzed 125,125 org-year rows covering 7,301 humanitarian organizations (GDHO 2025, 2006-2024), surfacing a 6,780x median-budget gap between national NGOs and UN agencies, then built a LightGBM budget estimator (0.796 held-out R², org-grouped train/test split) with an honest audit of its own imputation limitations",
             date: "Nov 2025",
             technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "LightGBM", "Matplotlib", "Feature Engineering", "Data Cleaning"],
@@ -477,9 +477,9 @@ const portfolioData = {
     achievements: [
         "Achieved 88.3% ML prediction accuracy in real estate analytics platform processing 49,551+ properties",
         "Improved database system efficiency by 25% through optimization and error resolution strategies",
-        "Deployed scalable infrastructure with 99.9% uptime and <400ms API response times",
+        "Deployed scalable infrastructure with 99.9% staging uptime and <400ms API response times",
         "Consecutive Dean's Honors List Award with 85.6% cumulative GPA in Research Analyst program",
-        "Led installation and configuration of 40 workstations with 100% user satisfaction"
+        "Led installation and configuration of 40 workstations with zero reported post-installation issues"
     ]
 };
 

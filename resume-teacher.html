@@ -397,9 +397,9 @@
         <a href="documents/Efe_Obukohwo_Resume_Teacher.docx" download="Efe_Obukohwo_Resume_Teacher.docx" class="download-btn docx-btn">
             <i class="fas fa-file-word"></i> Download DOCX
         </a>
-        <button class="download-btn print-btn" onclick="window.print()">
+        <a href="documents/Efe_Obukohwo_Resume_Teacher.pdf" target="_blank" rel="noopener noreferrer" class="download-btn print-btn">
             <i class="fas fa-print"></i> Print
-        </button>
+        </a>
     </div>
 
     <div class="resume-container">
@@ -465,7 +465,11 @@
                 return;
             }
 
-            const SKILL_CATEGORIES = ['Teaching & Education', 'Data Analysis & Visualization', 'Programming Languages'];
+            const SKILLS = {
+                'Teaching & Education': ['Curriculum Design', 'Classroom Instruction', 'Data-Driven Instruction', 'Lesson-Plan Digitization', 'Student Coaching & Mentorship', 'Instructional Technology'],
+                'Data Analysis & Visualization': ['Excel', 'Power BI'],
+                'Programming Languages': ['Python', 'SQL']
+            };
 
             // Populate Header
             document.getElementById('resume-name').textContent = data.personal.name;
@@ -571,11 +575,11 @@
             `}).join('');
             document.getElementById('resume-projects').innerHTML = projectsHTML;
 
-            // Populate Skills (Teacher-relevant categories, in priority order)
-            const skillsHTML = SKILL_CATEGORIES.filter(category => data.skills[category]).map(category => `
+            // Populate Skills (curated, Teacher-relevant only)
+            const skillsHTML = Object.entries(SKILLS).map(([category, skills]) => `
                 <div class="skill-category">
                     <h4>${category}</h4>
-                    <div class="skill-list">${data.skills[category].join(', ')}</div>
+                    <div class="skill-list">${skills.join(', ')}</div>
                 </div>
             `).join('');
             document.getElementById('resume-skills').innerHTML = skillsHTML;

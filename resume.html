@@ -371,9 +371,9 @@
         <a href="documents/Efe_Obukohwo_Resume.docx" download="Efe_Obukohwo_Resume.docx" class="download-btn docx-btn">
             <i class="fas fa-file-word"></i> Download DOCX
         </a>
-        <button class="download-btn print-btn" onclick="window.print()">
+        <a href="documents/Efe_Obukohwo_Resume.pdf" target="_blank" rel="noopener noreferrer" class="download-btn print-btn">
             <i class="fas fa-print"></i> Print
-        </button>
+        </a>
     </div>
     
     <div class="resume-container">
@@ -511,8 +511,8 @@
             `).join('');
             document.getElementById('resume-education').innerHTML = educationHTML;
 
-            // Populate Projects (limit to 6 featured projects for resume)
-            const featuredProjects = data.projects.filter(p => p.featured).slice(0, 6);
+            // Populate Projects (limit to 4 featured projects for resume)
+            const featuredProjects = data.projects.filter(p => p.featured).slice(0, 4);
             const projectsHTML = featuredProjects.map(project => {
                 const links = [];
                 if (project.live) {
