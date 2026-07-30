@@ -386,6 +386,19 @@ const portfolioData = {
             image: "images/Wonderworld learning adventure.png",
             featured: true,
             category: ["developer", "teacher"]
+        },
+        {
+            title: "Superstore Sales Analysis",
+            description: "Performed exploratory analysis and built a 12-month sales forecast for the Superstore retail dataset (9,994 order lines, Jan 2014 - Dec 2017) across Region, Category, Sub-Category, Segment, and Ship Mode. Found that discount rate and profit margin correlate at -0.86 — unprofitable orders carry a 48% average discount versus 8% on profitable ones — and that 1,871 of 9,994 order lines (18.7%) post negative profit, giving back $156,131 total. Identified Tables as the single largest profit drag (-$17,725) despite being a top-6 product by sales volume, and Texas as the #3 state by revenue but the single biggest loss-maker (-$25,729), pointing to a discounting problem rather than a demand problem in both cases. Built a 12-month sales forecast by splitting 48 months of aggregated monthly sales into a 42-month training window and 6-month holdout, then compared Prophet against auto-ARIMA (SARIMA): Prophet won on the holdout (20.7% MAPE vs. 27.8%) and was refit on the full series to project 12 months forward, forecasting $778,333 in sales — 6.2% above the trailing 12 months — consistent with the recurring Q4 seasonal peak found in the historical data. Delivered as a full EDA and forecasting results document plus an executive-level business report.",
+            shortDescription: "Analyzed 9,994 Superstore order lines (2014-2017), finding an 18.7% loss-making order rate driven by deep discounting (-0.86 margin correlation) and a $17,725 loss-making Tables sub-category, then built a Prophet vs. SARIMA sales forecast (20.7% MAPE) projecting 6.2% revenue growth over the next 12 months",
+            date: "Apr 2023",
+            technologies: ["Python", "Pandas", "Prophet", "SARIMA", "Matplotlib", "Time Series Forecasting", "Statistical Analysis"],
+            github: "https://github.com/EfeObus/Superstore-Sales-Prediction",
+            live: null,
+            caseStudy: "case-study-superstore.html",
+            image: "images/Superstore Sales Analysis.png",
+            featured: true,
+            category: ["data-analyst", "developer"]
         }
     ],
 
