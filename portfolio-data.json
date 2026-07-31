@@ -760,5 +760,200 @@
     "Deployed scalable infrastructure with 99.9% staging uptime and <400ms API response times",
     "Consecutive Dean's Honors List Award with 85.6% cumulative GPA in Research Analyst program",
     "Led installation and configuration of 40 workstations with zero reported post-installation issues"
+  ],
+  "blog": [
+    {
+      "title": "The Query Ran, But Was It Right?",
+      "excerpt": "Designing a normalized PostgreSQL database and writing 30 production SQL queries over 500K+ e-commerce transactions - then auditing my own results and finding three real bugs before trusting the numbers.",
+      "date": "Jul 2026",
+      "readTime": "10 min read",
+      "tags": [
+        "PostgreSQL",
+        "Window Functions",
+        "Data Quality"
+      ],
+      "url": "blog-online-retail-sql.html"
+    },
+    {
+      "title": "Building TEKVWA Money: One Codebase, Three Platforms, Real Bank Data",
+      "excerpt": "How I built and launched a full-stack personal finance tracker on web, Android, and iOS from a single React/Capacitor codebase, with live Plaid bank-linking and Gemini AI-narrated spending insights.",
+      "date": "2026",
+      "readTime": "13 min read",
+      "tags": [
+        "React",
+        "Capacitor",
+        "Plaid",
+        "Gemini AI"
+      ],
+      "url": "blog-tekvwa-money.html"
+    },
+    {
+      "title": "Turning 56,636 Messy Rows into an $18.5B Market Story",
+      "excerpt": "How I engineered a raw municipal housing dataset into a verified Excel business intelligence dashboard using defensive data cleaning, a dynamic VLOOKUP/XLOOKUP/SUMPRODUCT formula engine, and 9 pivot tables.",
+      "date": "Jul 2026",
+      "readTime": "11 min read",
+      "tags": [
+        "Excel",
+        "Data Cleaning",
+        "Pivot Tables",
+        "Business Intelligence"
+      ],
+      "url": "blog-nashville-housing.html"
+    },
+    {
+      "title": "Building VwaTek Apply: Kotlin Multiplatform for Smarter Job Hunting",
+      "excerpt": "How I built an AI-powered career suite running natively on iOS, Android, and Web from a single Kotlin codebase, with ATS optimization and Canadian market intelligence.",
+      "date": "Mar 2026",
+      "readTime": "8 min read",
+      "tags": [
+        "Kotlin",
+        "Compose Multiplatform",
+        "Gemini AI",
+        "Mobile"
+      ],
+      "url": "blog-vwatek-apply.html"
+    },
+    {
+      "title": "Building a No-Code Statistical Analysis Platform: TekVwarho Analysis",
+      "excerpt": "How I built a comprehensive statistical analysis platform with 17+ analysis types, AI-powered report generation, and WCAG 2.1 accessibility for non-programmers.",
+      "date": "Feb 2026",
+      "readTime": "15 min read",
+      "tags": [
+        "Flask",
+        "OpenAI",
+        "PostgreSQL",
+        "Machine Learning"
+      ],
+      "url": "blog-tekvwarho-analysis.html"
+    },
+    {
+      "title": "Building a Forensic Audit Engine: Benford's Law in Practice",
+      "excerpt": "How I implemented statistical fraud detection using Benford's Law, Z-Score anomaly analysis, and 3-way matching in TekVwarho ProAudit to catch financial irregularities.",
+      "date": "Jan 2026",
+      "readTime": "12 min read",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Statistics",
+        "Fraud Detection"
+      ],
+      "url": "blog-forensic-audit.html"
+    },
+    {
+      "title": "Adaptive Learning with Item Response Theory: The Math Behind WonderWorld",
+      "excerpt": "Deep dive into implementing the Rasch Model for real-time difficulty adjustment in educational software, maintaining 75% success probability for optimal learning.",
+      "date": "Jan 2026",
+      "readTime": "10 min read",
+      "tags": [
+        "Machine Learning",
+        "EdTech",
+        "Python",
+        "NumPy"
+      ],
+      "url": "blog-adaptive-learning.html"
+    },
+    {
+      "title": "88.3% ML Accuracy: Lessons from Predicting Canadian Property Values",
+      "excerpt": "A technical walkthrough of the ensemble model architecture (XGBoost + LightGBM + Random Forest) and feature engineering that achieved 88.3% prediction accuracy on 49,551+ properties.",
+      "date": "Jan 2026",
+      "readTime": "15 min read",
+      "tags": [
+        "XGBoost",
+        "Scikit-learn",
+        "Feature Engineering",
+        "Real Estate"
+      ],
+      "url": "blog-ml-accuracy.html"
+    },
+    {
+      "title": "Designing Multi-Tier API Security: Rate Limiting, Keys, and ML Attack Detection",
+      "excerpt": "How I built a 5-tier API key system with behavioral analysis and ML-powered attack detection that achieved 100% prevention rate during penetration testing.",
+      "date": "Jan 2026",
+      "readTime": "12 min read",
+      "tags": [
+        "Security",
+        "API Design",
+        "Flask",
+        "Python"
+      ],
+      "url": "blog-api-security.html"
+    },
+    {
+      "title": "Nigeria's 2026 Tax Reform: What Developers Need to Know",
+      "excerpt": "A comprehensive guide to the upcoming Nigerian tax reforms and how I built a compliant tax calculation engine handling PAYE, VAT, CIT, WHT, and NRS e-invoicing.",
+      "date": "Jan 2026",
+      "readTime": "18 min read",
+      "tags": [
+        "FinTech",
+        "Nigeria",
+        "Tax Compliance",
+        "PostgreSQL"
+      ],
+      "url": "blog-nigeria-tax-reform.html"
+    },
+    {
+      "title": "From Airtable to Data-Driven Insights: Scaling Humanitarian Outcomes",
+      "excerpt": "Lessons learned from optimizing database systems for Humanitarian Outcomes, achieving a 25% efficiency increase through strategic schema design and query optimization.",
+      "date": "Jan 2026",
+      "readTime": "10 min read",
+      "tags": [
+        "PostgreSQL",
+        "Database Design",
+        "SQL",
+        "Data Engineering"
+      ],
+      "url": "blog-humanitarian-data.html"
+    }
+  ],
+  "recommendations": [
+    {
+      "name": "Sieu Moi Ly",
+      "title": "Director, Student Success | Entrepreneur | Coach",
+      "date": "May 2, 2025",
+      "relationship": "Managed Efe directly",
+      "quote": "Efe was a standout CSR at IGNITE — personable, team-oriented, and deeply dedicated. He brought a big personality paired with a calm, quiet energy that made both customers and teammates feel at ease. A true team player with a natural ability to connect and uplift, Efe would be an asset to any organization."
+    },
+    {
+      "name": "Ian Quinn Cerrada",
+      "title": "15+ Years Experience | Construction, Sales, Flight Dispatch, Exhibition & Events | Embracing Change, Mastering Skills | Making Things Happen, Helping Teams Thrive | Building Holistic Skills for Dynamic Impact",
+      "date": "March 29, 2025",
+      "relationship": "Worked with Efe on the same team",
+      "quote": "Working with Efe at the IGNITE Student Union has been a rewarding experience. As a Customer Service Representative, I've seen how Efe's friendly nature and willingness to help colleagues — whether with personal or work-related matters — make him a key part of our team.Efe's professionalism is evident, especially in challenging situations. His ability to handle difficulties with grace and composure is impressive and shows his commitment to his role.Dependable and passionate, Efe's dedication to his work is clear in every task he takes on. His enthusiasm and reliability ensure that he consistently delivers high-quality results. I highly recommend Efe for future opportunities and am confident he will be a valuable asset to any team."
+    },
+    {
+      "name": "Jackie Lam",
+      "title": "Manager of Customer Care & Student Well-being",
+      "date": "March 26, 2025",
+      "relationship": "Managed Efe directly",
+      "quote": "Efe has been an invaluable part of IGNITE's Customer Service Representative team. He always goes above and beyond to ensure our customers receive top-tier service. His ability to handle challenging situations with grace, patience, and a positive attitude has made a significant impact on our overall customer satisfaction.Whether answering inquiries, resolving issues, or providing guidance, Efe consistently shows a deep understanding of our services and a commitment to resolving customer concerns efficiently.I have no doubt that Efe would be an asset to any team or company. He has proven to be dedicated, reliable, and an excellent representative of IGNITE's values. I wholeheartedly recommend him without hesitation."
+    },
+    {
+      "name": "Myia Davar",
+      "title": "Managing Director @ FLIP | Foundation for Leadership, Imagination and Place",
+      "date": "January 8, 2024",
+      "relationship": "Managed Efe directly",
+      "quote": "Efe is an experienced and skilled researcher and data analyst, implementing qualitative and quantitative methods and working proficiently in the realms of human rights and humanitarian-focused research.I had the pleasure of working with Efe through his work with FLIP Foundation, undertaking literature review and data analysis on equity-focused patterns in arts leadership in Canada. Efe was thorough and effective in leading the research process, with clarity of desired outcomes and methods to arrive at a final research paper and accompanying infographics.If you are looking for someone with a broad research, database management, IT, and project management skill set, Efe would be a wonderful asset to any team."
+    },
+    {
+      "name": "Peivand Pirouzi, PhD, MBA, CCPE",
+      "title": "Professor, Author, Research Scientist, and Regulatory Compliance Inspector",
+      "date": "March 27, 2023",
+      "relationship": "Managed Efe directly",
+      "quote": "It's my pleasure to highly recommend Efe, who was my student in the Research Analyst Program at Humber College, Toronto, Canada.Efe has the knowledge and experience in professionalism and ethics in designing and conducting studies and surveys, philosophical frameworks, and critical analysis of big data and results in research. He is skilled in using new technologies in the research analysis field, performing big data visualization, dashboard development, and trend analysis.He excels in creating research deliverables, writing professional reports, proposals, and grant writing; project management; and performing research analysis and analytics using strategic planning tools — including the PESTEL framework to assess political, economic, social, technological, environmental, and legal factors — for strategic planning processes and enterprise risk management."
+    },
+    {
+      "name": "Abby Stoddard",
+      "title": "Humanitarian Policy Analyst & Author",
+      "date": "December 22, 2025",
+      "relationship": "Senior colleague at Humanitarian Outcomes",
+      "quote": "Efe was a valued member of our team at Humanitarian Outcomes and a pleasure to work with. He brought strong skills in database maintenance and a clear ability to operate at the intersection of human judgment and machine-driven research, information management, and analysis.I would readily recommend him for roles requiring rigorous data handling and applied analytical work."
+    },
+    {
+      "name": "Meriah-Jo Breckenridge",
+      "title": "Humanitarian Data and Security Consultant",
+      "date": "September 10, 2025",
+      "relationship": "Managed Efe directly",
+      "quote": "Efe worked on our Global Database of Humanitarian Organisations for several years and was a great asset. He completed very detailed data collection, data entry, and assisted with extensive data cleanup.I highly recommend him for database related projects."
+    }
   ]
 }
