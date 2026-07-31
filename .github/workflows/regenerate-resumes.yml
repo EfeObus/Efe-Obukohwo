@@ -3,8 +3,8 @@ name: Regenerate Resume Documents
 # Runs on macos-latest because PDF generation shells out to macOS's
 # built-in `textutil` (DOCX -> HTML) before handing off to Puppeteer.
 # Only watches the files that actually affect generated output, so the
-# auto-commit this workflow makes (touching only documents/**) never
-# retriggers itself.
+# auto-commit this workflow makes (touching only documents/** and
+# portfolio-data.json) never retriggers itself.
 on:
   push:
     branches: [main]
@@ -12,6 +12,7 @@ on:
       - "portfolio-data.js"
       - "generate-resume-docx.js"
       - "generate-resume-pdf.js"
+      - "generate-data-json.js"
       - "package.json"
 
 permissions:
@@ -37,12 +38,12 @@ jobs:
 
       - name: Commit regenerated documents if changed
         run: |
-          if git diff --quiet -- documents/; then
+          if git diff --quiet -- documents/ portfolio-data.json; then
             echo "No changes to generated documents."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add documents/
+          git add documents/ portfolio-data.json
           git commit -m "chore: auto-regenerate resume documents"
           git push

@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "generate-resume": "node generate-resume-docx.js && node generate-resume-pdf.js",
-    "generate-portfolio": "node generate-resume-docx.js && node generate-resume-pdf.js",
+    "generate-resume": "node generate-resume-docx.js && node generate-resume-pdf.js && node generate-data-json.js",
+    "generate-portfolio": "node generate-resume-docx.js && node generate-resume-pdf.js && node generate-data-json.js",
     "generate-pdf": "node generate-resume-pdf.js",
     "generate-docx": "node generate-resume-docx.js",
+    "generate-data-json": "node generate-data-json.js",
     "watch-docs": "nodemon --watch portfolio-data.js --ext js --exec \"npm run generate-resume\"",
     "prepare-deploy": "npm run generate-resume",
     "predeploy": "npm run prepare-deploy",
