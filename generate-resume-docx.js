@@ -1,4 +1,4 @@
-const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle } = require('docx');
+const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, TabStopType, Tab } = require('docx');
 const fs = require('fs');
 const path = require('path');
 
@@ -72,7 +72,7 @@ function addHeader(children, variant) {
 
     children.push(
         new Paragraph({
-            children: [new TextRun({ text: data.personal.name, bold: true, size: 36, font: 'Times New Roman' })],
+            children: [new TextRun({ text: data.personal.name, bold: true, size: 36, font: 'Times New Roman', allCaps: true })],
             alignment: AlignmentType.CENTER,
             spacing: { after: 100 }
         })
@@ -89,11 +89,12 @@ function addHeader(children, variant) {
     children.push(
         new Paragraph({
             children: [
-                new TextRun({
-                    text: `${data.personal.location} | ${data.personal.phone} | ${data.personal.email}`,
-                    size: 20,
-                    font: 'Times New Roman'
-                })
+                new TextRun({ text: 'Email: ', bold: true, size: 20, font: 'Times New Roman' }),
+                new TextRun({ text: `${data.personal.email}    `, size: 20, font: 'Times New Roman' }),
+                new TextRun({ text: 'Phone: ', bold: true, size: 20, font: 'Times New Roman' }),
+                new TextRun({ text: `${data.personal.phone}    `, size: 20, font: 'Times New Roman' }),
+                new TextRun({ text: 'Address: ', bold: true, size: 20, font: 'Times New Roman' }),
+                new TextRun({ text: data.personal.location, size: 20, font: 'Times New Roman' })
             ],
             alignment: AlignmentType.CENTER,
             spacing: { after: 100 }
@@ -156,18 +157,20 @@ function addExperience(children, variant) {
     experience.forEach((exp) => {
         children.push(
             new Paragraph({
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
                 children: [
                     new TextRun({ text: exp.title, bold: true, size: 22, font: 'Times New Roman' }),
-                    new TextRun({ text: ` | ${exp.company}`, size: 22, font: 'Times New Roman' })
+                    new Tab(),
+                    new TextRun({ text: exp.date, italics: true, size: 20, font: 'Times New Roman' })
                 ],
-                spacing: { before: 150 }
+                spacing: { before: 150, after: 20 }
             })
         );
 
         children.push(
             new Paragraph({
                 children: [
-                    new TextRun({ text: `${exp.location} | ${exp.date}`, italics: true, size: 20, font: 'Times New Roman' })
+                    new TextRun({ text: `${exp.company} — ${exp.location}`, bold: true, size: 20, font: 'Times New Roman' })
                 ],
                 spacing: { after: 100 }
             })
@@ -191,13 +194,18 @@ function addEducation(children) {
     data.education.forEach((edu) => {
         children.push(
             new Paragraph({
-                children: [new TextRun({ text: edu.degree, bold: true, size: 22, font: 'Times New Roman' })],
-                spacing: { before: 150 }
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
+                children: [
+                    new TextRun({ text: edu.degree, bold: true, size: 22, font: 'Times New Roman' }),
+                    new Tab(),
+                    new TextRun({ text: edu.date, italics: true, size: 20, font: 'Times New Roman' })
+                ],
+                spacing: { before: 150, after: 20 }
             })
         );
         children.push(
             new Paragraph({
-                children: [new TextRun({ text: `${edu.institution} | ${edu.date}`, italics: true, size: 20, font: 'Times New Roman' })]
+                children: [new TextRun({ text: edu.institution, bold: true, size: 20, font: 'Times New Roman' })]
             })
         );
         children.push(
@@ -235,11 +243,13 @@ function addProjects(children, variant) {
 
         children.push(
             new Paragraph({
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
                 children: [
                     new TextRun({ text: project.title, bold: true, size: 22, font: 'Times New Roman' }),
-                    new TextRun({ text: ` (${project.date})`, italics: true, size: 20, font: 'Times New Roman' })
+                    new Tab(),
+                    new TextRun({ text: project.date, italics: true, size: 20, font: 'Times New Roman' })
                 ],
-                spacing: { before: 150 }
+                spacing: { before: 150, after: 20 }
             })
         );
 

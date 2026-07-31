@@ -1,32 +1,11 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 const path = require('path');
-const os = require('os');
-const { spawnSync } = require('child_process');
 const { buildPortfolioHTML } = require('./generate-portfolio-html.js');
 const portfolioData = require('./portfolio-data.js');
 
-function convertDocxToHtml(docxPath) {
-    const htmlPath = path.join(os.tmpdir(), `${path.basename(docxPath, '.docx')}-${Date.now()}.html`);
-    const result = spawnSync('textutil', ['-convert', 'html', '-output', htmlPath, docxPath], {
-        encoding: 'utf8'
-    });
-
-    if (result.status !== 0) {
-        throw new Error(`textutil conversion failed: ${result.stderr || result.stdout || 'unknown error'}`);
-    }
-
-    return htmlPath;
-}
-
-async function convertDocxFileToPdf(docxPath, outputPdfPath) {
-    if (!fs.existsSync(docxPath)) {
-        throw new Error(`DOCX file not found: ${docxPath}`);
-    }
-
-    const htmlPath = convertDocxToHtml(docxPath);
-    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
-
+// Resume PDFs are rendered directly from their live HTML page (not from the DOCX),
+// so the downloaded PDF is pixel-identical to what the page itself looks like.
+async function renderResumeFromHTML(htmlFile, outputPdfPath) {
     const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -34,71 +13,50 @@ async function convertDocxFileToPdf(docxPath, outputPdfPath) {
 
     try {
         const page = await browser.newPage();
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-
+        await page.goto(`file://${path.join(__dirname, htmlFile)}`, { waitUntil: 'networkidle0' });
+        await page.emulateMediaType('print');
         await page.pdf({
             path: outputPdfPath,
-            format: 'A4',
+            format: 'Letter',
             printBackground: true,
-            margin: {
-                top: '0.5in',
-                right: '0.5in',
-                bottom: '0.5in',
-                left: '0.5in'
-            },
+            margin: { top: '0.35in', right: '0.35in', bottom: '0.35in', left: '0.35in' },
             displayHeaderFooter: false
         });
-
         return outputPdfPath;
     } finally {
         await browser.close();
-        if (fs.existsSync(htmlPath)) {
-            fs.unlinkSync(htmlPath);
-        }
     }
 }
 
 async function generateResumePDF() {
-    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume.pdf');
-
-    console.log('Generating resume PDF from DOCX source...');
-    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log('Generating resume PDF from resume.html...');
+    const resultPath = await renderResumeFromHTML('resume.html', outputPath);
     console.log(`Resume PDF generated successfully: ${resultPath}`);
-
     return resultPath;
 }
 
 async function generateDataAnalystResumePDF() {
-    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_DataAnalyst.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_DataAnalyst.pdf');
-
-    console.log('Generating Data Analyst resume PDF from DOCX source...');
-    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log('Generating Data Analyst resume PDF from resume-data-analyst.html...');
+    const resultPath = await renderResumeFromHTML('resume-data-analyst.html', outputPath);
     console.log(`Data Analyst resume PDF generated successfully: ${resultPath}`);
-
     return resultPath;
 }
 
 async function generateDeveloperResumePDF() {
-    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Developer.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Developer.pdf');
-
-    console.log('Generating Developer resume PDF from DOCX source...');
-    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log('Generating Developer resume PDF from resume-developer.html...');
+    const resultPath = await renderResumeFromHTML('resume-developer.html', outputPath);
     console.log(`Developer resume PDF generated successfully: ${resultPath}`);
-
     return resultPath;
 }
 
 async function generateTeacherResumePDF() {
-    const docxPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Teacher.docx');
     const outputPath = path.join(__dirname, 'documents', 'Efe_Obukohwo_Resume_Teacher.pdf');
-
-    console.log('Generating Teacher resume PDF from DOCX source...');
-    const resultPath = await convertDocxFileToPdf(docxPath, outputPath);
+    console.log('Generating Teacher resume PDF from resume-teacher.html...');
+    const resultPath = await renderResumeFromHTML('resume-teacher.html', outputPath);
     console.log(`Teacher resume PDF generated successfully: ${resultPath}`);
-
     return resultPath;
 }
 

@@ -1,7 +1,7 @@
 // Generates the Portfolio DOCX in the site's dark brand theme (black background, gold accents).
 // Deliberately separate from generate-resume-docx.js so resume generation is never affected by this file.
 
-const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle } = require('docx');
+const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, TabStopType, Tab } = require('docx');
 const fs = require('fs');
 const path = require('path');
 
@@ -27,7 +27,7 @@ function sectionHeader(title) {
 function addHeader(children) {
     children.push(
         new Paragraph({
-            children: [new TextRun({ text: data.personal.name, bold: true, size: 36, font: FONT, color: GOLD })],
+            children: [new TextRun({ text: data.personal.name, bold: true, size: 36, font: FONT, color: GOLD, allCaps: true })],
             alignment: AlignmentType.CENTER,
             spacing: { after: 100 }
         }),
@@ -38,12 +38,12 @@ function addHeader(children) {
         }),
         new Paragraph({
             children: [
-                new TextRun({
-                    text: `${data.personal.location} | ${data.personal.phone} | ${data.personal.email}`,
-                    size: 20,
-                    font: FONT,
-                    color: GRAY
-                })
+                new TextRun({ text: 'Email: ', bold: true, size: 20, font: FONT, color: GRAY }),
+                new TextRun({ text: `${data.personal.email}    `, size: 20, font: FONT, color: GRAY }),
+                new TextRun({ text: 'Phone: ', bold: true, size: 20, font: FONT, color: GRAY }),
+                new TextRun({ text: `${data.personal.phone}    `, size: 20, font: FONT, color: GRAY }),
+                new TextRun({ text: 'Address: ', bold: true, size: 20, font: FONT, color: GRAY }),
+                new TextRun({ text: data.personal.location, size: 20, font: FONT, color: GRAY })
             ],
             alignment: AlignmentType.CENTER,
             spacing: { after: 100 }
@@ -100,18 +100,20 @@ function addExperience(children) {
     data.experience.forEach((exp) => {
         children.push(
             new Paragraph({
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
                 children: [
                     new TextRun({ text: exp.title, bold: true, size: 22, font: FONT, color: WHITE }),
-                    new TextRun({ text: ` | ${exp.company}`, size: 22, font: FONT, color: GOLD })
+                    new Tab(),
+                    new TextRun({ text: exp.date, italics: true, size: 20, font: FONT, color: GRAY })
                 ],
-                spacing: { before: 150 }
+                spacing: { before: 150, after: 20 }
             })
         );
 
         children.push(
             new Paragraph({
                 children: [
-                    new TextRun({ text: `${exp.location} | ${exp.date}`, italics: true, size: 20, font: FONT, color: GRAY })
+                    new TextRun({ text: `${exp.company} — ${exp.location}`, bold: true, size: 20, font: FONT, color: GOLD })
                 ],
                 spacing: { after: 100 }
             })
@@ -135,13 +137,18 @@ function addEducation(children) {
     data.education.forEach((edu) => {
         children.push(
             new Paragraph({
-                children: [new TextRun({ text: edu.degree, bold: true, size: 22, font: FONT, color: WHITE })],
-                spacing: { before: 150 }
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
+                children: [
+                    new TextRun({ text: edu.degree, bold: true, size: 22, font: FONT, color: WHITE }),
+                    new Tab(),
+                    new TextRun({ text: edu.date, italics: true, size: 20, font: FONT, color: GRAY })
+                ],
+                spacing: { before: 150, after: 20 }
             })
         );
         children.push(
             new Paragraph({
-                children: [new TextRun({ text: `${edu.institution} | ${edu.date}`, italics: true, size: 20, font: FONT, color: GOLD })]
+                children: [new TextRun({ text: edu.institution, bold: true, size: 20, font: FONT, color: GOLD })]
             })
         );
         children.push(
@@ -170,11 +177,13 @@ function addProjects(children) {
 
         children.push(
             new Paragraph({
+                tabStops: [{ type: TabStopType.RIGHT, position: 10800 }],
                 children: [
                     new TextRun({ text: project.title, bold: true, size: 22, font: FONT, color: WHITE }),
-                    new TextRun({ text: ` (${project.date})`, italics: true, size: 20, font: FONT, color: GRAY })
+                    new Tab(),
+                    new TextRun({ text: project.date, italics: true, size: 20, font: FONT, color: GRAY })
                 ],
-                spacing: { before: 150 }
+                spacing: { before: 150, after: 20 }
             })
         );
 
