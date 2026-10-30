@@ -121,7 +121,7 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 
 ---
 
-## Phase 1: Document Vault `[~]`
+## Phase 1: Document Vault `[x]`
 
 1. [x] `scripts/build-vault.js`: hidden password prompt (typed twice), AES-256-GCM, PBKDF2 1,000,000 iterations, ids bound as AAD, staging folder then swap. File list and labels in `vault-source/vault.config.json` (git-ignored).
 2. [x] `vault.html` + `js/vault.js`: lock screen, cards grouped as Certificates & Degrees / Transcripts / Credential Evaluation / Language Proficiency, preview modal, download with clean file names, Lock button, 10-minute idle lock.
@@ -208,3 +208,4 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 - 2026-10-30: Phase S site-wide work done. Bugs found and fixed along the way: (1) a duplicate contact-form handler in script.js threw on every non-contact page and showed a fake "sent" message on the contact page; (2) the old CSP's `connect-src` blocked the Formspree request, so the contact form likely couldn't send at all.
 - 2026-10-30: Phase S pushed (36237f5) but not deployed (see Deploy blocker). Phase 1 built and tested with a throwaway password; waiting on Efe to build with the real password.
 - 2026-10-30: Repo made public, so Pages deploys again. Phase 2 built and tested (Research page, 6 articles migrated, new GDHO article, app screen, ADDING_RESEARCH.md). Phase 1 and Phase 2 commits wait on the vault build.
+- 2026-10-30: Efe built the vault with the real password (hidden prompt; never shared). Verified: 11 .enc files, EFV1 header, 1,000,000 PBKDF2 iterations, no plaintext markers, sizes match sources, wrong password rejected. Vault link enabled in the nav.
