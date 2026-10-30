@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Machine Learning & AI': ['Scikit-learn', 'XGBoost', 'LightGBM', 'Random Forest', 'AutoML', 'OpenAI API', 'Gemini (Vertex AI)'],
         'Databases & ORMs': ['PostgreSQL', 'MySQL', 'SQLAlchemy', 'Sequelize', 'Drizzle ORM', 'Prisma']
     };
-    const KEY_PROJECTS = ['Zodiac Real Estate AI', 'TEKVWA Money', 'VwaTek Apply', 'TekVwarho ProAudit'];
+    const KEY_PROJECTS = ['Zodiac Real Estate AI', 'TEKVWA Money', 'VwaTek Apply', 'Tekvwa Pro Audit'];
 
     // Populate Header
     document.getElementById('resume-name').textContent = data.personal.name;

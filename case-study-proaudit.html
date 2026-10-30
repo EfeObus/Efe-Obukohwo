@@ -8,8 +8,8 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
     <script src="js/analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: TekVwarho ProAudit - Nigerian Tax Compliance Platform | Efe Obukohwo</title>
-    <meta name="description" content="Deep dive into TekVwarho ProAudit, an enterprise-grade Nigerian tax compliance and forensic audit platform built for the 2026 Tax Reform.">
+    <title>Case Study: Tekvwa Pro Audit - Nigerian Tax Compliance Platform | Efe Obukohwo</title>
+    <meta name="description" content="Deep dive into Tekvwa Pro Audit, an enterprise-grade Nigerian tax compliance and forensic audit platform built for the 2026 Tax Reform.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="vendor/poppins/poppins.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
@@ -188,7 +188,8 @@
     <section class="case-study-hero">
         <div class="container">
             <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
-            <h1><span class="golden-text">TekVwarho ProAudit</span></h1>
+            <h1><span class="golden-text">Tekvwa Pro Audit</span></h1>
+            <p style="color: var(--gray);">Formerly Tekvwa Pro Audit</p>
             <p style="font-size: 1.3rem; color: var(--gray-light);">Nigeria's Premier Tax Compliance & Forensic Audit Platform</p>
             <div class="case-study-meta">
                 <span><i class="fas fa-calendar"></i> Oct 2025 – Present</span>
@@ -200,7 +201,7 @@
 
     <!-- Case Study Content -->
     <div class="case-study-content">
-        <img src="images/Tekvwarho Pro Audit.png" alt="TekVwarho ProAudit Dashboard" class="case-study-image">
+        <img src="images/Tekvwarho Pro Audit.png" alt="Tekvwa Pro Audit Dashboard" class="case-study-image">
 
         <section class="case-study-section">
             <h2>The Problem</h2>
@@ -220,7 +221,7 @@
 
         <section class="case-study-section">
             <h2>The Solution</h2>
-            <p>TekVwarho ProAudit is a purpose-built platform that automates Nigerian tax compliance from end to end:</p>
+            <p>Tekvwa Pro Audit is a purpose-built platform that automates Nigerian tax compliance from end to end:</p>
             
             <div class="metrics-grid">
                 <div class="metric-card">
@@ -335,6 +336,16 @@
         </section>
 
         <section class="case-study-section">
+            <h2>2026: Google Cloud and a Security Remediation</h2>
+            <p>In September 2026 I moved the platform off Railway onto Google Cloud (Cloud Run, Cloud SQL, Memorystore and Cloud Storage), then audited it as if it were going to production for real customers. The audit drove a structured remediation:</p>
+            <ul>
+                <li><strong>Tenant isolation:</strong> every entity-scoped endpoint (164 across 17 routers) was moved to a single central access check, backed by a cross-tenant test suite. A repo-wide sweep of all 620 request handlers ended with none unresolved, and it surfaced and fixed a group-level access gap in consolidation along the way.</li>
+                <li><strong>Schema integrity:</strong> differences between the ORM models and the live database were reconciled across all 66 affected tables, including a silent FX-fallback bug in pricing and unmapped payroll columns, and missing foreign keys were added.</li>
+                <li><strong>A permanent guard:</strong> a CI check with a round-trip test suite now blocks enum mismatches between code and database before they ship.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
             <h2>My Role</h2>
             <ul>
                 <li>Product conception & Nigerian tax law research</li>
@@ -344,12 +355,13 @@
                 <li>Security architecture & NDPA compliance</li>
                 <li>API development & documentation</li>
                 <li>Test strategy and 400+ test implementation</li>
+                <li>Cloud migration and production security remediation</li>
             </ul>
         </section>
 
         <section class="case-study-section">
             <h2>Outcome & Impact</h2>
-            <p>TekVwarho ProAudit demonstrates deep expertise in:</p>
+            <p>Tekvwa Pro Audit demonstrates deep expertise in:</p>
             <ul>
                 <li>Regulatory/compliance software development</li>
                 <li>Complex business logic implementation</li>
@@ -363,10 +375,7 @@
         <div class="cta-section">
             <h3>View the Code</h3>
             <p style="color: var(--gray-light); margin-bottom: 25px;">Explore the repository and technical implementation</p>
-            <a href="https://ingenious-emotion-production-c3c3.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-right: 15px;">
-                <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="https://github.com/EfeObus/TekVwarho-ProAudit" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <a href="https://github.com/EfeObus/Tekvwa-Pro-Audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 <i class="fab fa-github"></i> View on GitHub
             </a>
         </div>

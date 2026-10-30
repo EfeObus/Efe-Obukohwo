@@ -1159,6 +1159,25 @@ body:has(.opportunity-banner) .hero {
     transform: scale(1.15) rotate(5deg);
 }
 
+/* Not a link: marks commercial/team projects whose code isn't public */
+.project-link.project-link-private,
+.project-link.project-link-private:hover {
+    background: transparent;
+    border-color: #444;
+    color: var(--gray-light);
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
+
+.project-link.project-link-private::before {
+    display: none;
+}
+
+.project-link.project-link-private:hover i {
+    transform: none;
+}
+
 /* Case Study Link - Special Styling */
 .case-study-link {
     background: var(--primary-black) !important;

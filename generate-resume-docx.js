@@ -51,7 +51,7 @@ const RESUME_VARIANTS = {
         },
         projectCategory: 'developer',
         projectsTitle: 'Key Projects',
-        keyProjects: ['Zodiac Real Estate AI', 'TEKVWA Money', 'VwaTek Apply', 'TekVwarho ProAudit']
+        keyProjects: ['Zodiac Real Estate AI', 'TEKVWA Money', 'VwaTek Apply', 'Tekvwa Pro Audit']
     },
     teacher: {
         title: () => data.personal.teacherTitle || data.personal.title,

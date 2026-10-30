@@ -199,13 +199,13 @@
     <section class="case-study-hero">
         <div class="container">
             <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
-            <span class="status-badge">v1.0 — Live on Web, Android &amp; iOS</span>
+            <span class="status-badge">Live in Canada &amp; Nigeria — Web, Android &amp; iOS</span>
             <h1><span class="golden-text">TEKVWA Money</span></h1>
             <p style="font-size: 1.3rem; color: var(--gray-light);">Full-Stack Personal Finance Platform</p>
             <div class="case-study-meta">
                 <span><i class="fas fa-calendar"></i> 2026 – Present</span>
                 <span><i class="fas fa-mobile-alt"></i> Web · Android · iOS</span>
-                <span><i class="fas fa-university"></i> Live Plaid Integration</span>
+                <span><i class="fas fa-university"></i> Plaid + Mono Bank Linking</span>
             </div>
         </div>
     </section>
@@ -284,12 +284,26 @@
         </section>
 
         <section class="case-study-section">
+            <h2>Since Launch: Nigeria, Widgets and SOC 2</h2>
+            <p>The months after launch turned a working app into one that could stand up to an audit and a second market:</p>
+            <ul>
+                <li><strong>Nigeria launch:</strong> a country guardrail on every account, Nigerian bank linking through Mono, and statement parsing for Nigerian banks, including a third PDF strategy for GTCO's full-statement export. Around 150 Canadian and Nigerian merchant keywords were added to auto-categorization.</li>
+                <li><strong>Deeper analytics:</strong> day-, week-, month- and year-over-year comparisons in Analytics and Reports, a day-on-day trend graph, spending-spike detection that flags genuinely new categories rather than just percentage growth, and a raw line-item transaction export.</li>
+                <li><strong>Home-screen widgets</strong> on Android and iOS showing a passive balance snapshot.</li>
+                <li><strong>Admin operations:</strong> broadcast messages to every active customer (in-app and email), and platform reports with month/year pickers and top-category charts.</li>
+                <li><strong>Delivery:</strong> every green push to main now deploys to production automatically, and each test worker gets its own isolated database, which fixed the root cause of a flaky CI.</li>
+            </ul>
+        </section>
+
+        <section class="case-study-section">
             <h2>Security</h2>
             <ul>
                 <li>Hybrid session transport: an httpOnly/Secure/SameSite=Lax cookie on web (never readable by page scripts), a Bearer token on native — cookies aren't reliable cross-origin inside a Capacitor WebView</li>
                 <li>Plaid access tokens encrypted at rest; AI Insights authenticate via Application Default Credentials rather than a stored API key</li>
                 <li>Password hashing with bcrypt, server-side input validation on every write endpoint, and a configurable account-lockout threshold after repeated failed logins</li>
                 <li>A Super Admin-only Plaid Sandbox evaluation page, completely walled off from the customer-facing flow, for testing without ever touching a real connection</li>
+                <li><strong>Added in 2026, working toward SOC 2-style controls:</strong> mandatory multi-factor authentication; short-lived access tokens with refresh tokens (an httpOnly cookie on web, the device Keychain/Keystore on native); per-device session management with server-side revocation; tamper-evident audit logging dual-written to Cloud Logging, with automated anomaly alerting and log retention; statement uploads hardened against content spoofing and XLSX zip bombs; and Semgrep static analysis in CI</li>
+                <li>A full SOC 2 policy set (information security, access and MFA, logging and monitoring, risk assessment, sub-processors) plus a break-glass access runbook, kept in step with the code through regular audit passes</li>
             </ul>
         </section>
 
@@ -298,7 +312,6 @@
             <p>Documented rather than hidden, since this is a real production app, not a polished demo:</p>
             <ul>
                 <li><strong>No iOS push notifications yet</strong> — needs a paid Apple Developer Program membership to generate the APNs key. The client-side registration code already runs on iOS and is harmless; push will work with no further code changes once that's available. Android push is live today.</li>
-                <li><strong>Offline transaction queuing is live code, not manually verified</strong> — it's actively wired into the Income/Expense stores and queues correctly, but hasn't had a deliberate airplane-mode test pass on a real device yet.</li>
                 <li><strong>No frontend test suite</strong> — the backend has a real vitest + supertest suite; the client doesn't have equivalent coverage yet.</li>
             </ul>
         </section>
@@ -310,8 +323,8 @@
                 <a href="https://tekvwamoney.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                     <i class="fas fa-rocket"></i> Visit TEKVWA Money
                 </a>
-                <a href="https://github.com/EfeObus/Tekvwa-Money" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="contact.html" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Request a Code Walkthrough
                 </a>
             </div>
         </div>

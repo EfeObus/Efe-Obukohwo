@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fab fa-github"></i> View on GitHub
                 </a>
             `;
+        } else if (project.privateRepo) {
+            // Commercial/team code: say so instead of linking to a GitHub 404
+            linksHTML += `
+                <span class="project-link project-link-private" title="Source code is private; a walkthrough is available on request">
+                    <i class="fas fa-lock"></i> Private repository
+                </span>
+            `;
         }
 
         // Build tech tags

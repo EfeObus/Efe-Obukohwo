@@ -149,7 +149,7 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 6. [x] Write `Docs/ADDING_RESEARCH.md`: how to add an article, journal issue, or thesis yourself.
 7. [ ] Checkpoint. Tests: all 44 pages pass CSP/console (favicon 404 only); 0 pages overflow at 375px; tabs, arrow keys, `#thesis` deep links, topic filter (shown only for topics shared by 2+ pieces) and the stub redirect all work. **GDHO article on hold (Efe, 2026-10-30): kept in git-ignored `drafts/` (page + data entry) until approved; not in the sitemap, data or app.**
 
-## Phase 3: Project audit and update `[ ]`
+## Phase 3: Project audit and update `[x]` (2026-10-30)
 
 | Project | Location | Last commit | On site? |
 | --- | --- | --- | --- |
@@ -170,11 +170,39 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 | Juriciti | Developer/ (no git) | n/a | check: same as LegalEagleAI? |
 | GigTax | Desktop/ (plans only) | n/a | likely skip |
 
-1. [ ] Per project: read the README/CHANGELOG/docs and `git log` since ~2026-07-30. Write a fact sheet in `Docs/project-audits/<project>.md`.
-2. [ ] Update `portfolio-data.js` + case-study pages. Propose new additions (4–5 at most) for Efe's approval.
+1. [x] Per project: read the README/CHANGELOG/docs and `git log` since ~2026-07-30. Write a fact sheet in `Docs/project-audits/<project>.md`.
+2. [x] Update `portfolio-data.js` + case-study pages. Propose new additions (4–5 at most) for Efe's approval.
 3. [ ] Rules: no secrets, no non-public client names, no links to private repos, no unsupported metrics.
-4. [ ] Sync the app seed data.
-5. [ ] Checkpoint.
+4. [x] Sync the app seed data.
+5. [x] Checkpoint.
+
+### Phase 3 audit results (2026-10-30)
+
+The audit was recorded here instead of in per-project fact sheets. Docs/ is public on GitHub, so the full notes stayed out of the repo.
+
+- **Updated (description, short description, tech, links):**
+  - TEKVWA Money (116 commits since 07-19): Nigeria launch (Mono), MFA, device sessions, widgets, SOC 2.
+  - Tekvwa Analysis (v4.4 to v5.109).
+  - Tekvwa Pro Audit, renamed from TekVwarho ProAudit (GCP migration plus a remediation of 164 endpoints / 66 tables).
+  - TekVwa Properties: the stack was wrong (said Node/Express, is actually Flask/GCP/Capacitor), and pricing changed to Starter/Pro/Portfolio.
+- **Case studies updated:** Money (new "Since Launch" section; fixed offline-queue limitation removed), Analysis (new "Where It Is Now (v5.109)" section), Pro Audit (rename plus "2026: Google Cloud and a Security Remediation"), Zodiac (CTA).
+- **Unchanged since their entries:** TekVwa Life, VwaTek Apply, WonderWorld.
+- **Link fixes:**
+  - 6 GitHub links pointed at private repos or repos that don't exist (Money, Life, Analysis, JTOV, LegalEagle, Zodiac). They now show a "Private repository" note (`privateRepo: true`), and case-study CTAs ask for a walkthrough instead.
+  - Pro Audit now links to its renamed repo.
+  - 5 dead Railway demos were removed. Properties now points to tekvwaproperties.com.
+  - Every external link on the site now returns 2xx/3xx.
+- **Down at audit time:** tekvwaanalysis.com (503) and the Pro Audit Cloud Run app (500). Pro Audit's repo records a deploy "blocked by delinquent billing account", so a GCP billing issue is the likely cause for both. Their Live Demo links were removed until they are back up.
+- **Title lookups updated for the rename:** generate-resume-docx.js, js/pages/resume-developer.js, app interviewPrepData.ts.
+- **Added (Efe approved: "add all honestly"):**
+  - VOP Trading: names my parts (web, gateway, FIX adapter) separately from the forked open-source engines; noted as not deployed.
+  - Efe Portfolio App.
+  - NaijaVote: labelled "(System Design)", not built.
+  - Tekvwa Mortgage AI: no accuracy figures (see the leakage note below).
+  - Tekvwa IT Solutions Website: no live link (tekvwa.org didn't respond).
+  - Images: real screenshots (app, company site), the notebook's SHAP chart (Mortgage AI), and architecture diagrams drawn from the READMEs (VOP, NaijaVote).
+- **Mortgage AI leakage (for Efe to fix in that repo):** its SHAP chart is dominated by `lender_default_rate` and `muni_default_rate`. These are target-derived rates, which explains the 99.98–100% accuracy. Compute them out-of-fold (or from training rows only, before the split), then re-report the metrics.
+- **Skipped:** NigeriaConnect (an old copy of Properties), Lotto Analyzer (private).
 
 ## Phase 4: Three strongest resumes `[ ]`
 
@@ -209,3 +237,5 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 - 2026-10-30: Phase S pushed (36237f5) but not deployed (see Deploy blocker). Phase 1 built and tested with a throwaway password; waiting on Efe to build with the real password.
 - 2026-10-30: Repo made public, so Pages deploys again. Phase 2 built and tested (Research page, 6 articles migrated, new GDHO article, app screen, ADDING_RESEARCH.md). Phase 1 and Phase 2 commits wait on the vault build.
 - 2026-10-30: Efe built the vault with the real password (hidden prompt; never shared). Verified: 11 .enc files, EFV1 header, 1,000,000 PBKDF2 iterations, no plaintext markers, sizes match sources, wrong password rejected. Vault link enabled in the nav.
+- 2026-10-30: Phase 1 complete (vault live, c1508db). Phase 3: existing projects, case studies and every site link updated; new additions await Efe.
+- 2026-10-30: Phase 3 complete. 5 new projects added (23 total); all links verified.
