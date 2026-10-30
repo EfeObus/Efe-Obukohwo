@@ -10,6 +10,15 @@ Phase order: 0 → **S (security baseline)** → 1 Vault → 2 Research → 3 Pr
 
 ---
 
+## Deploy blocker (found 2026-10-30) `[x]`
+
+GitHub Pages and every Actions workflow fail with `startup_failure`; the last successful deploy was 2026-07-31. The account appears to be on GitHub Free (the branch-protection API answers "Upgrade to GitHub Pro"), and **Pages for a private repo requires Pro**. Options for Efe:
+1. Renew GitHub Pro.
+2. Make the repo public. Pages already serves every file publicly; git history was checked and holds nothing sensitive.
+3. Move hosting to Cloudflare Pages (free, private repo OK, adds real security headers, but the URL changes).
+
+**Resolved 2026-10-30:** Efe made the repo public (paying for Pro is in progress); Pages started building again the same day. Because the repo is public, `Docs/` is readable on github.com even though `_config.yml` keeps it off the website. It contains no secrets. Public repos also get branch protection for free (see S-9).
+
 ## Phase 0: Decisions `[x]` (2026-10-30)
 
 - [x] **D1 Vault model:** encrypt files in the browser format (AES-256-GCM, key derived from the password). Only encrypted files are committed.
@@ -47,14 +56,14 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 
 - [x] Move all inline `<script>` blocks into files, then drop `'unsafe-inline'` from `script-src`.
 - [x] One shared CSP (`<meta http-equiv>`): `default-src 'self'`, `object-src 'none'`, `base-uri 'self'`, `form-action 'self' https://formspree.io`, `upgrade-insecure-requests`, and only the third-party hosts actually used.
-- [ ] **Vault page gets the strictest CSP**: `script-src 'self'` only, no analytics, no external fonts or CDNs, `connect-src 'self'`, `img-src 'self' blob:`, `frame-src blob:`.
+- [x] **Vault page gets the strictest CSP**: `script-src 'self'` only, no analytics, no external fonts or CDNs, `connect-src 'self'`, `img-src 'self' blob:`, `frame-src blob:`.
 - [x] Add a `<meta name="referrer" content="strict-origin-when-cross-origin">` on all pages and `no-referrer` on the vault.
 
 #### S-2 Safe rendering (XSS)
 
 - [x] Replace data-driven `innerHTML` with `textContent` / `createElement`, or a single audited `escapeHTML()` helper where markup is needed.
 - [x] URL allowlist for every link from data (Research, projects): `https:` only, never `javascript:` / `data:`. External links get `rel="noopener noreferrer"`.
-- [ ] Turn on Trusted Types on the vault page (`require-trusted-types-for 'script'`) so any accidental `innerHTML` write fails there instead of running.
+- [x] Turn on Trusted Types on the vault page (`require-trusted-types-for 'script'`) so any accidental `innerHTML` write fails there instead of running.
 
 #### S-3 Subresource Integrity and third-party trimming
 
@@ -64,21 +73,21 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 
 #### S-4 Clickjacking
 
-- [ ] Vault page: frame-busting script that hides the page unless `window.top === window.self`.
+- [x] Vault page: frame-busting script that hides the page unless `window.top === window.self`.
 
 #### S-5 Vault cryptography and handling
 
-- [ ] AES-256-GCM through Web Crypto. Each file gets a random 96-bit IV. Key from PBKDF2-SHA256 with **≥1,000,000 iterations** and a random 16-byte salt (OWASP floor is 600k; we go higher because attacks are offline). Benchmark so unlocking takes about 1 s on a phone.
-- [ ] Encrypted file names are random IDs, so names like `Efe BSC RESULT` don't show in URLs. Real names and labels live only inside the encrypted manifest.
-- [ ] A wrong password only shows "Incorrect password" (GCM tag failure). No hints, no partial info.
-- [ ] Key kept **in memory only**, not `sessionStorage`. That way no script or storage can read it, and a reload re-locks. Auto-lock after 10 min idle and on the Lock button. Revoke blob URLs on lock.
-- [ ] Previews open in a sandboxed iframe from `blob:` URLs. Downloads use `download=` with the real file name.
+- [x] AES-256-GCM through Web Crypto. Each file gets a random 96-bit IV. Key from PBKDF2-SHA256 with **≥1,000,000 iterations** and a random 16-byte salt (OWASP floor is 600k; we go higher because attacks are offline). Benchmark so unlocking takes about 1 s on a phone.
+- [x] Encrypted file names are random IDs, so names like `Efe BSC RESULT` don't show in URLs. Real names and labels live only inside the encrypted manifest.
+- [x] A wrong password only shows "Incorrect password" (GCM tag failure). No hints, no partial info.
+- [x] Key kept **in memory only**, not `sessionStorage`. That way no script or storage can read it, and a reload re-locks. Auto-lock after 10 min idle and on the Lock button. Revoke blob URLs on lock.
+- [x] Previews open in an iframe from `blob:` URLs (not `sandbox`ed: Chrome won't render PDFs in sandboxed frames; the blob inherits the vault's CSP instead). Downloads use `download=` with the real file name.
 - [ ] `noindex, nofollow, noarchive` on the vault and out of `sitemap.xml`. (`robots.txt` has no effect here: this is a project site under `/Efe-Obukohwo/`, and crawlers only read `/robots.txt` at the domain root.)
 
 #### S-6 Password strength (the real defence against brute force)
 
 - [ ] The current password combines a name-based word, a digit, and symbols. Targeted guessing lists built from a person's name hit this pattern early. Recommendation: a passphrase of **4–5 random words** (e.g. 25+ characters), which no offline attack can realistically guess. Efe decides at build time.
-- [ ] Rotation: `build-vault.js --rotate` re-encrypts everything with a new password and salt in one step.
+- [x] Rotation: every `build-vault.js` run uses a fresh salt, IVs and file IDs, so re-running it with a new password rotates everything.
 
 #### S-7 Leak prevention (repo hygiene)
 
@@ -107,36 +116,38 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 - [ ] Check headers/CSP with Mozilla Observatory + Google CSP Evaluator.
 - [x] Headless-browser run of all 35 pages under the new CSP: no blocked resources, and fonts, icons and data sections all render.
 - [x] Attack tests: data-borne `<img onerror>`, injected inline `<script>`, injected inline handler, and `javascript:`/`data:`/`vbscript:` URLs are all blocked or neutralised.
-- [ ] Vault-specific tests (Phase 1): framing, direct `.enc` download, wrong password, idle auto-lock.
+- [x] Vault tests (throwaway password): wrong password rejected, unlock ~0.2 s on desktop, image + PDF decrypt and render under the vault CSP, Lock wipes the DOM, raw `.enc` unreadable, page stays blank when framed by another origin, no CSP/Trusted Types violations, no overflow at 375px. Idle auto-lock uses the same `lock()` path (not timed in tests).
 - [ ] Re-run the checklist at Phase 5.
 
 ---
 
-## Phase 1: Document Vault `[ ]`
+## Phase 1: Document Vault `[~]`
 
-1. [ ] `scripts/build-vault.js <source-folder>` prompts for the password (hidden input, never stored), writes `vault/<randomid>.enc` + `vault/manifest.enc`, and prints a summary.
-2. [ ] `vault.html` + `vault.js`: password form → decrypt manifest → cards grouped as **Degrees & Transcripts**, **Credential Evaluations** (ICAS), and **Certificates**, with preview and download.
-3. [ ] Apply S-1, S-2, S-4, S-5 on this page.
-4. [ ] Planned contents: BSc result, NCE result, NCE transcript, DELSU unofficial transcript, Educational Transcripts, Transcript 2 (duplicate check), ICAS evaluation, ITS certificate, Research Analyst certificate. ETRF stays out unless confirmed.
-5. [ ] Ask Efe for the password → build → verify.
-6. [ ] **Nav redesign** (D6). Nine top-level items, with a "Credentials" dropdown:
-   `Home · About · Experience · Skills · Projects · Research · Blog · Credentials ▾ (Education, Certifications, Recommendations, Document Vault) · Contact`
-   The nav is currently copied into 31 pages. Add `scripts/sync-nav.js` to write one source nav into every page, so they can't drift apart. Pages stay plain HTML, which keeps them search-friendly. The dropdown works by keyboard and in the mobile hamburger menu.
-7. [ ] Checkpoint.
+1. [x] `scripts/build-vault.js`: hidden password prompt (typed twice), AES-256-GCM, PBKDF2 1,000,000 iterations, ids bound as AAD, staging folder then swap. File list and labels in `vault-source/vault.config.json` (git-ignored).
+2. [x] `vault.html` + `js/vault.js`: lock screen, cards grouped as Certificates & Degrees / Transcripts / Credential Evaluation / Language Proficiency, preview modal, download with clean file names, Lock button, 10-minute idle lock.
+3. [x] S-1/S-2/S-4/S-5 applied on this page (see Phase S).
+4. [x] Contents: all 10 files. No true duplicates: `Educational Transcripts.pdf` is a combined Humber + DELSU package, and `Transcript 2.pdf` is the standalone Humber transcript (same first 3 pages).
+5. [ ] **Efe runs `node scripts/build-vault.js` in a terminal and types the real password.**
+6. [x] Nav redesign: `scripts/sync-nav.js` writes one canonical navbar into every page (`Home · About · Experience · Skills · Projects · [Research] · Blog · Credentials ▾ · Contact`). Active state is baked in per page. Behaviour lives in `js/nav.js` (keyboard + Escape + mobile). Case-study pages had lost their Blog link; fixed.
+7. [x] Fixes found along the way (all present on the live site before this work):
+   - Page titles hidden under the fixed navbar on desktop (padding 120px vs ~157px nav). Fixed.
+   - 8 pages scrolled sideways on phones (blog tables, a three-column diagram, the "Recommendations" title, the contact column). Fixed; 0 pages overflow at 375px.
+   - Home-page banner wrapped to two lines after the last commit and covered the logo (nav offset hard-coded at 38px/65px). It's now measured live.
+8. [ ] Checkpoint, then commit.
 
-## Phase 2: Research Work `[ ]`
+## Phase 2: Research Work `[~]` (built and tested 2026-10-30; not yet committed)
 
-1. [ ] Add a `research: []` array to `portfolio-data.js` with the schema `{ type: 'article'|'issue'|'thesis', title, date, status, venue, journal: { name, volume, issue, pages } /* issues */, authors, role /* for issues: author / co-author / reviewer / editor */, abstract, tags, links: { pdf, doi, url, code, data }, page }`.
-2. [ ] `research.html` has **Articles / Journal Issues / Thesis** tabs, a tag filter, and empty states. Each Journal Issues entry shows a citation line (Journal, Vol(Issue), pages, DOI).
-3. [ ] `research-template.html` is a long-form layout for pieces hosted on the site.
-4. [ ] Migration (approved):
+1. [x] Add a `research: []` array to `portfolio-data.js` with the schema `{ type: 'article'|'issue'|'thesis', title, date, status, venue, journal: { name, volume, issue, pages } /* issues */, authors, role /* for issues: author / co-author / reviewer / editor */, abstract, tags, links: { pdf, doi, url, code, data }, page }`.
+2. [x] `research.html` has **Articles / Journal Issues / Thesis** tabs, a tag filter, and empty states. Each Journal Issues entry shows a citation line (Journal, Vol(Issue), pages, DOI).
+3. [x] (Done as a documented copy-from page instead of a separate template: `research-forensic-audit.html` is the reference layout. See Docs/ADDING_RESEARCH.md.) `research-template.html` is a long-form layout for pieces hosted on the site.
+4. [x] Migration (approved). The 6 articles moved to `research-*.html` with canonical links, and the old `blog-*.html` URLs are now meta-refresh stubs (noindex). `sitemap.xml` updated, and the GDHO article is written from the 2 Aug 2025 report:
    - **To Research › Articles:** Nigeria Tax Reform, Humanitarian Data, ML Accuracy, Adaptive Learning, Forensic Audit, API Security.
    - **New article:** *GDHO Data Provenance and the Reliability of Headline Sector Figures*, written up from the Desktop report.
    - **Stay in Blog:** TEKVWA Money, VwaTek Apply, TekVwarho Analysis, Nashville Housing, Online Retail SQL.
    - Old `blog-*.html` URLs become redirect stubs (meta refresh + canonical). Update `sitemap.xml`.
-5. [ ] `generate-data-json.js` exports `research`, and the app's `portfolio-data.seed.json` + a new Research screen pick it up (D7).
-6. [ ] Write `Docs/ADDING_RESEARCH.md`: how to add an article, journal issue, or thesis yourself.
-7. [ ] Checkpoint.
+5. [x] `generate-data-json.js` exports `research`, and the app's `portfolio-data.seed.json` + a new Research screen pick it up (D7). Done: the app has a new **Research Work** screen under More (tabs: Articles / Journal Issues / Thesis), the seed is synced, and `npm run build` and `lint` are clean. The app change is uncommitted in its own repo.
+6. [x] Write `Docs/ADDING_RESEARCH.md`: how to add an article, journal issue, or thesis yourself.
+7. [ ] Checkpoint. Tests: all 44 pages pass CSP/console (favicon 404 only); 0 pages overflow at 375px; tabs, arrow keys, `#thesis` deep links, topic filter (shown only for topics shared by 2+ pieces) and the stub redirect all work. **GDHO article on hold (Efe, 2026-10-30): kept in git-ignored `drafts/` (page + data entry) until approved; not in the sitemap, data or app.**
 
 ## Phase 3: Project audit and update `[ ]`
 
@@ -167,6 +178,9 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 
 ## Phase 4: Three strongest resumes `[ ]`
 
+Facts from the credentials (Phase 1) to carry into resumes and Education: the ITS certificate was awarded **with Honours**; the DELSU B.Sc. result notification shows **Second Class Upper Division**. Neither is on the site yet.
+
+
 1. [ ] Extract all ~147 resume/cover-letter files. Skip `~$` lock files, remove duplicates, and use cover letters for tone only.
 2. [ ] Bullet bank: tag each bullet by role and skill, and score it on metrics, specificity, verb, and relevance.
 3. [ ] Consistency report: where versions disagree (dates, titles, numbers), Efe confirms. Nothing is invented.
@@ -192,3 +206,5 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 - 2026-10-30: server.js deletion approved; 2FA confirmed on all accounts. ETRF identified as an IELTS TRF, waiting on an include decision.
 - 2026-10-30: IELTS TRF confirmed for the vault. Phase S started on branch `security-hardening`.
 - 2026-10-30: Phase S site-wide work done. Bugs found and fixed along the way: (1) a duplicate contact-form handler in script.js threw on every non-contact page and showed a fake "sent" message on the contact page; (2) the old CSP's `connect-src` blocked the Formspree request, so the contact form likely couldn't send at all.
+- 2026-10-30: Phase S pushed (36237f5) but not deployed (see Deploy blocker). Phase 1 built and tested with a throwaway password; waiting on Efe to build with the real password.
+- 2026-10-30: Repo made public, so Pages deploys again. Phase 2 built and tested (Research page, 6 articles migrated, new GDHO article, app screen, ADDING_RESEARCH.md). Phase 1 and Phase 2 commits wait on the vault build.

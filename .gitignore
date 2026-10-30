@@ -47,3 +47,6 @@ pids
 # Vault plaintext must never enter the repo (only vault/*.enc is committed)
 vault-source/
 *.plain.*
+
+# Unpublished drafts (kept local until approved)
+drafts/

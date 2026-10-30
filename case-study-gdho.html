@@ -183,7 +183,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
@@ -194,18 +194,27 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="experience.html" class="nav-link">Experience</a>
-                <a href="education.html" class="nav-link">Education</a>
-                <a href="certifications.html" class="nav-link">Certifications</a>
                 <a href="skills.html" class="nav-link">Skills</a>
-                <a href="projects.html" class="nav-link active">Projects</a>
-                <a href="recommendations.html" class="nav-link">Recommendations</a>
+                <a href="projects.html" class="nav-link active" aria-current="page">Projects</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <div class="nav-dropdown">
+                    <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-credentials">
+                        Credentials <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="nav-dropdown-menu" id="nav-credentials">
+                        <a href="education.html" class="nav-dropdown-link">Education</a>
+                        <a href="certifications.html" class="nav-dropdown-link">Certifications</a>
+                        <a href="recommendations.html" class="nav-dropdown-link">Recommendations</a>
+                    </div>
+                </div>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <div class="hamburger" id="hamburger">
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -397,6 +406,7 @@
         </div>
     </footer>
 
+    <script src="js/nav.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

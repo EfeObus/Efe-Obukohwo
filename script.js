@@ -1,44 +1,4 @@
-// Mobile Navigation Toggle
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
-
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-    }
-});
-
-// Set active navigation link based on current page
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage === 'index.html' && linkHref === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-});
+// Navigation (menu, dropdown, active link) lives in js/nav.js.
 
 // Intersection Observer for animations
 const observerOptions = {

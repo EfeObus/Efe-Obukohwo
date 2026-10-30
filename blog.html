@@ -126,7 +126,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo-link">
@@ -137,19 +137,27 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="experience.html" class="nav-link">Experience</a>
-                <a href="education.html" class="nav-link">Education</a>
-                <a href="certifications.html" class="nav-link">Certifications</a>
                 <a href="skills.html" class="nav-link">Skills</a>
                 <a href="projects.html" class="nav-link">Projects</a>
-                <a href="recommendations.html" class="nav-link">Recommendations</a>
-                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="blog.html" class="nav-link active" aria-current="page">Blog</a>
+                <div class="nav-dropdown">
+                    <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-credentials">
+                        Credentials <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="nav-dropdown-menu" id="nav-credentials">
+                        <a href="education.html" class="nav-dropdown-link">Education</a>
+                        <a href="certifications.html" class="nav-dropdown-link">Certifications</a>
+                        <a href="recommendations.html" class="nav-dropdown-link">Recommendations</a>
+                    </div>
+                </div>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <div class="hamburger" id="hamburger">
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -159,6 +167,9 @@
             <h1 class="page-title">Technical <span class="golden-text">Blog</span></h1>
             <p style="font-size: 1.2rem; color: var(--gray-light); max-width: 600px; margin: 0 auto;">
                 Insights on full stack development, machine learning, and building production-ready systems
+            </p>
+            <p style="color: var(--gray); margin-top: 15px;">
+                Looking for long-form analysis? See my <a href="research.html" class="golden-text">Research Work</a>.
             </p>
         </div>
     </section>
@@ -275,137 +286,6 @@
                 </div>
             </article>
 
-            <!-- Article 1 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-search-dollar"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 12 min read</span>
-                    </div>
-                    <h3>Building a Forensic Audit Engine: Benford's Law in Practice</h3>
-                    <p>How I implemented statistical fraud detection using Benford's Law, Z-Score anomaly analysis, and 3-way matching in TekVwarho ProAudit to catch financial irregularities.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">Python</span>
-                        <span class="blog-tag">FastAPI</span>
-                        <span class="blog-tag">Statistics</span>
-                        <span class="blog-tag">Fraud Detection</span>
-                    </div>
-                    <a href="blog-forensic-audit.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 10 min read</span>
-                    </div>
-                    <h3>Adaptive Learning with Item Response Theory: The Math Behind WonderWorld</h3>
-                    <p>Deep dive into implementing the Rasch Model for real-time difficulty adjustment in educational software, maintaining 75% success probability for optimal learning.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">Machine Learning</span>
-                        <span class="blog-tag">EdTech</span>
-                        <span class="blog-tag">Python</span>
-                        <span class="blog-tag">NumPy</span>
-                    </div>
-                    <a href="blog-adaptive-learning.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Article 3 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-home"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 15 min read</span>
-                    </div>
-                    <h3>88.3% ML Accuracy: Lessons from Predicting Canadian Property Values</h3>
-                    <p>A technical walkthrough of the ensemble model architecture (XGBoost + LightGBM + Random Forest) and feature engineering that achieved 88.3% prediction accuracy on 49,551+ properties.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">XGBoost</span>
-                        <span class="blog-tag">Scikit-learn</span>
-                        <span class="blog-tag">Feature Engineering</span>
-                        <span class="blog-tag">Real Estate</span>
-                    </div>
-                    <a href="blog-ml-accuracy.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 12 min read</span>
-                    </div>
-                    <h3>Designing Multi-Tier API Security: Rate Limiting, Keys, and ML Attack Detection</h3>
-                    <p>How I built a 5-tier API key system with behavioral analysis and ML-powered attack detection that achieved 100% prevention rate during penetration testing.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">Security</span>
-                        <span class="blog-tag">API Design</span>
-                        <span class="blog-tag">Flask</span>
-                        <span class="blog-tag">Python</span>
-                    </div>
-                    <a href="blog-api-security.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 18 min read</span>
-                    </div>
-                    <h3>Nigeria's 2026 Tax Reform: What Developers Need to Know</h3>
-                    <p>A comprehensive guide to the upcoming Nigerian tax reforms and how I built a compliant tax calculation engine handling PAYE, VAT, CIT, WHT, and NRS e-invoicing.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">FinTech</span>
-                        <span class="blog-tag">Nigeria</span>
-                        <span class="blog-tag">Tax Compliance</span>
-                        <span class="blog-tag">PostgreSQL</span>
-                    </div>
-                    <a href="blog-nigeria-tax-reform.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-database"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Jan 2026</span>
-                        <span><i class="far fa-clock"></i> 10 min read</span>
-                    </div>
-                    <h3>From Airtable to Data-Driven Insights: Scaling Humanitarian Outcomes</h3>
-                    <p>Lessons learned from optimizing database systems for Humanitarian Outcomes, achieving a 25% efficiency increase through strategic schema design and query optimization.</p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">PostgreSQL</span>
-                        <span class="blog-tag">Database Design</span>
-                        <span class="blog-tag">SQL</span>
-                        <span class="blog-tag">Data Engineering</span>
-                    </div>
-                    <a href="blog-humanitarian-data.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
         </div>
 
         <!-- Subscribe Section -->
@@ -451,6 +331,7 @@
         </div>
     </footer>
 
+    <script src="js/nav.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

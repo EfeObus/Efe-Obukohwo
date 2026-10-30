@@ -55,6 +55,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://efeobus.github.io/Efe-Obukohwo/blog.html</loc>
         <lastmod>2026-07-19</lastmod>
         <changefreq>weekly</changefreq>
@@ -91,38 +97,38 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-forensic-audit.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-forensic-audit.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-adaptive-learning.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-adaptive-learning.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-ml-accuracy.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-ml-accuracy.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-api-security.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-api-security.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-nigeria-tax-reform.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-nigeria-tax-reform.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://efeobus.github.io/Efe-Obukohwo/blog-humanitarian-data.html</loc>
-        <lastmod>2026-01-10</lastmod>
+        <loc>https://efeobus.github.io/Efe-Obukohwo/research-humanitarian-data.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

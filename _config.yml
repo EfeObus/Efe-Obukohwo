@@ -1,0 +1,16 @@
+# GitHub Pages (Jekyll) build settings.
+# Only the website itself is published. Internal docs, build scripts and tooling stay
+# in the repo but are not served (e.g. Docs/ROADMAP describes the vault's contents).
+exclude:
+  - Docs/
+  - scripts/
+  - vault-source/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - generate-data-json.js
+  - generate-portfolio-docx.js
+  - generate-portfolio-html.js
+  - generate-resume-docx.js
+  - generate-resume-pdf.js
+# portfolio-data.json stays published: the Efe Portfolio App fetches it from the site.

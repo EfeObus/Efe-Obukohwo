@@ -473,6 +473,79 @@ const portfolioData = {
         }
     ],
 
+    // Research Work (rendered by research.html; see Docs/ADDING_RESEARCH.md)
+    // type: "article" | "issue" (journal issue contributed to) | "thesis"
+    // Optional per entry: venue, status, journal { name, volume, issue, pages }, role, authors,
+    // links { pdf, doi, url, code, data }. `page` is the on-site write-up, if there is one.
+    research: [
+        {
+            type: "article",
+            title: "Building a Forensic Audit Engine: Benford's Law in Practice",
+            date: "Jan 2026",
+            readTime: "12 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "How I implemented statistical fraud detection using Benford's Law, Z-Score anomaly analysis, and 3-way matching in TekVwarho ProAudit to catch financial irregularities.",
+            tags: ["Python", "FastAPI", "Statistics", "Fraud Detection"],
+            icon: "fa-search-dollar",
+            page: "research-forensic-audit.html"
+        },
+        {
+            type: "article",
+            title: "Adaptive Learning with Item Response Theory: The Math Behind WonderWorld",
+            date: "Jan 2026",
+            readTime: "10 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "Deep dive into implementing the Rasch Model for real-time difficulty adjustment in educational software, maintaining 75% success probability for optimal learning.",
+            tags: ["Machine Learning", "EdTech", "Python", "NumPy"],
+            icon: "fa-brain",
+            page: "research-adaptive-learning.html"
+        },
+        {
+            type: "article",
+            title: "88.3% ML Accuracy: Lessons from Predicting Canadian Property Values",
+            date: "Jan 2026",
+            readTime: "15 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "A technical walkthrough of the ensemble model architecture (XGBoost + LightGBM + Random Forest) and feature engineering that achieved 88.3% prediction accuracy on 49,551+ properties.",
+            tags: ["XGBoost", "Scikit-learn", "Feature Engineering", "Real Estate"],
+            icon: "fa-home",
+            page: "research-ml-accuracy.html"
+        },
+        {
+            type: "article",
+            title: "Designing Multi-Tier API Security: Rate Limiting, Keys, and ML Attack Detection",
+            date: "Jan 2026",
+            readTime: "12 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "How I built a 5-tier API key system with behavioral analysis and ML-powered attack detection that achieved 100% prevention rate during penetration testing.",
+            tags: ["Security", "API Design", "Flask", "Python"],
+            icon: "fa-shield-alt",
+            page: "research-api-security.html"
+        },
+        {
+            type: "article",
+            title: "Nigeria's 2026 Tax Reform: What Developers Need to Know",
+            date: "Jan 2026",
+            readTime: "18 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "A comprehensive guide to the upcoming Nigerian tax reforms and how I built a compliant tax calculation engine handling PAYE, VAT, CIT, WHT, and NRS e-invoicing.",
+            tags: ["FinTech", "Nigeria", "Tax Compliance", "PostgreSQL"],
+            icon: "fa-file-invoice-dollar",
+            page: "research-nigeria-tax-reform.html"
+        },
+        {
+            type: "article",
+            title: "From Airtable to Data-Driven Insights: Scaling Humanitarian Outcomes",
+            date: "Jan 2026",
+            readTime: "10 min read",
+            authors: ["Efe Obukohwo"],
+            abstract: "Lessons learned from optimizing database systems for Humanitarian Outcomes, achieving a 25% efficiency increase through strategic schema design and query optimization.",
+            tags: ["PostgreSQL", "Database Design", "SQL", "Data Engineering"],
+            icon: "fa-database",
+            page: "research-humanitarian-data.html"
+        }
+    ],
+
     // Key Achievements
     achievements: [
         "Achieved 88.3% ML prediction accuracy in real estate analytics platform processing 49,551+ properties",

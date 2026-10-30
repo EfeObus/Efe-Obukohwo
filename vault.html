@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="vault-guard">
+<head>
+    <meta charset="UTF-8">
+    <!-- Strictest policy on the site: no third parties, no inline code, Trusted Types enforced. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' blob:; connect-src 'self'; frame-src blob:; base-uri 'none'; form-action 'none'; object-src 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Vault - Efe Obukohwo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="vendor/poppins/poppins.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" aria-label="Main">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/Efe Logo.png" alt="Efe Obukohwo Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <div class="nav-dropdown">
+                    <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-credentials">
+                        Credentials <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="nav-dropdown-menu" id="nav-credentials">
+                        <a href="education.html" class="nav-dropdown-link">Education</a>
+                        <a href="certifications.html" class="nav-dropdown-link">Certifications</a>
+                        <a href="recommendations.html" class="nav-dropdown-link">Recommendations</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="vault page-section">
+        <div class="container">
+            <h1 class="page-title">Document Vault</h1>
+            <p class="page-subtitle">Academic records, credential evaluation and language results, available to people I've shared the password with.</p>
+
+            <!-- Locked state -->
+            <div class="vault-lock" id="vault-lock">
+                <div class="vault-lock-icon" aria-hidden="true"><i class="fas fa-lock"></i></div>
+                <form class="vault-form" id="vault-form" autocomplete="on">
+                    <!-- Lets password managers file the password under a sensible name -->
+                    <input type="text" name="username" value="Efe Obukohwo Document Vault" autocomplete="username" class="visually-hidden" tabindex="-1" aria-hidden="true" readonly>
+                    <label for="vault-password">Password</label>
+                    <div class="vault-input-row">
+                        <input type="password" id="vault-password" name="password" autocomplete="current-password" required spellcheck="false" autocapitalize="off">
+                        <button type="submit" class="btn btn-primary" id="vault-submit">
+                            <i class="fas fa-unlock" aria-hidden="true"></i> Unlock
+                        </button>
+                    </div>
+                    <p class="vault-status" id="vault-status" role="status" aria-live="polite"></p>
+                </form>
+                <p class="vault-footnote"><i class="fas fa-shield-alt" aria-hidden="true"></i> Documents are encrypted (AES-256) and only decrypted in your browser. Need access? <a href="contact.html">Get in touch</a>.</p>
+            </div>
+
+            <!-- Unlocked state -->
+            <div class="vault-content" id="vault-content" hidden>
+                <div class="vault-toolbar">
+                    <span class="vault-unlocked-note"><i class="fas fa-lock-open" aria-hidden="true"></i> Unlocked. The vault re-locks after 10 minutes of inactivity.</span>
+                    <button type="button" class="btn btn-outline vault-lock-btn" id="vault-lock-btn">
+                        <i class="fas fa-lock" aria-hidden="true"></i> Lock
+                    </button>
+                </div>
+                <div id="vault-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document preview -->
+    <div class="vault-viewer" id="vault-viewer" role="dialog" aria-modal="true" aria-labelledby="vault-viewer-title" hidden>
+        <div class="vault-viewer-panel">
+            <div class="vault-viewer-header">
+                <h2 id="vault-viewer-title"></h2>
+                <div class="vault-viewer-actions">
+                    <a class="vault-icon-btn" id="vault-viewer-open" target="_blank" rel="noopener" title="Open in new tab"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="visually-hidden">Open in new tab</span></a>
+                    <a class="vault-icon-btn" id="vault-viewer-download" title="Download"><i class="fas fa-download" aria-hidden="true"></i><span class="visually-hidden">Download</span></a>
+                    <button type="button" class="vault-icon-btn" id="vault-viewer-close" title="Close"><i class="fas fa-times" aria-hidden="true"></i><span class="visually-hidden">Close</span></button>
+                </div>
+            </div>
+            <div class="vault-viewer-body" id="vault-viewer-body"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Contact Information</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:efe.obukohwo@outlook.com">efe.obukohwo@outlook.com</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19057819825">+1 (905) 781-9825</a>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>North York, Toronto, ON, Canada</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Me</h4>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/in/efe-obukohwo/" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/EfeObus/" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://x.com/efe_obukohwo?s=11" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/itzefe.obus" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/efeobus_/" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Efe Obukohwo. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/vault.js"></script>
+</body>
+</html>
