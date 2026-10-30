@@ -94,7 +94,15 @@ if (contactForm) {
             showNotification('Please enter a valid email address', 'error');
             return;
         }
-        
+
+        // Cooldown between sends (Formspree enforces the real limit server-side)
+        const now = Date.now();
+        if (now - (contactForm.lastSubmitAt || 0) < 30000) {
+            showNotification('Please wait a moment before sending another message.', 'error');
+            return;
+        }
+        contactForm.lastSubmitAt = now;
+
         // Show loading state
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
@@ -147,10 +155,11 @@ function showNotification(message, type = 'info') {
     notification.className = `notification ${type}`;
     notification.innerHTML = `
         <div class="notification-content">
-            <span>${message}</span>
+            <span></span>
             <button class="notification-close">&times;</button>
         </div>
     `;
+    notification.querySelector('span').textContent = message;
     
     // Add styles
     notification.style.cssText = `
@@ -339,32 +348,6 @@ function lazyLoadImages() {
 // Initialize lazy loading
 lazyLoadImages();
 
-// Add loading spinner for form submission
-function showLoadingSpinner(form) {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-}
-
-// Enhanced form submission with loading state
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    showLoadingSpinner(this);
-    
-    // Your existing form handling code here
-    setTimeout(() => {
-        // Simulate API call
-        showNotification('Message sent successfully!', 'success');
-        this.reset();
-    }, 2000);
-});
-
 // Email link functionality
 function handleEmailClick(email) {
     // Try mailto first
@@ -417,30 +400,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 console.log('Portfolio website loaded successfully!');
 
-// Track resume download
-function trackDownload() {
-    // Analytics tracking (if Google Analytics is available)
+// Track document downloads. Links opt in with a data-track-download attribute
+// (inline onclick handlers are blocked by the CSP).
+function trackDownload(fileName) {
     if (typeof gtag !== 'undefined') {
         gtag('event', 'download', {
-            'event_category': 'Resume',
-            'event_label': 'Efe_Obukohwo_Resume.pdf',
+            'event_category': 'Document',
+            'event_label': fileName,
             'value': 1
         });
     }
-    
-    // Console log for tracking
-    console.log('Resume download initiated');
-    
-    // Optional: Send to your own analytics endpoint
-    // fetch('/api/track-download', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //         action: 'resume_download',
-    //         timestamp: new Date().toISOString(),
-    //         userAgent: navigator.userAgent
-    //     })
-    // }).catch(err => console.log('Analytics tracking failed:', err));
 }
+
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[data-track-download]');
+    if (link) {
+        trackDownload(link.getAttribute('download') || link.getAttribute('href'));
+    }
+});

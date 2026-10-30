@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://formspree.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://formspree.io; frame-src 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6E5QMP9NDK');
-    </script>
+    <script src="js/analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featured Projects - Efe Obukohwo</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="vendor/poppins/poppins.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -111,70 +107,7 @@
     <script src="script.js"></script>
     
     <!-- Dynamic Projects Loader -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = window.portfolioData;
-            if (!data || !data.projects) {
-                console.error('Portfolio data not loaded!');
-                return;
-            }
-
-            const container = document.getElementById('projects-container');
-            
-            const projectsHTML = data.projects.map(project => {
-                // Build project links
-                let linksHTML = '';
-                if (project.caseStudy) {
-                    linksHTML += `
-                        <a href="${project.caseStudy}" class="project-link case-study-link">
-                            <i class="fas fa-book-open"></i> Case Study
-                        </a>
-                    `;
-                }
-                if (project.live) {
-                    linksHTML += `
-                        <a href="${project.live}" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                    `;
-                }
-                if (project.github) {
-                    linksHTML += `
-                        <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    `;
-                }
-
-                // Build tech tags
-                const techHTML = project.technologies.map(tech => 
-                    `<span class="tech-tag">${tech}</span>`
-                ).join('');
-
-                return `
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="${project.image}" alt="${project.title}" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>${project.title}</h3>
-                            <p>${project.description}</p>
-                            <div class="project-info">
-                                <span class="project-date">${project.date}</span>
-                            </div>
-                            <div class="project-tech">
-                                ${techHTML}
-                            </div>
-                            <div class="project-links">
-                                ${linksHTML}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            container.innerHTML = projectsHTML;
-        });
-    </script>
+    <script src="js/safe-html.js"></script>
+    <script src="js/pages/projects.js"></script>
 </body>
 </html>

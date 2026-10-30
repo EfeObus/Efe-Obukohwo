@@ -43,3 +43,7 @@ pids
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Vault plaintext must never enter the repo (only vault/*.enc is committed)
+vault-source/
+*.plain.*

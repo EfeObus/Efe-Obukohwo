@@ -1853,3 +1853,12 @@ img[src*="placeholder"]::before {
     font-size: 3rem;
     opacity: 0.3;
 }
+
+/* Contact form honeypot (spam trap) */
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}

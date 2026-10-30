@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://formspree.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://formspree.io; frame-src 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6E5QMP9NDK');
-    </script>
+    <script src="js/analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills & Expertise - Efe Obukohwo</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="vendor/poppins/poppins.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -108,110 +104,8 @@
     <script src="portfolio-data.js"></script>
 
     <!-- Skills grid generator -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = window.portfolioData;
-            if (!data) {
-                console.error('Portfolio data not loaded!');
-                return;
-            }
-
-            const ICONS = {
-                // Programming Languages
-                'Python': 'fab fa-python',
-                'JavaScript': 'fab fa-js-square',
-                'TypeScript': 'fas fa-code',
-                'Kotlin': 'fab fa-android',
-                'HTML5': 'fab fa-html5',
-                'CSS3': 'fab fa-css3-alt',
-                'SQL': 'fas fa-database',
-                'Java': 'fab fa-java',
-                // Frontend Technologies
-                'React': 'fab fa-react',
-                'Zustand': 'fas fa-cubes',
-                'Tailwind CSS': 'fas fa-wind',
-                'Bootstrap': 'fab fa-bootstrap',
-                'Vite': 'fas fa-bolt',
-                'Responsive Design': 'fas fa-mobile-screen',
-                // Backend & APIs
-                'Flask': 'fas fa-fire',
-                'FastAPI': 'fas fa-gauge-high',
-                'Node.js': 'fab fa-node-js',
-                'Express.js': 'fas fa-route',
-                'Ktor': 'fas fa-server',
-                'RESTful APIs': 'fas fa-exchange-alt',
-                'JWT': 'fas fa-key',
-                'Plaid API': 'fas fa-university',
-                'Docker': 'fab fa-docker',
-                'Git': 'fab fa-git-alt',
-                // Mobile Development
-                'Kotlin Multiplatform': 'fab fa-android',
-                'Compose Multiplatform': 'fas fa-layer-group',
-                'Capacitor (Android/iOS)': 'fas fa-mobile-screen-button',
-                'SQLDelight': 'fas fa-database',
-                'Koin (DI)': 'fas fa-syringe',
-                'Biometric Auth': 'fas fa-fingerprint',
-                'Push Notifications (FCM/APNs)': 'fas fa-bell',
-                // Cloud & DevOps
-                'Google Cloud Run': 'fab fa-google',
-                'Cloud SQL': 'fas fa-database',
-                'Secret Manager': 'fas fa-lock',
-                'AWS': 'fab fa-aws',
-                'GitHub Actions (CI/CD)': 'fab fa-github',
-                'Firebase': 'fas fa-fire',
-                'Prometheus/Micrometer': 'fas fa-chart-line',
-                'Sentry': 'fas fa-shield-alt',
-                // Machine Learning & AI
-                'Scikit-learn': 'fas fa-chart-line',
-                'XGBoost': 'fas fa-bolt',
-                'LightGBM': 'fas fa-seedling',
-                'Random Forest': 'fas fa-sitemap',
-                'AutoML': 'fas fa-robot',
-                'OpenAI API': 'fas fa-lightbulb',
-                'Gemini (Vertex AI)': 'fab fa-google',
-                // Data Analysis & Visualization
-                'Pandas': 'fas fa-table',
-                'Tableau': 'fas fa-chart-bar',
-                'Power BI': 'fas fa-chart-pie',
-                'Excel': 'fas fa-file-excel',
-                'SPSS': 'fas fa-calculator',
-                'Apache Spark': 'fas fa-fire',
-                'Apache Hive': 'fas fa-warehouse',
-                // Databases & ORMs
-                'PostgreSQL': 'fas fa-database',
-                'MySQL': 'fas fa-database',
-                'Oracle': 'fas fa-database',
-                'SQLAlchemy': 'fas fa-layer-group',
-                'Sequelize': 'fas fa-cubes',
-                'Drizzle ORM': 'fas fa-water',
-                'Prisma': 'fas fa-gem',
-                'Airtable': 'fas fa-table',
-                // Teaching & Education
-                'Curriculum Design': 'fas fa-chalkboard',
-                'Classroom Instruction': 'fas fa-chalkboard-teacher',
-                'Data-Driven Instruction': 'fas fa-chart-line',
-                'Lesson-Plan Digitization': 'fas fa-laptop-code',
-                'Student Coaching & Mentorship': 'fas fa-people-arrows',
-                'Instructional Technology': 'fas fa-desktop'
-            };
-            const DEFAULT_ICON = 'fas fa-check-circle';
-
-            const grid = document.getElementById('skills-grid');
-            grid.innerHTML = Object.entries(data.skills).map(([category, items]) => `
-                <div class="skill-category">
-                    <h3>${category}</h3>
-                    <div class="skill-items">
-                        ${items.map(skill => `
-                            <div class="skill-item">
-                                <i class="${ICONS[skill] || DEFAULT_ICON}"></i>
-                                <span>${skill}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        });
-    </script>
+    <script src="js/safe-html.js"></script>
+    <script src="js/pages/skills.js"></script>
 
     <script src="script.js"></script>
 </body>

@@ -5,9 +5,7 @@ Allow: /
 Sitemap: https://efeobus.github.io/Efe-Obukohwo/sitemap.xml
 
 # Disallow backend files and documentation
-Disallow: /server.js
 Disallow: /package.json
-Disallow: /.env.example
 Disallow: /contact-handler.php
 Disallow: /CONTACT_FORM_SETUP.md
 Disallow: /DEPLOYMENT.md

@@ -2,18 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://formspree.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://formspree.io; frame-src 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E5QMP9NDK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6E5QMP9NDK');
-    </script>
+    <script src="js/analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efe Obukohwo - Resume</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
     <style>
         .download-buttons {
             position: fixed;
@@ -540,144 +536,7 @@
     <script src="portfolio-data.js"></script>
     
     <!-- Resume generator script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = window.portfolioData;
-            if (!data) {
-                console.error('Portfolio data not loaded!');
-                return;
-            }
-
-            // Populate Header
-            document.getElementById('resume-name').textContent = data.personal.name;
-            document.getElementById('resume-title').textContent = data.personal.title;
-            
-            const contactHTML = `
-                <div class="contact-item">
-                    <span>Email:</span>
-                    <span>${data.personal.email}</span>
-                </div>
-                <div class="contact-item">
-                    <span>Phone:</span>
-                    <span>${data.personal.phone}</span>
-                </div>
-                <div class="contact-item">
-                    <span>Address:</span>
-                    <span>${data.personal.location}</span>
-                </div>
-                <div class="contact-item">
-                    <span>Portfolio:</span>
-                    <span>${data.personal.portfolio}</span>
-                </div>
-                <div class="contact-item">
-                    <span>LinkedIn:</span>
-                    <span>${data.personal.linkedin}</span>
-                </div>
-                <div class="contact-item">
-                    <span>GitHub:</span>
-                    <span>${data.personal.github}</span>
-                </div>
-            `;
-            document.getElementById('resume-contact').innerHTML = contactHTML;
-
-            // Populate Summary
-            document.getElementById('resume-summary').textContent = data.personal.summary;
-
-            // Populate Experience
-            const experienceHTML = data.experience.map(job => `
-                <div class="experience-item">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">${job.title}</div>
-                            <div class="company">${job.company}</div>
-                        </div>
-                        <div class="date">${job.date}</div>
-                    </div>
-                    <div class="job-description">
-                        <ul>
-                            ${job.responsibilities.map(r => `<li>${r}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('resume-experience').innerHTML = experienceHTML;
-
-            // Populate Education
-            const educationHTML = data.education.map(edu => `
-                <div class="education-item">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">${edu.degree}</div>
-                            <div class="company">${edu.institution}</div>
-                        </div>
-                        <div class="date">${edu.date}</div>
-                    </div>
-                    <div style="font-size: 10px;">
-                        <strong>Key Courses:</strong> ${edu.courses}<br>
-                        <strong>Cumulative GPA:</strong> <span class="gpa">${edu.gpa}</span>${edu.honors ? ' and ' + edu.honors : ''}
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('resume-education').innerHTML = educationHTML;
-
-            // Populate Projects (limit to 4 featured projects for resume)
-            const featuredProjects = data.projects.filter(p => p.featured).slice(0, 4);
-            const projectsHTML = featuredProjects.map(project => {
-                const links = [];
-                if (project.live) {
-                    links.push(`<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>`);
-                }
-                if (project.github) {
-                    links.push(`<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> GitHub</a>`);
-                }
-                const linksHTML = links.length > 0 ? `<div class="project-links">${links.join(' ')}</div>` : '';
-                
-                return `
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-title">${project.title}</div>
-                        <div class="date">${project.date}</div>
-                    </div>
-                    <div class="project-description">
-                        <ul>
-                            <li>${project.shortDescription}</li>
-                        </ul>
-                        ${linksHTML}
-                        <div class="tech-stack">
-                            ${project.technologies.slice(0, 6).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `}).join('');
-            document.getElementById('resume-projects').innerHTML = projectsHTML;
-
-            // Populate Skills
-            const skillsHTML = Object.entries(data.skills).map(([category, skills]) => `
-                <div class="skill-category">
-                    <h4>${category}</h4>
-                    <div class="skill-list">${skills.join(', ')}</div>
-                </div>
-            `).join('');
-            document.getElementById('resume-skills').innerHTML = skillsHTML;
-
-            // Populate Certifications
-            const certificationsHTML = data.certifications.map(cert => `
-                <div class="cert-item">
-                    <div class="cert-title">${cert.title}</div>
-                    <div class="cert-issuer">${cert.issuer}</div>
-                    <div class="cert-date">${cert.date}</div>
-                </div>
-            `).join('');
-            document.getElementById('resume-certifications').innerHTML = certificationsHTML;
-
-            // Populate Achievements
-            const achievementsHTML = `
-                <ul class="achievements-list">
-                    ${data.achievements.map(a => `<li>${a}</li>`).join('')}
-                </ul>
-            `;
-            document.getElementById('resume-achievements').innerHTML = achievementsHTML;
-        });
-    </script>
+    <script src="js/safe-html.js"></script>
+    <script src="js/pages/resume.js"></script>
 </body>
 </html>
