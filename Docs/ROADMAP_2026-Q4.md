@@ -204,7 +204,7 @@ The audit was recorded here instead of in per-project fact sheets. Docs/ is publ
 - **Mortgage AI leakage (for Efe to fix in that repo):** its SHAP chart is dominated by `lender_default_rate` and `muni_default_rate`. These are target-derived rates, which explains the 99.98–100% accuracy. Compute them out-of-fold (or from training rows only, before the split), then re-report the metrics.
 - **Skipped:** NigeriaConnect (an old copy of Properties), Lotto Analyzer (private).
 
-## Phase 4: Three strongest resumes `[ ]`
+## Phase 4: Three strongest resumes `[x]` (2026-10-30)
 
 Facts from the credentials (Phase 1) to carry into resumes and Education: the ITS certificate was awarded **with Honours**; the DELSU B.Sc. result notification shows **Second Class Upper Division**. Neither is on the site yet.
 
@@ -215,6 +215,20 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 4. [ ] Assemble the Developer / Data Analyst / Teacher resumes (confirm OCT status for Teacher). ATS-safe, 1–2 pages, Canadian conventions.
 5. [ ] Write through the existing generators so `resume-*.html`, `documents/*.docx|pdf`, and the download buttons all update together. Archive the old OneDrive copies, then refresh them.
 6. [ ] Checkpoint: side-by-side review with the reason each bullet was chosen.
+
+### Phase 4 results (2026-10-30)
+
+- **Efe's rule:** leave every experience as it is and only improve the bullets. Roles, titles, dates and bullet counts are verified identical, and every number is preserved.
+- **Corpus:** text from 183 unique files was extracted to the scratchpad only (never the repo). Every bullet was compared against its variants.
+- **Changed:**
+  - All 26 bullets rewritten (also in experience.html).
+  - The 3 track summaries tightened.
+  - Education: ITS "graduated with Honours" and DELSU "Second Class Upper Division" added (verified from the vault credentials).
+- **Regenerated:** all resume DOCX and PDF files (2 pages each). OneDrive copies refreshed, with the old ones moved to resume/Archive-2026-10/.
+- **OCT:** not claimed. Efe has not confirmed the status.
+- **For Efe to confirm:**
+  - Confirmed by Efe: Zodiac, "led a team of 5 interns" (wording fixed everywhere); IGNITE, "20,000+ students" (kept).
+- **Numbers in older versions, not added per Efe's rule:** "20+ statistical trends", "3+ program workstreams" (Flip), "trained 100+ students" (Data Processing Teacher), KYC (UBA).
 
 ## Phase 5: QA and ship `[ ]`
 
@@ -239,3 +253,4 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 - 2026-10-30: Efe built the vault with the real password (hidden prompt; never shared). Verified: 11 .enc files, EFV1 header, 1,000,000 PBKDF2 iterations, no plaintext markers, sizes match sources, wrong password rejected. Vault link enabled in the nav.
 - 2026-10-30: Phase 1 complete (vault live, c1508db). Phase 3: existing projects, case studies and every site link updated; new additions await Efe.
 - 2026-10-30: Phase 3 complete. 5 new projects added (23 total); all links verified.
+- 2026-10-30: Phase 4 built: 26 bullets and 3 summaries improved, honours added, resumes regenerated, OneDrive refreshed (old copies archived). Waiting on 2 fact confirmations.

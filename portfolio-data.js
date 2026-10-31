@@ -12,19 +12,19 @@ const portfolioData = {
         linkedin: "linkedin.com/in/efe-obukohwo",
         github: "github.com/EfeObus",
         portfolio: "efeobus.github.io/Efe-Obukohwo",
-        summary: "Data Analyst with hands-on experience turning messy, high-volume datasets into stakeholder-ready business intelligence using advanced Excel, SQL, and Python. Engineered a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a dynamic formula engine (VLOOKUP/XLOOKUP, SUMPRODUCT, 9 pivot tables) and a slicer-driven KPI dashboard. Background spans AML/fraud transaction monitoring (SQL, pivot tables, STR reporting), humanitarian database consulting (25% efficiency gains via Airtable/SQL optimization), and trend analysis with SPSS, Tableau, and Power BI. Also a full-stack developer at heart: completed a hands-on internship architecting a production Flask/MySQL real estate analytics platform (88.3% ML prediction accuracy, 20+ REST endpoints, Dockerized CI/CD), and independently designs, builds, and ships full-stack web and mobile projects end-to-end.",
+        summary: "Data Analyst with 5+ years of experience turning messy, high-volume data into stakeholder-ready insight with SQL, Python, and advanced Excel. Background spans AML/fraud transaction monitoring at a commercial bank, database consulting for a global humanitarian research organization (a 25% efficiency gain through schema and data-integrity work), and research analysis in SPSS, Tableau, and Power BI. Recent work includes turning a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a slicer-driven KPI dashboard, and modeling 500,000+ e-commerce transactions in PostgreSQL with 30 production SQL queries. Comfortable owning a dataset from raw extract to executive-ready visualization, with full-stack development skills to build the tools around it.",
 
         // Role-tailored headline + summary used by the Data Analyst resume variant
         dataAnalystTitle: "Data Analyst | Business Intelligence & Database Consultant",
-        dataAnalystSummary: "Data Analyst with 5+ years of experience turning messy, high-volume datasets into stakeholder-ready business intelligence using advanced Excel, SQL, and Python. Engineered a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a dynamic formula engine (VLOOKUP/XLOOKUP, SUMPRODUCT, 9 pivot tables) and a slicer-driven KPI dashboard. Background spans AML/fraud transaction monitoring (SQL, pivot tables, STR reporting), humanitarian database consulting (25% efficiency gains via Airtable/SQL optimization), and trend analysis with SPSS, Tableau, and Power BI. Comfortable owning a dataset from raw extract through cleaning, statistical analysis, and executive-facing visualization.",
+        dataAnalystSummary: "Data Analyst with 5+ years of experience turning messy, high-volume data into stakeholder-ready insight with SQL, Python, and advanced Excel. Background spans AML/fraud transaction monitoring at a commercial bank, database consulting for a global humanitarian research organization (a 25% efficiency gain through schema and data-integrity work), and research analysis in SPSS, Tableau, and Power BI. Recent work includes turning a 56,636-row municipal housing dataset into a verified $18.50B market analysis with a slicer-driven KPI dashboard, and modeling 500,000+ e-commerce transactions in PostgreSQL with 30 production SQL queries. Comfortable owning a dataset from raw extract to executive-ready visualization, with full-stack development skills to build the tools around it.",
 
         // Role-tailored headline + summary used by the Developer resume variant
         developerTitle: "Full Stack Developer | Python Developer | Data Engineer",
-        developerSummary: "Full Stack Developer with hands-on internship experience and a self-driven portfolio of independently designed, built, and shipped applications across web, cloud, and native mobile. During a full-stack internship at Zodiac Tech Toronto, architected and shipped a production Flask/MySQL real estate analytics platform processing 49,551+ properties with 88.3% ML prediction accuracy, a 20+ endpoint REST API, and a Dockerized CI/CD pipeline achieving 99.9% staging uptime while leading a team of 5 developers. Independently built full-stack applications (FastAPI, Flask, Node.js/Express, React) with 500+ API routes, plus cross-platform mobile apps (Kotlin Multiplatform, Capacitor) running natively on iOS, Android, and Web from a single codebase. Self-directed across AWS and Google Cloud Run, integrating both OpenAI and Vertex AI (Gemini) into personal projects, with engineering practices spanning CI/CD pipelines, JWT/biometric authentication architecture, and observability (Prometheus, Sentry). Brings a Data Analyst's rigor for clean data and measurable outcomes to every system built.",
+        developerSummary: "Full Stack Developer who designs, builds, and ships production applications across web, cloud, and native mobile. At Zodiac Tech Toronto, led a team of 5 interns on a Flask/MySQL real estate analytics platform covering 49,551+ properties, with 88.3% prediction accuracy, a 20+ endpoint REST API, and a Dockerized CI/CD pipeline at 99.9% staging uptime. Independently built and launched TEKVWA Money, a personal finance platform live on web, Android, and iOS in Canada and Nigeria with Plaid and Mono bank linking and SOC 2-style security, alongside a FastAPI tax-compliance platform with 500+ API routes and a statistical analysis platform on Google Cloud Run with Vertex AI (Gemini). Works across Python, TypeScript, and Kotlin with CI/CD, authentication, and security architecture, and brings a data analyst's rigor for clean data and measurable outcomes.",
 
         // Role-tailored headline + summary used by the Teacher/Educator resume variant
         teacherTitle: "Computer Science & IT Educator | Technology & Data Instructor",
-        teacherSummary: "Technology educator with hands-on classroom and IT leadership experience teaching computer science, data processing, and digital literacy in Nigerian secondary schools. As IT Department Lead, led a departmental initiative to digitize lesson-plan creation and approval via the school website, increasing teacher collaboration and efficiency by 50%. As a Data Processing Teacher, pioneered the school's transition from manual to digital result computation, improving accuracy and cutting processing time by 75% while applying data-driven teaching strategies that lifted average student grades by 20%. As a Computer Science Teacher, designed a project-based curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment and coaching the school's coding team to a first-place regional competition win. Brings the same structured, data-informed approach to the classroom that underlies current work as a Data Analyst and Full-Stack Developer."
+        teacherSummary: "Computer science and IT educator with five years of secondary-school teaching and IT leadership in Nigeria across computer science, data processing, and digital literacy. Designed a project-based computer science curriculum that grew STEM extracurricular enrollment by 30%, and coached the school's coding team to first place at a regional competition. Moved a school from manual to digital result computation (75% faster processing), used student performance data to raise average grades by 20%, and, as IT Department Lead, digitized lesson-plan approval to increase teacher collaboration and efficiency by 50%. Holds a B.Sc. in Computer Science and a National Certificate in Education in Computer Science and Physics, and brings current data and software experience into the classroom."
     },
 
     // Work Experience
@@ -36,10 +36,10 @@ const portfolioData = {
             location: "Toronto, ON",
             relevantTo: ["developer", "data-analyst"],
             responsibilities: [
-                "Architected an AI-powered real estate analytics platform processing 49,551+ Canadian properties, achieving 88.3% ML prediction accuracy with an ensemble of XGBoost, LightGBM, and Random Forest",
-                "Led full-stack development of a production Flask application with MySQL and a 20+ endpoint REST API, shipping interactive property mapping and investment analytics",
-                "Implemented a 5-tier API security system with ML-powered XSS/CSRF detection and behavioral analysis, achieving a 100% attack-prevention rate in internal penetration testing",
-                "Deployed a Dockerized CI/CD pipeline achieving 99.9% staging uptime, <400ms API response times, and 85% test coverage while leading a team of 5 developers"
+                "Architected an AI-powered real estate analytics platform covering 49,551+ Canadian properties, reaching 88.3% prediction accuracy with an XGBoost, LightGBM, and Random Forest ensemble",
+                "Led full-stack development of a production Flask and MySQL application with a 20+ endpoint REST API, delivering interactive property mapping and investment analytics",
+                "Built a 5-tier API security layer combining ML-based XSS/CSRF detection with behavioral analysis, blocking 100% of attacks in internal penetration testing",
+                "Led a team of 5 interns in deploying a Dockerized CI/CD pipeline that sustained 99.9% staging uptime, sub-400ms API responses, and 85% test coverage"
             ]
         },
         {
@@ -49,9 +49,9 @@ const portfolioData = {
             location: "Toronto, ON",
             relevantTo: ["developer", "data-analyst"],
             responsibilities: [
-                "Automated a manual student registration and check-in workflow for the IGNITE Sleep Lounge, eliminating manual processing for 20,000+ students and cutting processing time by 90%",
-                "Led root-cause analysis on the insurance opt-in process, redesigning the workflow to cut processing time by 15%",
-                "Resolved billing issues and account discrepancies across a high volume of inbound student inquiries via phone, email, and live chat"
+                "Automated the IGNITE Sleep Lounge's manual registration and check-in workflow for 20,000+ students, eliminating manual processing and cutting processing time by 90%",
+                "Led a root-cause analysis of the student insurance opt-in process and redesigned the workflow, cutting processing time by 15%",
+                "Resolved billing issues and account discrepancies for a high volume of student inquiries across phone, email, and live chat"
             ]
         },
         {
@@ -61,10 +61,10 @@ const portfolioData = {
             location: "Remote",
             relevantTo: ["data-analyst", "developer"],
             responsibilities: [
-                "Resolved data-integrity issues across the GDHO Airtable and database while designing optimized schemas with the team lead, driving a 25% increase in operational efficiency",
-                "Conducted trend analysis using SPSS and SQL, then visualized findings in Tableau and Power BI to drive data-informed decisions for humanitarian stakeholders worldwide",
-                "Built and segmented 1,200+ partner and audience lists using Airtable and SQL, increasing campaign engagement by 30%",
-                "Qualified 350+ leads from events and surveys using structured frameworks, converting 120 into high-priority partnership opportunities"
+                "Fixed data-integrity issues across the GDHO Airtable base and database and co-designed optimized schemas with the team lead, increasing operational efficiency by 25%",
+                "Analyzed trends in SPSS and SQL and presented them in Tableau and Power BI visualizations that informed decisions for humanitarian stakeholders worldwide",
+                "Built and segmented 1,200+ partner and audience lists in Airtable and SQL, lifting campaign engagement by 30%",
+                "Qualified 350+ leads from events and surveys with structured frameworks and converted 120 into high-priority partnership opportunities"
             ]
         },
         {
@@ -74,8 +74,8 @@ const portfolioData = {
             location: "Canada",
             relevantTo: ["data-analyst"],
             responsibilities: [
-                "Conducted quantitative and qualitative analysis on leadership barriers among LGBTQ+ and BIPOC youth using SPSS, SQL, and Excel, then visualized findings in Power BI and Infogram for stakeholder presentations",
-                "Authored research reports synthesizing key trends and statistical findings, presenting outcomes directly to stakeholders to guide data-driven program decisions"
+                "Investigated leadership barriers facing LGBTQ+ and BIPOC youth through quantitative and qualitative analysis in SPSS, SQL, and Excel, visualizing findings in Power BI and Infogram for stakeholders",
+                "Wrote research reports synthesizing key trends and statistical findings and presented them directly to stakeholders to guide program decisions"
             ]
         },
         {
@@ -85,8 +85,8 @@ const portfolioData = {
             location: "Oghara, Delta State, Nigeria",
             relevantTo: ["teacher"],
             responsibilities: [
-                "Led a departmental initiative to digitize lesson-plan creation and approval through the school website, replacing a fully manual, paper-based process",
-                "Streamlined lesson-plan review and approval turnaround for the department, increasing teacher collaboration and operational efficiency by 50%"
+                "Led the department's move from paper-based to digital lesson-plan creation and approval through the school website",
+                "Shortened lesson-plan review and approval turnaround, increasing teacher collaboration and departmental efficiency by 50%"
             ]
         },
         {
@@ -96,10 +96,10 @@ const portfolioData = {
             location: "Sapele, Nigeria",
             relevantTo: ["data-analyst"],
             responsibilities: [
-                "Monitored and analyzed daily transactions across a retail and corporate client portfolio, detecting and preventing money laundering, terrorist financing, and fraud",
-                "Investigated 30+ system-generated alerts weekly using SQL queries and advanced Excel (VLOOKUP, Pivot Tables) to identify and escalate suspicious activity",
-                "Conducted Customer Due Diligence (CDD) and Enhanced Due Diligence (EDD) for high-risk clients, ensuring full regulatory compliance",
-                "Drafted Suspicious Transaction Reports (STRs) for the Nigerian Financial Intelligence Unit, contributing to a 10% increase in branch reporting accuracy"
+                "Monitored daily transactions across a retail and corporate client portfolio to detect and prevent money laundering, terrorist financing, and fraud",
+                "Investigated 30+ system-generated alerts weekly with SQL queries and advanced Excel (VLOOKUP, pivot tables), escalating suspicious activity",
+                "Performed Customer Due Diligence (CDD) and Enhanced Due Diligence (EDD) on high-risk clients to meet regulatory requirements",
+                "Drafted Suspicious Transaction Reports (STRs) for the Nigerian Financial Intelligence Unit, contributing to a 10% gain in branch reporting accuracy"
             ]
         },
         {
@@ -109,8 +109,8 @@ const portfolioData = {
             location: "Oghara, Delta State, Nigeria",
             relevantTo: ["teacher", "data-analyst"],
             responsibilities: [
-                "Pioneered the school's transition from manual to digital result computation, improving grading accuracy and cutting processing time by 75%",
-                "Applied data-driven teaching strategies informed by student performance trends, lifting average student grades by 20%"
+                "Moved the school from manual to digital result computation, improving grading accuracy and cutting processing time by 75%",
+                "Used student performance trends to target teaching strategies, raising average student grades by 20%"
             ]
         },
         {
@@ -120,9 +120,9 @@ const portfolioData = {
             location: "Mosogar, Nigeria",
             relevantTo: ["teacher"],
             responsibilities: [
-                "Led the installation and configuration of 40 workstations, ensuring optimal performance with zero reported issues post-installation",
-                "Resolved technical issues for 65+ end-users promptly and accurately while strengthening antivirus and cybersecurity protocols across all systems",
-                "Implemented a remote support system, streamlining registration and payment assistance for students"
+                "Led the installation and configuration of 40 workstations, with zero issues reported after installation",
+                "Resolved technical issues for 65+ end users and strengthened antivirus and cybersecurity protections across all systems",
+                "Set up a remote support system that streamlined course registration and payment help for students"
             ]
         },
         {
@@ -132,8 +132,8 @@ const portfolioData = {
             location: "Mosogar, Delta State, Nigeria",
             relevantTo: ["teacher"],
             responsibilities: [
-                "Designed and delivered a project-based computer science curriculum aligned with industry trends, driving a 30% increase in STEM extracurricular enrollment",
-                "Coached the school's coding team through a competitive programming curriculum, leading them to a first-place win at a regional competition"
+                "Designed and taught a project-based computer science curriculum aligned with industry trends, increasing STEM extracurricular enrollment by 30%",
+                "Coached the school's coding team through a competitive programming curriculum to first place at a regional competition"
             ]
         }
     ],
@@ -145,7 +145,8 @@ const portfolioData = {
             institution: "Humber College, Toronto, ON",
             date: "Jan 2024 – Aug 2025",
             courses: "Machine Learning, Big Data Analytics, Database Design and Administration, Java Programming, SQL Server, and Database Development",
-            gpa: "86.5%"
+            gpa: "86.5%",
+            honors: "graduated with Honours"
         },
         {
             degree: "Ontario Graduate Certificate, Research Analyst",
@@ -160,7 +161,8 @@ const portfolioData = {
             institution: "Delta State University, Abraka, Nigeria",
             date: "Dec 2016 – Oct 2019",
             courses: "Java Programming, Data Structures and Algorithms, Human Computer Interactions, Database Management and Design",
-            gpa: "3.75 in a 5-point grading system"
+            gpa: "3.75 in a 5-point grading system",
+            honors: "graduated with Second Class Upper Division honours"
         },
         {
             degree: "National Certificate in Education, Computer Science and Physics",
