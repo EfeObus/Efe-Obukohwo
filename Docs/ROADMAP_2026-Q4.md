@@ -113,11 +113,11 @@ The site is static HTML on GitHub Pages: no server, no logins, no database, no c
 
 #### S-10 Verification
 
-- [ ] Check headers/CSP with Mozilla Observatory + Google CSP Evaluator.
+- [~] External header scanners skipped. GitHub Pages can't set response headers and these tools grade headers, so the meta CSP was verified in-browser instead.
 - [x] Headless-browser run of all 35 pages under the new CSP: no blocked resources, and fonts, icons and data sections all render.
 - [x] Attack tests: data-borne `<img onerror>`, injected inline `<script>`, injected inline handler, and `javascript:`/`data:`/`vbscript:` URLs are all blocked or neutralised.
 - [x] Vault tests (throwaway password): wrong password rejected, unlock ~0.2 s on desktop, image + PDF decrypt and render under the vault CSP, Lock wipes the DOM, raw `.enc` unreadable, page stays blank when framed by another origin, no CSP/Trusted Types violations, no overflow at 375px. Idle auto-lock uses the same `lock()` path (not timed in tests).
-- [ ] Re-run the checklist at Phase 5.
+- [x] Re-ran at Phase 5: 43 pages with 0 CSP/console errors; attack tests pass (the `javascript:` test was retargeted after Phase 3 changed the data); vault frame guard holds; no inline scripts or handlers; every page has a CSP.
 
 ---
 
@@ -212,7 +212,7 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 1. [ ] Extract all ~147 resume/cover-letter files. Skip `~$` lock files, remove duplicates, and use cover letters for tone only.
 2. [ ] Bullet bank: tag each bullet by role and skill, and score it on metrics, specificity, verb, and relevance.
 3. [ ] Consistency report: where versions disagree (dates, titles, numbers), Efe confirms. Nothing is invented.
-4. [ ] Assemble the Developer / Data Analyst / Teacher resumes (confirm OCT status for Teacher). ATS-safe, 1–2 pages, Canadian conventions.
+4. [x] Assemble the Developer / Data Analyst / Teacher resumes (OCT not claimed; status unconfirmed). ATS-safe, 1–2 pages, Canadian conventions.
 5. [ ] Write through the existing generators so `resume-*.html`, `documents/*.docx|pdf`, and the download buttons all update together. Archive the old OneDrive copies, then refresh them.
 6. [ ] Checkpoint: side-by-side review with the reason each bullet was chosen.
 
@@ -230,14 +230,14 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
   - Confirmed by Efe: Zodiac, "led a team of 5 interns" (wording fixed everywhere); IGNITE, "20,000+ students" (kept).
 - **Numbers in older versions, not added per Efe's rule:** "20+ statistical trends", "3+ program workstreams" (Flip), "trained 100+ students" (Data Processing Teacher), KYC (UBA).
 
-## Phase 5: QA and ship `[ ]`
+## Phase 5: QA and ship `[x]` (2026-10-30)
 
-- [ ] Favicon: every page links `/favicon.ico`, which resolves to the domain root and 404s. Add a real favicon under the project path.
-- [ ] Link check, mobile nav at 375px, keyboard nav through the dropdown, Lighthouse.
-- [ ] Re-run the S-10 security checklist.
-- [ ] `sitemap.xml` (Research yes, Vault no).
-- [ ] Final diff scan: no plaintext vault files, no password, no secrets.
-- [ ] One commit per phase. Push after sign-off. Watch the CI resume regeneration.
+- [x] Favicon: favicon.ico plus 32px and apple-touch icons, made from the logo and linked with relative paths on every page (enforced by sync-nav.js). The 404 page gets `<base href="/Efe-Obukohwo/">`, which also fixes it losing its styles when served at nested URLs (an existing bug).
+- [x] Link check: 906 internal refs and all data-driven images, case studies and research pages resolve; every external link resolves (Phase 3). Mobile nav at 375px and keyboard dropdown (Escape returns focus) pass, with 0 pages overflowing. Lighthouse was not run.
+- [x] Re-ran the S-10 security checklist (see S-10).
+- [x] `sitemap.xml`: 35 URLs. Research is in; Vault, drafts and redirect stubs are out. 4 existing pages that were missing were added.
+- [x] Final scan: gitleaks found nothing in 74 commits; vault/ holds only .enc files; no private filenames anywhere in history; vault-source/ and drafts/ are git-ignored.
+- [x] One commit per phase, pushed. CI resume regeneration and security checks will run once GitHub billing is resolved (account locked). The generated files are already committed.
 
 ---
 
@@ -254,3 +254,4 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
 - 2026-10-30: Phase 1 complete (vault live, c1508db). Phase 3: existing projects, case studies and every site link updated; new additions await Efe.
 - 2026-10-30: Phase 3 complete. 5 new projects added (23 total); all links verified.
 - 2026-10-30: Phase 4 built: 26 bullets and 3 summaries improved, honours added, resumes regenerated, OneDrive refreshed (old copies archived). Waiting on 2 fact confirmations.
+- 2026-10-30: Phase 5 complete. Favicon and 404 base fix, sitemap completed, security checklist re-run clean. Roadmap done; open items are on Efe (billing, OCT status, GDHO approval, Mortgage AI leakage fix).

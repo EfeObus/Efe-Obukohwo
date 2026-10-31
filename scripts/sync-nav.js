@@ -81,6 +81,12 @@ ${items}
     </nav>`;
 }
 
+const ICON_LINKS = [
+    '<link rel="icon" href="favicon.ico" sizes="any">',
+    '<link rel="icon" type="image/png" href="images/icons/favicon-32.png" sizes="32x32">',
+    '<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">'
+];
+
 let changed = 0;
 for (const page of fs.readdirSync(ROOT).filter(f => f.endsWith('.html'))) {
     const file = path.join(ROOT, page);
@@ -91,6 +97,9 @@ for (const page of fs.readdirSync(ROOT).filter(f => f.endsWith('.html'))) {
     if (!out.includes('src="js/nav.js"')) {
         out = out.replace('<script src="script.js"></script>', '<script src="js/nav.js"></script>\n    <script src="script.js"></script>');
     }
+    // Site icons. Relative paths: on a GitHub project site "/favicon.ico" points at the domain root.
+    out = out.replace(/\n[ \t]*<!-- Favicon -->|\n[ \t]*<link rel="(?:icon|shortcut icon|apple-touch-icon)"[^>]*>/g, '');
+    out = out.replace(/(\n([ \t]*)<meta name="viewport"[^>]*>)/, `$1\n$2${ICON_LINKS.join(`\n$2`)}`);
     if (out !== html) {
         fs.writeFileSync(file, out);
         changed++;
