@@ -91,11 +91,16 @@ let changed = 0;
 for (const page of fs.readdirSync(ROOT).filter(f => f.endsWith('.html'))) {
     const file = path.join(ROOT, page);
     const html = fs.readFileSync(file, 'utf8');
-    if (!/<nav class="navbar"/.test(html)) continue;
+    // Redirect stubs and verification files have no viewport meta; leave them alone.
+    if (!/<meta name="viewport"/.test(html)) continue;
 
-    let out = html.replace(/<nav class="navbar"[\s\S]*?<\/nav>/, renderNav(page));
-    if (!out.includes('src="js/nav.js"')) {
-        out = out.replace('<script src="script.js"></script>', '<script src="js/nav.js"></script>\n    <script src="script.js"></script>');
+    let out = html;
+    // Pages without a navbar (the printable resumes) still get the site icons below.
+    if (/<nav class="navbar"/.test(html)) {
+        out = out.replace(/<nav class="navbar"[\s\S]*?<\/nav>/, renderNav(page));
+        if (!out.includes('src="js/nav.js"')) {
+            out = out.replace('<script src="script.js"></script>', '<script src="js/nav.js"></script>\n    <script src="script.js"></script>');
+        }
     }
     // Site icons. Relative paths: on a GitHub project site "/favicon.ico" points at the domain root.
     out = out.replace(/\n[ \t]*<!-- Favicon -->|\n[ \t]*<link rel="(?:icon|shortcut icon|apple-touch-icon)"[^>]*>/g, '');
@@ -105,4 +110,4 @@ for (const page of fs.readdirSync(ROOT).filter(f => f.endsWith('.html'))) {
         changed++;
     }
 }
-console.log(`Navbar synced (${changed} page${changed === 1 ? '' : 's'} updated).`);
+console.log(`Navbar and icons synced (${changed} page${changed === 1 ? '' : 's'} updated).`);
