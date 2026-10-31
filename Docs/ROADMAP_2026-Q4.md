@@ -225,7 +225,7 @@ Facts from the credentials (Phase 1) to carry into resumes and Education: the IT
   - The 3 track summaries tightened.
   - Education: ITS "graduated with Honours" and DELSU "Second Class Upper Division" added (verified from the vault credentials).
 - **Regenerated:** all resume DOCX and PDF files (2 pages each). OneDrive copies refreshed, with the old ones moved to resume/Archive-2026-10/.
-- **OCT:** not claimed. Efe has not confirmed the status.
+- **OCT:** in progress (Efe, 2026-10-30). Added to the Teacher summary only, since the certifications list is shared by all resumes. The optional extra figures were declined, so they are not added.
 - **For Efe to confirm:**
   - Confirmed by Efe: Zodiac, "led a team of 5 interns" (wording fixed everywhere); IGNITE, "20,000+ students" (kept).
 - **Numbers in older versions, not added per Efe's rule:** "20+ statistical trends", "3+ program workstreams" (Flip), "trained 100+ students" (Data Processing Teacher), KYC (UBA).
