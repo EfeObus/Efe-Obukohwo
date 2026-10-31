@@ -14,7 +14,7 @@
     "deploy": "echo \"Pre-deploy tasks complete. Push with: git push origin main\""
   },
   "dependencies": {
-    "docx": "^8.5.0",
+    "docx": "^9.15.0",
     "puppeteer": "^25.16.0"
   },
   "devDependencies": {
