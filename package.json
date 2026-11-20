@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "docx": "^8.5.0",
-    "puppeteer": "^25.16.0"
+    "puppeteer": "^25.18.1"
   },
   "devDependencies": {
     "cheerio": "^1.2.0",
